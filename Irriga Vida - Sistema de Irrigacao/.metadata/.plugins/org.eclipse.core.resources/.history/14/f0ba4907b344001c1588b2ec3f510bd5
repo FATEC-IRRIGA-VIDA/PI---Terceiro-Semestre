@@ -1,0 +1,14 @@
+package metodos_projeto;
+
+public class Agendamentos {
+	
+	public int id;
+	private String descricao;
+	private char tipo;
+	private char status;
+	private String dtAgendamento;
+	public int idUsuario;
+	public int idEquipamento;
+	
+	
+}

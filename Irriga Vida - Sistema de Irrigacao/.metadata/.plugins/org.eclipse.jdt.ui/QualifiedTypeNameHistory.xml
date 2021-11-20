@@ -30,4 +30,5 @@
     <fullyQualifiedTypeName name="metodos_projeto.Fertilizante"/>
     <fullyQualifiedTypeName name="metodos_projeto.FertilizanteDAO"/>
     <fullyQualifiedTypeName name="telas_usuario.FertilizantesUsuario4"/>
+    <fullyQualifiedTypeName name="metodos_projeto.Tarefa"/>
 </qualifiedTypeNameHistroy>

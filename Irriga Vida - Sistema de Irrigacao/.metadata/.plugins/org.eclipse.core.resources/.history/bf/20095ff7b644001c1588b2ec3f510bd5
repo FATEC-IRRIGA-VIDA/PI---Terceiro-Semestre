@@ -1,0 +1,30 @@
+package metodos_projeto;
+
+public class Agendamento {
+	
+	public String id;
+	public String idUsuario;
+	public String idEquipamento;
+	private String descricao;
+	private String tipoAgendamento;
+	private String dtAgendamento;
+	private String statusAgendamento;
+
+	// ID_AGENDAMENTO	ID_USUARIO	ID_EQUIPAMENTO	DESCRICAO	TIPO_AGEN	DT_MARCADA_AGEND	STATUS_AGEN
+	
+	/**
+	 * Método Construtor para receber todos os dados de um Agendamento.
+	 * @param text
+	 * @param text2
+	 * @param text3
+	 * @param text4
+	 * @param statusTipoDoAgendamento
+	 * @param dtAgendamento2
+	 * @param statusAgendamento2
+	 */
+	public Agendamento(String text, String text2, String text3, String text4, String statusTipoDoAgendamento,
+			String dtAgendamento2, String statusAgendamento2) {
+		
+	}
+
+}

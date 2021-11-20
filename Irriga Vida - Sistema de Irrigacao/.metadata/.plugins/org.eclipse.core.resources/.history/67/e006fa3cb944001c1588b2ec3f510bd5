@@ -1,0 +1,153 @@
+package metodos_projeto;
+
+public class Agendamento {
+	
+	public String id;
+	public String idUsuario;
+	public String idEquipamento;
+	private String descricao;
+	private String tipoAgendamento;
+	private String dtAgendamento;
+	private String statusAgendamento;
+
+	// ID_AGENDAMENTO	ID_USUARIO	ID_EQUIPAMENTO	DESCRICAO	TIPO_AGEN	DT_MARCADA_AGEND	STATUS_AGEN
+	
+	/**
+	 * Método Construtor para receber todos os dados de um Agendamento.
+	 * @param text - variável que armazena o valor recebido ID.
+	 * @param text2 - variável que armazena o valor recebido ID DO USUÁRIO.
+	 * @param text3 - variável que armazena o valor recebido ID DO EQUIPAMENTO.
+	 * @param text4 - variável que armazena o valor recebido DESCRIÇÃO.
+	 * @param statusTipoDoAgendamento - variável que armazena o valor recebido TIPO DO AGENDAMENTO.
+	 * @param dtAgendamento2 - variável que armazena o valor recebido DATA MARCADA DO AGENDAMENTO.
+	 * @param statusAgendamento2 - variável que armazena o valor recebido STATUS DO AGENDAMENTO.
+	 */
+	public Agendamento(String text, String text2, String text3, String text4, String statusTipoDoAgendamento,
+			String dtAgendamento2, String statusAgendamento2) {
+		this.id=text;
+		this.idUsuario=text2;
+		this.idEquipamento=text3;
+		this.descricao=text4;
+		this.tipoAgendamento=statusTipoDoAgendamento;
+		this.dtAgendamento=dtAgendamento2;
+		this.statusAgendamento=statusAgendamento2;
+	}
+
+	/**
+	 *  Método que recebe o
+	 * @return - retorna
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * Método que define o
+	 * @param text - variável que armazena o
+	 */
+	public void setId(String text) {
+		this.id = text;
+	}
+	
+	
+	/**
+	 *  Método que recebe o
+	 * @return - retorna
+	 */
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+	
+	/**
+	 * Método que define o
+	 * @param text2 - variável que armazena o
+	 */
+	public void setIdUsuario(String text2) {
+		this.idUsuario = text2;
+	}
+	
+	
+	/**
+	 *  Método que recebe o
+	 * @return - retorna
+	 */
+	public String getIdEquipamento() {
+		return idEquipamento;
+	}
+	
+	/**
+	 * Método que define o
+	 * @param text3 - variável que armazena o
+	 */
+	public void setIdEquipamento(String text3) {
+		this.idEquipamento = text3;
+	}
+	
+	
+	/**
+	 *  Método que recebe o
+	 * @return - retorna
+	 */
+	public String getDescricao() {
+		return descricao;
+	}
+	
+	/**
+	 * Método que define o
+	 * @param text4 - variável que armazena o
+	 */
+	public void setDescricao(String text4) {
+		this.descricao = text4;
+	}
+	
+	
+	/** 
+	 *  Método que recebe o
+	 * @return - retorna
+	 */
+	public String getTipoAgendamento() {
+		return tipoAgendamento;
+	}
+	
+	/**
+	 * Método que define o
+	 * @param statusTipoDoAgendamento - variável que armazena o
+	 */
+	public void setTipoAgendamento(String statusTipoDoAgendamento) {
+		this.tipoAgendamento = statusTipoDoAgendamento;
+	}
+	
+	
+	/**
+	 *  Método que recebe o
+	 * @return - retorna
+	 */
+	public String getDtAgendamento() {
+		return dtAgendamento;
+	}
+	
+	/**
+	 * Método que define o
+	 * @param dtAgendamento2 - variável que armazena o
+	 */
+	public void setDtAgendamento(String dtAgendamento2) {
+		this.dtAgendamento = dtAgendamento2;
+	}
+	
+	
+	/**
+	 *  Método que recebe o
+	 * @return - retorna
+	 */
+	public String getStatusAgendamento() {
+		return statusAgendamento;
+	}
+	
+	/**
+	 * Método que define o
+	 * @param statusAgendamento2 - variável que armazena o
+	 */
+	public void setStatusAgendamento(String statusAgendamento2) {
+		this.statusAgendamento = statusAgendamento2;
+	}
+}

@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -15,10 +17,19 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
+import metodos.AcessoBD;
 import metodos.DocumentoLimitado;
+import metodos_projeto.Agendamento;
+import metodos_projeto.AgendamentoDAO;
+import metodos_projeto.Usuario;
+import metodos_projeto.UsuarioDAO;
+import net.proteanit.sql.DbUtils;
 
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
@@ -33,8 +44,35 @@ public class Agendamentos extends JFrame {
 	public static Cadastros tela3;
 	public static Agendamentos tela9;
 	private JTextField textCodEquipamento;
-	private JTable table;
+	private JTable table_agendamento;
+	private JDateChooser dateChooserDataPrevista;
+	private JComboBox ComboBoxStatusAgendamento;
+	private JComboBox ComboBoxTipoDoAgendamento;
 
+	/***
+	 * Metódo que executa uma pesquisa em toda a tabela de Agendamentos. (FILTRO)
+	 */
+	public void refreshTable() {
+		
+		AcessoBD bd = new AcessoBD();
+		if(bd.getConnection()){ 
+			
+			String sql ="select * from TB_AGENDAMENTOS;"; // instrução executada no banco de dados.
+			try {
+				bd.st = bd.con.prepareStatement(sql); // preparar a instrução para ser executada.
+				bd.rs = bd.st.executeQuery(); // Obtém a posicao BOF da tabela e executa a Consulta.
+				table_agendamento.setModel(DbUtils.resultSetToTableModel(bd.rs));	
+				}	
+			
+			catch(SQLException erro) { 
+				System.out.println(erro); // mostra o erro encontrado quando tentou a conexão.
+			}
+			finally {
+				bd.close(); // encerra a conexão ao BD.
+			}
+		}
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -109,7 +147,7 @@ public class Agendamentos extends JFrame {
 		textDescricaoAgendamento.setDocument( new DocumentoLimitado(30) ); //definindo o tamanho do campo
 		textDescricaoAgendamento.setFont(new Font("Arial", Font.PLAIN, 12));
 		textDescricaoAgendamento.setColumns(10);
-		textDescricaoAgendamento.setBounds(202, 328, 488, 20);
+		textDescricaoAgendamento.setBounds(202, 328, 532, 20);
 		contentPane.add(textDescricaoAgendamento);
 		
 		JLabel labelDescricaoAgendamento = new JLabel("Descri\u00E7\u00E3o do Agendamento");
@@ -147,6 +185,42 @@ public class Agendamentos extends JFrame {
 		JButton btPesquisar = new JButton("Pesquisar");
 		btPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				AcessoBD bd = new AcessoBD();
+				if(bd.getConnection()){ 
+
+					String sql ="select * from TB_AGENDAMENTOS where ID_AGENDAMENTO = ? or ID_USUARIO = ? or ID_EQUIPAMENTO = ? or DESCRICAO = ? "; // instrução executada no banco de dados.
+
+					try {
+						
+						// Recebendo os valores inseridos.
+						/*String  id = textCodAgendamento.getText(); // ID_AGENDAMENTO	
+						String  idUsuario = textCodUsuario.getText(); // ID_USUARIO		
+						String  idEquipamento =  textCodEquipamento.getText(); // ID_EQUIPAMENTO	
+						String  descricao =  textDescricaoAgendamento.getText(); // DESCRICAO*/	
+							
+						bd.st = bd.con.prepareStatement(sql); // preparar a instrução para ser executada.
+						bd.st.setString(1, textCodAgendamento.getText());
+						bd.st.setString(2, textCodUsuario.getText());
+						bd.st.setString(3, textCodEquipamento.getText());
+						bd.st.setString(4, textDescricaoAgendamento.getText());
+						bd.rs = bd.st.executeQuery(); // Obtém a posicao BOF da tabela e executa a Consulta.
+						table_agendamento.setModel(DbUtils.resultSetToTableModel(bd.rs));	
+						}	
+					
+					catch(SQLException erro) { 
+						System.out.println(erro); // mostra o erro encontrado quando tentou a conexão.
+					}
+					catch(NumberFormatException erro) { 
+						System.out.println("Insira um dado para busca !"); // erro na leitura em caso de valor em branco.
+					}
+					finally {
+						bd.close(); // encerra a conexão ao BD.
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Falha na conexão com o BD!"); // retorna a mensagem de falha de conexão ao BD.
+				}
 			}
 		});
 		btPesquisar.setForeground(Color.WHITE);
@@ -162,8 +236,8 @@ public class Agendamentos extends JFrame {
 				// Limpando dados inseridos nas textboxs.
 				textCodAgendamento.setText("");
 				textCodUsuario.setText("");
-				textDescricaoAgendamento.setText("");
 				textCodEquipamento.setText("");
+				textDescricaoAgendamento.setText("");
 				
 			}
 		});
@@ -174,20 +248,163 @@ public class Agendamentos extends JFrame {
 		contentPane.add(btLimpar);
 		
 		JButton btAtualizar = new JButton("Atualizar");
+		btAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//Definindo condicionais para a Data de Agendamento
+				//DateFormat df = new  SimpleDateFormat("yyyy-MM-dd");
+				DateFormat df = new  SimpleDateFormat("dd-MM-yyyy");
+				
+				String dtAgendamento = "0";
+				if(dateChooserDataPrevista.getDate() != null) {
+					dtAgendamento = (df.format(dateChooserDataPrevista.getDate()));    //Formatação da DT_MARCADA_AGEND.
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Insira data válida no Campo");
+				
+				//Definindo as variaveis a partir de cada combinação de seleção.
+				String statusAgendamento; // STATUS_AGEN -- E - EFETUADO | P - PENDENTE | C- CANCELADO  
+				String statusTipoDoAgendamento; // TIPO_AGEN  -- P -PREVENTIVA | U - URGENCIA
+				
+				if(ComboBoxTipoDoAgendamento.getSelectedItem().equals("Preventiva")&&ComboBoxStatusAgendamento.getSelectedItem().equals("Efetuado"))
+				{
+					statusTipoDoAgendamento = "P";
+					statusAgendamento = "E";
+				}
+				
+				else if(ComboBoxTipoDoAgendamento.getSelectedItem().equals("Preventiva")&&ComboBoxStatusAgendamento.getSelectedItem().equals("Pendente"))
+				{
+					statusTipoDoAgendamento = "P";
+					statusAgendamento = "P";
+				}
+				
+				else if(ComboBoxTipoDoAgendamento.getSelectedItem().equals("Preventiva")&&ComboBoxStatusAgendamento.getSelectedItem().equals("Cancelado"))
+				{
+					statusTipoDoAgendamento = "P";
+					statusAgendamento = "C";
+				}
+				
+				else if(ComboBoxTipoDoAgendamento.getSelectedItem().equals("Urgência")&&ComboBoxStatusAgendamento.getSelectedItem().equals("Efetuado"))
+				{
+					statusTipoDoAgendamento = "U";
+					statusAgendamento = "E";
+				}
+				
+				else if(ComboBoxTipoDoAgendamento.getSelectedItem().equals("Urgência")&&ComboBoxStatusAgendamento.getSelectedItem().equals("Pendente"))
+				{
+					statusTipoDoAgendamento = "U";
+					statusAgendamento = "P";
+				}
+				
+				else if(ComboBoxTipoDoAgendamento.getSelectedItem().equals("Urgência")&&ComboBoxStatusAgendamento.getSelectedItem().equals("Cancelado"))
+				{
+					statusTipoDoAgendamento = "U";
+					statusAgendamento = "C";
+				}
+				
+				else
+				{
+					statusTipoDoAgendamento = "";
+					statusAgendamento = "";
+				}
+				
+				Agendamento agendamento = new Agendamento(textCodAgendamento.getText(), textCodUsuario.getText(), textCodEquipamento.getText(),
+						textDescricaoAgendamento.getText(), statusTipoDoAgendamento, dtAgendamento, statusAgendamento);
+				
+				AgendamentoDAO dao = new AgendamentoDAO();
+				dao.alterar(agendamento);
+			}
+		});
 		btAtualizar.setForeground(Color.WHITE);
 		btAtualizar.setFont(new Font("Arial", Font.BOLD, 12));
 		btAtualizar.setBackground(new Color(0, 128, 0));
 		btAtualizar.setBounds(909, 343, 122, 25);
 		contentPane.add(btAtualizar);
 		
-		JButton btCancelar = new JButton("Cancelar");
-		btCancelar.setForeground(Color.WHITE);
-		btCancelar.setFont(new Font("Arial", Font.BOLD, 12));
-		btCancelar.setBackground(new Color(0, 128, 0));
-		btCancelar.setBounds(909, 383, 122, 25);
-		contentPane.add(btCancelar);
+		JButton btDeletar = new JButton("Deletar");
+		btDeletar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Agendamento agendamento = new Agendamento(textCodAgendamento.getText());
+				
+				AgendamentoDAO dao = new AgendamentoDAO();
+				dao.excluir(agendamento);
+			}
+		});
+		btDeletar.setForeground(Color.WHITE);
+		btDeletar.setFont(new Font("Arial", Font.BOLD, 12));
+		btDeletar.setBackground(new Color(0, 128, 0));
+		btDeletar.setBounds(909, 383, 122, 25);
+		contentPane.add(btDeletar);
 		
 		JButton btNovoCadastro = new JButton("Novo Cadastro");
+		btNovoCadastro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//Definindo condicionais para a Data de Agendamento
+				//DateFormat df = new  SimpleDateFormat("yyyy-MM-dd");
+				DateFormat df = new  SimpleDateFormat("dd-MM-yyyy");
+				
+				String dtAgendamento = "0";
+				if(dateChooserDataPrevista.getDate() != null) {
+					dtAgendamento = (df.format(dateChooserDataPrevista.getDate()));    //Formatação da DT_MARCADA_AGEND.
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Insira data válida no Campo");
+				
+				//Definindo as variaveis a partir de cada combinação de seleção.
+				String statusAgendamento; // STATUS_AGEN -- E - EFETUADO | P - PENDENTE | C- CANCELADO  
+				String statusTipoDoAgendamento; // TIPO_AGEN  -- P -PREVENTIVA | U - URGENCIA
+				
+				if(ComboBoxTipoDoAgendamento.getSelectedItem().equals("Preventiva")&&ComboBoxStatusAgendamento.getSelectedItem().equals("Efetuado"))
+				{
+					statusTipoDoAgendamento = "P";
+					statusAgendamento = "E";
+				}
+				
+				else if(ComboBoxTipoDoAgendamento.getSelectedItem().equals("Preventiva")&&ComboBoxStatusAgendamento.getSelectedItem().equals("Pendente"))
+				{
+					statusTipoDoAgendamento = "P";
+					statusAgendamento = "P";
+				}
+				
+				else if(ComboBoxTipoDoAgendamento.getSelectedItem().equals("Preventiva")&&ComboBoxStatusAgendamento.getSelectedItem().equals("Cancelado"))
+				{
+					statusTipoDoAgendamento = "P";
+					statusAgendamento = "C";
+				}
+				
+				else if(ComboBoxTipoDoAgendamento.getSelectedItem().equals("Urgência")&&ComboBoxStatusAgendamento.getSelectedItem().equals("Efetuado"))
+				{
+					statusTipoDoAgendamento = "U";
+					statusAgendamento = "E";
+				}
+				
+				else if(ComboBoxTipoDoAgendamento.getSelectedItem().equals("Urgência")&&ComboBoxStatusAgendamento.getSelectedItem().equals("Pendente"))
+				{
+					statusTipoDoAgendamento = "U";
+					statusAgendamento = "P";
+				}
+				
+				else if(ComboBoxTipoDoAgendamento.getSelectedItem().equals("Urgência")&&ComboBoxStatusAgendamento.getSelectedItem().equals("Cancelado"))
+				{
+					statusTipoDoAgendamento = "U";
+					statusAgendamento = "C";
+				}
+				
+				else
+				{
+					statusTipoDoAgendamento = "";
+					statusAgendamento = "";
+				}
+				
+				Agendamento agendamento = new Agendamento(textCodAgendamento.getText(), textCodUsuario.getText(), textCodEquipamento.getText(),
+						textDescricaoAgendamento.getText(), statusTipoDoAgendamento, dtAgendamento, statusAgendamento);
+				
+				AgendamentoDAO dao = new AgendamentoDAO();
+				dao.incluir(agendamento);
+			}
+		});
 		btNovoCadastro.setForeground(Color.WHITE);
 		btNovoCadastro.setFont(new Font("Arial", Font.BOLD, 12));
 		btNovoCadastro.setBackground(new Color(0, 128, 0));
@@ -200,13 +417,15 @@ public class Agendamentos extends JFrame {
 		labelStatus.setBounds(202, 389, 132, 14);
 		contentPane.add(labelStatus);
 		
-		JDateChooser dateChooserDataPrevista = new JDateChooser();
+		//JDateChooser dateChooserDataPrevista = new JDateChooser();
+		dateChooserDataPrevista = new JDateChooser();
 		dateChooserDataPrevista.setBounds(292, 433, 168, 20);
 		contentPane.add(dateChooserDataPrevista);
 		
-		JComboBox ComboBoxStatusAgendamento = new JComboBox();
-		ComboBoxStatusAgendamento.setModel(new DefaultComboBoxModel(new String[] {"Efetuado", "Pendente", "Cancelado"}));
-		ComboBoxStatusAgendamento.setBounds(257, 385, 140, 22);
+		//JComboBox ComboBoxStatusAgendamento = new JComboBox();
+		ComboBoxStatusAgendamento = new JComboBox();
+		ComboBoxStatusAgendamento.setModel(new DefaultComboBoxModel(new String[] {"<Selecionar uma op\u00E7\u00E3o>", "Efetuado", "Pendente", "Cancelado"}));
+		ComboBoxStatusAgendamento.setBounds(257, 385, 160, 22);
 		contentPane.add(ComboBoxStatusAgendamento);
 		
 		JLabel labelCodEquipamento = new JLabel("C\u00F3digo do Equipamento ");
@@ -226,24 +445,32 @@ public class Agendamentos extends JFrame {
 		scrollPane.setBounds(10, 47, 1016, 232);
 		contentPane.add(scrollPane);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		table_agendamento = new JTable();
+		scrollPane.setViewportView(table_agendamento);
 		
-		JLabel labelStatus_1 = new JLabel("Status");
-		labelStatus_1.setForeground(Color.WHITE);
-		labelStatus_1.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelStatus_1.setBounds(427, 389, 132, 14);
-		contentPane.add(labelStatus_1);
+		JLabel labelTipoDoAgendamento = new JLabel("Tipo do Agendamento");
+		labelTipoDoAgendamento.setForeground(Color.WHITE);
+		labelTipoDoAgendamento.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelTipoDoAgendamento.setBounds(427, 389, 132, 14);
+		contentPane.add(labelTipoDoAgendamento);
 		
-		JComboBox ComboBoxStatusAgendamento_1 = new JComboBox();
-		ComboBoxStatusAgendamento_1.setBounds(482, 385, 140, 22);
-		contentPane.add(ComboBoxStatusAgendamento_1);
+		//JComboBox ComboBoxTipoDoAgendamento = new JComboBox();
+		ComboBoxTipoDoAgendamento = new JComboBox();
+		ComboBoxTipoDoAgendamento.setModel(new DefaultComboBoxModel(new String[] {"<Selecionar uma op\u00E7\u00E3o>", "Preventiva", "Urg\u00EAncia"}));
+		ComboBoxTipoDoAgendamento.setBounds(581, 384, 153, 22);
+		contentPane.add(ComboBoxTipoDoAgendamento);
 		
-		JButton btNovoCadastro_1 = new JButton("Novo Cadastro");
-		btNovoCadastro_1.setForeground(Color.WHITE);
-		btNovoCadastro_1.setFont(new Font("Arial", Font.BOLD, 12));
-		btNovoCadastro_1.setBackground(new Color(0, 128, 0));
-		btNovoCadastro_1.setBounds(796, 13, 235, 25);
-		contentPane.add(btNovoCadastro_1);
+		JButton btFiltroAgendamento = new JButton("Filtrar Agendamento");
+		btFiltroAgendamento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				refreshTable();
+			}
+		});
+		btFiltroAgendamento.setForeground(Color.WHITE);
+		btFiltroAgendamento.setFont(new Font("Arial", Font.BOLD, 12));
+		btFiltroAgendamento.setBackground(new Color(0, 128, 0));
+		btFiltroAgendamento.setBounds(796, 13, 235, 25);
+		contentPane.add(btFiltroAgendamento);
 	}
 }

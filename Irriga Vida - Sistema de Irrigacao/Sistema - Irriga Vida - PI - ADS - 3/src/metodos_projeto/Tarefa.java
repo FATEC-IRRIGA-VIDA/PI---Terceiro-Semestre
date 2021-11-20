@@ -10,35 +10,7 @@ public class Tarefa {
 	private String dtPrevista;
 	private char tipo;
 	private Usuario idUsuario;
-	private Plantio idPlantio;
 	
-	/***
-	 * Método que irá realizar as operações do sistema á respeito as Tarefas (Cadastrar, Editar, Excluir, Consultar) 
-	 */
-	private void manterTarefa() {
-		
-		// Lógica ainda a ser implementada
-	}
-	
-	/***
-	 * Método que irá receber o id de um plantio e buscar na classe Plantio
-	 * @param idPlantio - id de um determinado plantio
-	 * @return - retorna o plantio correspondente
-	 */
-	private Plantio buscarPlantio(int idPlantio) {
-		return null;
-		
-		// Lógica ainda a ser implementada
-	}
-	
-	/***
-	 * Método que irá receber o id de um usuário e buscar na classe Usuário
-	 * @param idUsuario - id de um determinado usuário
-	 * @return - retorna o usuário correspondente
-	 */
-	private Usuario buscarUsuario(int idUsuario) {
-		return null;
-		
-		// Lógica ainda a ser implementada
-	}
+	// ID_TAREFA	ID_USUARIO	DESCRICAO	OBS_TAREFA	DT_REAL_TAREFA	DT_PREVISTA	TIPO_TAREFA	STATUS_TAREFA
+
 }

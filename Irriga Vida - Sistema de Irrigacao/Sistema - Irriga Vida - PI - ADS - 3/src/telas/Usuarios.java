@@ -376,7 +376,7 @@ public class Usuarios extends JFrame {
 		btNovoCadastro.setForeground(Color.WHITE);
 		btNovoCadastro.setFont(new Font("Arial", Font.BOLD, 12));
 		btNovoCadastro.setBackground(new Color(0, 128, 0));
-		btNovoCadastro.setBounds(481, 12, 266, 25);
+		btNovoCadastro.setBounds(527, 288, 231, 25);
 		contentPane.add(btNovoCadastro);
 		
 		JLabel labelCodUusario = new JLabel("C\u00F3digo do Usu\u00E1rio ");
@@ -499,7 +499,7 @@ public class Usuarios extends JFrame {
 		btFiltroUsuarios.setForeground(Color.WHITE);
 		btFiltroUsuarios.setFont(new Font("Arial", Font.BOLD, 12));
 		btFiltroUsuarios.setBackground(new Color(0, 128, 0));
-		btFiltroUsuarios.setBounds(527, 304, 231, 25);
+		btFiltroUsuarios.setBounds(516, 12, 231, 25);
 		contentPane.add(btFiltroUsuarios);
 		
 	}
