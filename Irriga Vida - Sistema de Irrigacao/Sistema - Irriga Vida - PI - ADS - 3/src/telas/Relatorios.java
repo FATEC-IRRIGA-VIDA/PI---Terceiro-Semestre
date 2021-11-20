@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import metodos.DocumentoLimitado;
+
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
@@ -15,12 +18,13 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class Relatorios extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField_3;
-	private JTextField textCodUmidade;
+	private JTextField textTaxaUmidade;
 	public static TelaInicial tela2;
 	public static Relatorios tela10;
 
@@ -45,7 +49,7 @@ public class Relatorios extends JFrame {
 	 */
 	public Relatorios() {
 		setTitle("Relat\u00F3rios");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 745, 461);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(46, 139, 87));
@@ -94,29 +98,24 @@ public class Relatorios extends JFrame {
 		btVoltar.setBounds(630, 388, 89, 23);
 		contentPane.add(btVoltar);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_3.setColumns(10);
-		textField_3.setBounds(534, 157, 152, 20);
-		contentPane.add(textField_3);
-		
 		JLabel labelStatusUmidade = new JLabel("Status Umidade");
 		labelStatusUmidade.setForeground(Color.WHITE);
 		labelStatusUmidade.setFont(new Font("Arial", Font.PLAIN, 12));
 		labelStatusUmidade.setBounds(534, 128, 132, 14);
 		contentPane.add(labelStatusUmidade);
 		
-		textCodUmidade = new JTextField();
-		textCodUmidade.setFont(new Font("Arial", Font.PLAIN, 12));
-		textCodUmidade.setColumns(10);
-		textCodUmidade.setBounds(534, 84, 152, 20);
-		contentPane.add(textCodUmidade);
+		textTaxaUmidade = new JTextField();
+		textTaxaUmidade.setDocument( new DocumentoLimitado(6) ); //definindo o tamanho do campo
+		textTaxaUmidade.setFont(new Font("Arial", Font.PLAIN, 12));
+		textTaxaUmidade.setColumns(10);
+		textTaxaUmidade.setBounds(534, 84, 152, 20);
+		contentPane.add(textTaxaUmidade);
 		
-		JLabel labelCodUmidade = new JLabel("Taxa de Umidade");
-		labelCodUmidade.setForeground(Color.WHITE);
-		labelCodUmidade.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelCodUmidade.setBounds(534, 55, 132, 14);
-		contentPane.add(labelCodUmidade);
+		JLabel labelTaxaUmidade = new JLabel("Taxa de Umidade");
+		labelTaxaUmidade.setForeground(Color.WHITE);
+		labelTaxaUmidade.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelTaxaUmidade.setBounds(534, 55, 132, 14);
+		contentPane.add(labelTaxaUmidade);
 		
 		JButton btPesquisar = new JButton("Pesquisar");
 		btPesquisar.setForeground(Color.WHITE);
@@ -126,11 +125,23 @@ public class Relatorios extends JFrame {
 		contentPane.add(btPesquisar);
 		
 		JButton btLimpar = new JButton("Limpar");
+		btLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// Limpando dados inseridos nas textboxs.
+				textTaxaUmidade.setText("");
+			}
+		});
 		btLimpar.setForeground(Color.WHITE);
 		btLimpar.setFont(new Font("Arial", Font.BOLD, 12));
 		btLimpar.setBackground(new Color(0, 128, 0));
 		btLimpar.setBounds(555, 254, 122, 25);
 		contentPane.add(btLimpar);
+		
+		JComboBox ComboBoxStatusUmidade = new JComboBox();
+		ComboBoxStatusUmidade.setModel(new DefaultComboBoxModel(new String[] {"Baixo", "Alto"}));
+		ComboBoxStatusUmidade.setToolTipText("");
+		ComboBoxStatusUmidade.setBounds(534, 148, 152, 31);
+		contentPane.add(ComboBoxStatusUmidade);
 	}
-
 }

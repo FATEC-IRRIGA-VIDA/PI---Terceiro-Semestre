@@ -15,12 +15,19 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
+import metodos.DocumentoLimitado;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class Equipamentos extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textValor;
 	private JTextField textDescricao;
 	private JTextField textCodEquipamento;
+	public static Cadastros tela3;
+	public static Equipamentos tela12;
 
 	/**
 	 * Launch the application.
@@ -43,7 +50,7 @@ public class Equipamentos extends JFrame {
 	 */
 	public Equipamentos() {
 		setTitle("Equipamentos");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 762, 473);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(46, 139, 87));
@@ -72,6 +79,11 @@ public class Equipamentos extends JFrame {
 		contentPane_1.add(dtrpnA);
 		
 		JButton btSair = new JButton("Sair");
+		btSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btSair.setForeground(Color.WHITE);
 		btSair.setFont(new Font("Arial", Font.BOLD, 12));
 		btSair.setBackground(new Color(0, 128, 0));
@@ -79,6 +91,15 @@ public class Equipamentos extends JFrame {
 		contentPane_1.add(btSair);
 		
 		JButton btVoltar = new JButton("Voltar");
+		btVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tela3 = new Cadastros();
+				tela3.setVisible(true);
+				Cadastros.tela12.setVisible(false);
+				
+			}
+		});
 		btVoltar.setForeground(Color.WHITE);
 		btVoltar.setFont(new Font("Arial", Font.BOLD, 12));
 		btVoltar.setBackground(new Color(0, 128, 0));
@@ -86,6 +107,7 @@ public class Equipamentos extends JFrame {
 		contentPane_1.add(btVoltar);
 		
 		textValor = new JTextField();
+		textValor.setDocument( new DocumentoLimitado(10) ); //definindo o tamanho do campo
 		textValor.setFont(new Font("Arial", Font.PLAIN, 12));
 		textValor.setColumns(10);
 		textValor.setBounds(500, 121, 234, 20);
@@ -98,6 +120,7 @@ public class Equipamentos extends JFrame {
 		contentPane_1.add(labelValor);
 		
 		textDescricao = new JTextField();
+		textDescricao.setDocument( new DocumentoLimitado(50) ); //definindo o tamanho do campo
 		textDescricao.setFont(new Font("Arial", Font.PLAIN, 12));
 		textDescricao.setColumns(10);
 		textDescricao.setBounds(521, 78, 213, 20);
@@ -110,6 +133,7 @@ public class Equipamentos extends JFrame {
 		contentPane_1.add(labelDescricao);
 		
 		textCodEquipamento = new JTextField();
+		//textCodEquipamento.setDocument( new DocumentoLimitado(1) ); //definindo o tamanho do campo
 		textCodEquipamento.setFont(new Font("Arial", Font.PLAIN, 12));
 		textCodEquipamento.setColumns(10);
 		textCodEquipamento.setBounds(602, 47, 132, 20);
@@ -129,6 +153,16 @@ public class Equipamentos extends JFrame {
 		contentPane_1.add(btPesquisar);
 		
 		JButton btLimpar = new JButton("Limpar");
+		btLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// Limpando dados inseridos nas textboxs.
+				textCodEquipamento.setText("");
+				textDescricao.setText("");
+				textValor.setText("");
+				
+			}
+		});
 		btLimpar.setForeground(Color.WHITE);
 		btLimpar.setFont(new Font("Arial", Font.BOLD, 12));
 		btLimpar.setBackground(new Color(0, 128, 0));
