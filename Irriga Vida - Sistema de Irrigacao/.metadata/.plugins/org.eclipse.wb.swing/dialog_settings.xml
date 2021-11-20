@@ -3,8 +3,8 @@
 	<section name="org.eclipse.wb.internal.swing.model.property.editor.font.FontDialog">
 		<item key="x" value="431"/>
 		<item key="y" value="116"/>
-		<item key="width" value="504"/>
-		<item key="height" value="506"/>
+		<item key="width" value="715"/>
+		<item key="height" value="732"/>
 	</section>
 	<section name="org.eclipse.wb.internal.swing.model.property.editor.icon.IconPropertyEditor$ImageDialog">
 		<item key="x" value="242"/>
@@ -27,7 +27,7 @@
 	<section name="org.eclipse.wb.internal.swing.model.property.editor.border.BorderDialog">
 		<item key="x" value="442"/>
 		<item key="y" value="128"/>
-		<item key="width" value="482"/>
-		<item key="height" value="481"/>
+		<item key="width" value="754"/>
+		<item key="height" value="630"/>
 	</section>
 </section>

@@ -1,0 +1,13 @@
+package metodos_projeto;
+
+public class Usuario {
+
+	public int id;
+	public String nome;
+	private String senha;
+	private char status;
+	private String email;
+
+	
+	
+}
