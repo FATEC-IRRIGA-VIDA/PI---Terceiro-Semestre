@@ -1,0 +1,244 @@
+package metodos_projeto;
+
+public class Plantio {
+
+	public String id;
+	private String idPlanta;
+	private String idFertilizante;
+	private String tipoAdubo;
+	private String tempirrigui;
+	private String metragem;
+	private String qtdeSemente;
+	private String tipoPlantio;
+	private String dtIniPlantio;
+	private String dtFimPlantio;
+	private String dtIniColheita;
+	private String dtFimColheita;
+
+	// ID_PLANTIO	ID_PLANTA	ID_FERTILIZANTE	TIPO_ADUBO	TEMPO_MED_IRRIGA	METRAGEM	QTD_SEMENTE	TIPO_PLANTIO	
+	//  DT_INI_PLANTIO	DT_FIM_PLANTIO	DT_INI_COLHEITA	DT_FIM_COLHEITA
+	
+	/**
+	 * Método Construtor para receber todos os dados de um Plantio.
+	 * @param text - variável que armazena o valor recebido do ID.
+	 * @param text2 - variável que armazena o valor recebido do ID DA PLANTA.
+	 * @param text3 - variável que armazena o valor recebido do ID DO FERTILIZANTE.
+	 * @param text4 - variável que armazena o valor recebido do TIPO DO ADUBO.
+	 * @param text5 - variável que armazena o valor recebido do TEMPO MÉDIO DE IRRIGAÇÃO.
+	 * @param text6 - variável que armazena o valor recebido da METRAGEM.
+	 * @param text7 - variável que armazena o valor recebido da QUANTIDADE DE SEMENTES.
+	 * @param tipoPlantio2 - variável que armazena o valor recebido do TIPO DO PLANTIO.
+	 * @param dtInicioP - variável que armazena o valor recebido da DATA INICIO PLANTIO.
+	 * @param dtFimP - variável que armazena o valor recebido da DATA FIM PLANTIO.
+	 * @param dtInicioC - variável que armazena o valor recebido da DATA INICIO COLHEITA.
+	 * @param dtFimC - variável que armazena o valor recebido da DATA FIM COLHEITA.
+	 */
+	public Plantio(String text, String text2, String text3, String text4, String text5, String text6, String text7,
+			String tipoPlantio2, String dtInicioP, String dtFimP, String dtInicioC, String dtFimC) {
+		this.id=text;
+		this.idPlanta=text2;
+		this.idFertilizante=text3;
+		this.tipoAdubo=text4;
+		this.tempirrigui=text5;
+		this.metragem=text6;
+		this.qtdeSemente=text7;
+		this.tipoPlantio=tipoPlantio2;
+		this.dtIniPlantio=dtInicioP;
+		this.dtFimPlantio=dtFimP;
+		this.dtIniColheita=dtInicioC;
+		this.dtFimColheita=dtFimC;
+	}
+
+	/**
+	 * Método que recebe o ID.
+	 * @return - retorna o ID.
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * Método que define o ID.
+	 * @param text - variável que armazena o valor recebido do ID.
+	 */
+	public void setId(String text) {
+		this.id = text;
+	}
+
+	
+	/**
+	 * Método que recebe o ID DA PLANTA.
+	 * @return - retorna o ID DA PLANTA.
+	 */
+	public String getIdPlanta() {
+		return idPlanta;
+	}
+	/**
+	 * Método que define o ID DA PLANTA.
+	 * @param text2 - variável que armazena o valor recebido do ID DA PLANTA.
+	 */
+	public void setIdPlanta(String text2) {
+		this.idPlanta = text2;
+	}
+
+	
+	/**
+	 * Método que recebe o ID DO FERTILIZANTE.
+	 * @return - retorna o ID DO FERTILIZANTE.
+	 */
+	public String getIdFertilizante() {
+		return idFertilizante;
+	}
+	/**
+	 * Método que define o ID DO FERTILIZANTE.
+	 * @param text3 - variável que armazena o valor recebido do ID DO FERTILIZANTE.
+	 */
+	public void setIdFertilizante(String text3) {
+		this.idFertilizante = text3;
+	}
+
+	
+	/**
+	 * Método que recebe
+	 * @return - retorna
+	 */ 
+	public String getTipoAdubo() {
+		return tipoAdubo;
+	}
+	/**
+	 * Método que define
+	 * @param text4 - variável que armazena o valor recebido
+	 */
+	public void setTipoAdubo(String text4) {
+		this.tipoAdubo = text4;
+	}
+
+	
+	/**
+	 * Método que recebe
+	 * @return - retorna
+	 */
+	public String getTempirrigui() {
+		return tempirrigui;
+	}
+	/**
+	 * Método que define
+	 * @param text5 - variável que armazena o valor recebido
+	 */
+	public void setTempirrigui(String text5) {
+		this.tempirrigui = text5;
+	}
+
+	
+	/**
+	 * Método que recebe
+	 * @return - retorna
+	 */
+	public String getMetragem() {
+		return metragem;
+	}
+	/**
+	 * Método que define
+	 * @param text6 - variável que armazena o valor recebido
+	 */
+	public void setMetragem(String text6) {
+		this.metragem = text6;
+	}
+
+	
+	/**
+	 * Método que recebe
+	 * @return - retorna
+	 */
+	public String getQtdeSemente() {
+		return qtdeSemente;
+	}
+	/**
+	 * Método que define
+	 * @param text7 - variável que armazena o valor recebido
+	 */
+	public void setQtdeSemente(String text7) {
+		this.qtdeSemente = text7;
+	}
+
+	
+	/**
+	 * Método que recebe
+	 * @return - retorna
+	 */
+	public String getTipoPlantio() {
+		return tipoPlantio;
+	}
+	/**
+	 * Método que define
+	 * @param tipoPlantio2 - variável que armazena o valor recebido
+	 */
+	public void setTipoPlantio(String tipoPlantio2) {
+		this.tipoPlantio = tipoPlantio2;
+	}
+
+	
+	/**
+	 * Método que recebe
+	 * @return - retorna
+	 */
+	public String getDtIniPlantio() {
+		return dtIniPlantio;
+	}
+	/**
+	 * Método que define
+	 * @param dtInicioP - variável que armazena o valor recebido
+	 */
+	public void setDtIniPlantio(String dtInicioP) {
+		this.dtIniPlantio = dtInicioP;
+	}
+
+	
+	/**
+	 * Método que recebe
+	 * @return - retorna
+	 */
+	public String getDtFimPlantio() {
+		return dtFimPlantio;
+	}
+	/**
+	 * Método que define
+	 * @param dtFimP - variável que armazena o valor recebido
+	 */
+	public void setDtFimPlantio(String dtFimP) {
+		this.dtFimPlantio = dtFimP;
+	}
+
+	
+	/**
+	 * Método que recebe
+	 * @return - retorna
+	 */
+	public String getDtIniColheita() {
+		return dtIniColheita;
+	}
+	/**
+	 * Método que define
+	 * @param dtInicioC - variável que armazena o valor recebido
+	 */
+	public void setDtIniColheita(String dtInicioC) {
+		this.dtIniColheita = dtInicioC;
+	}
+
+	
+	/**
+	 * Método que recebe
+	 * @return - retorna
+	 */
+	public String getDtFimColheita() {
+		return dtFimColheita;
+	}
+	/**
+	 * Método que define
+	 * @param dtFimC - variável que armazena o valor recebido
+	 */
+	public void setDtFimColheita(String dtFimC) {
+		this.dtFimColheita = dtFimC;
+	}
+	
+	
+}

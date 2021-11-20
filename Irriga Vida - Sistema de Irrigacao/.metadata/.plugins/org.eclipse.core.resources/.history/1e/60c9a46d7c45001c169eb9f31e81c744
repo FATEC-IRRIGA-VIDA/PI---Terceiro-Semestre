@@ -1,0 +1,41 @@
+package metodos_projeto;
+
+public class Tarefa {
+
+
+	public String id;
+	private String idUsuario;
+	private String descricao;
+	private String observacao;
+	private String dtExecucao;
+	private String dtPrevista;
+	private String tipo;
+	private String status;
+
+	
+	// ID_TAREFA	ID_USUARIO	DESCRICAO	OBS_TAREFA	DT_REAL_TAREFA	DT_PREVISTA	TIPO_TAREFA	STATUS_TAREFA
+
+	/**
+	 * Método Construtor para receber todos os dados de uma Tarefa.
+	 * @param text - variável que armazena o valor recebido do ID.
+	 * @param text2 - variável que armazena o valor recebido do ID DO USUÁRIO.
+	 * @param text3 - variável que armazena o valor recebido da DESCRIÇÃO.
+	 * @param text4 - variável que armazena o valor recebido da OBSERVAÇÃO DA TAREFA.
+	 * @param dtExecucao2 - variável que armazena o valor recebido da DATA REAL DA TAREFA. 
+	 * @param dtPrevista2 - variável que armazena o valor recebido da DATA PREVISTA.
+	 * @param tipoTarefa - variável que armazena o valor recebido do TIPO DA TAREFA.
+	 * @param statusTarefa - variável que armazena o valor recebido do STATUS DA  TAREFA.
+	 */
+	public Tarefa(String text, String text2, String text3, String text4, String dtExecucao2, String dtPrevista2,
+			String tipoTarefa, String statusTarefa) {
+		this.id=text;
+		this.idUsuario=text2;
+		this.descricao=text3;
+		this.observacao=text4;
+		this.dtExecucao=dtExecucao2;
+		this.dtPrevista=dtPrevista2;
+		this.tipo=tipoTarefa;
+		this.status=statusTarefa;
+	}
+	
+}

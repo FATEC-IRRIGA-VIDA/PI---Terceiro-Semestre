@@ -22,6 +22,7 @@ import metodos.DocumentoLimitado;
 import metodos_projeto.Agendamento;
 import metodos_projeto.AgendamentoDAO;
 import metodos_projeto.Tarefa;
+import metodos_projeto.TarefaDAO;
 import net.proteanit.sql.DbUtils;
 
 import java.awt.event.ActionListener;
@@ -127,7 +128,7 @@ public class Tarefas extends JFrame {
 				
 				tela3 = new Cadastros();
 				tela3.setVisible(true);
-				Cadastros.tela3.setVisible(false);
+				Cadastros.tela7.setVisible(false);
 				
 			}
 		});
@@ -194,10 +195,10 @@ public class Tarefas extends JFrame {
 					try {
 						
 						// Recebendo os valores inseridos.
-						String  id = textCodTarefa.getText(); // ID_TAREFA
+						/*String  id = textCodTarefa.getText(); // ID_TAREFA
 						String  idUsuario = textCodUsuario.getText(); // ID_USUARIO		
 						String  descricao =  textDescricao.getText(); // DESCRICAO	
-						String  observacao =  textObservacao.getText(); // OBS_TAREFA	
+						String  observacao =  textObservacao.getText(); // OBS_TAREFA*/
 
 						bd.st = bd.con.prepareStatement(sql); // preparar a instrução para ser executada.
 						bd.st.setString(1, textCodTarefa.getText());
@@ -248,6 +249,63 @@ public class Tarefas extends JFrame {
 		contentPane.add(btLimpar);
 		
 		JButton btAtualizar = new JButton("Atualizar");
+		btAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//Definindo condicionais para as Datas Prevista Tarefa e Execução Tarefa 
+				//DateFormat df = new  SimpleDateFormat("yyyy-MM-dd");
+				DateFormat df = new  SimpleDateFormat("dd-MM-yyyy");
+				
+				String dtPrevista = "0";
+				String dtExecucao = "0";
+				if(dateChooserDapTarefa.getDate() != null && dateChooserExecTarefa.getDate() !=null) {
+					dtPrevista = (df.format(dateChooserDapTarefa.getDate()));    //Formatação da DT_PREVISTA
+					dtExecucao = (df.format(dateChooserExecTarefa.getDate()));  //Formatação da DT_REAL_TAREFA
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Insira datas válidas nos Campos");
+				
+				//Definindo as variaveis a partir de cada combinação de seleção.
+				String statusTarefa; // STATUS_TAREFA -- P - PENDENTE | F - FINALIZADA
+				String tipoTarefa; // TIPO_TAREFA -- C - COLHEITA | A- AVALIAÇÃO 
+				
+				if(ComboBoxStatus.getSelectedItem().equals("Pendente")&&ComboBoxTipo.getSelectedItem().equals("Colheita"))
+				{
+					statusTarefa = "P";
+					tipoTarefa = "C";
+				}
+				
+				else if(ComboBoxStatus.getSelectedItem().equals("Pendente")&&ComboBoxTipo.getSelectedItem().equals("Avaliação"))
+				{
+					statusTarefa = "P";
+					tipoTarefa = "A";
+				}
+				
+				else if(ComboBoxStatus.getSelectedItem().equals("Finalizada")&&ComboBoxTipo.getSelectedItem().equals("Colheita"))
+				{
+					statusTarefa = "F";
+					tipoTarefa = "C";
+				}
+				
+				else if(ComboBoxStatus.getSelectedItem().equals("Finalizada")&&ComboBoxTipo.getSelectedItem().equals("Avaliação"))
+				{
+					statusTarefa = "F";
+					tipoTarefa = "A";
+				}
+				
+				else
+				{
+					statusTarefa = "";
+					tipoTarefa = "";
+				}
+						
+				Tarefa tarefa = new Tarefa(textCodTarefa.getText(), textCodUsuario.getText(), textDescricao.getText(),
+						textObservacao.getText(), dtExecucao, dtPrevista, tipoTarefa, statusTarefa);
+				
+				TarefaDAO dao = new TarefaDAO();
+				dao.alterar(tarefa);
+			}
+		});
 		btAtualizar.setForeground(Color.WHITE);
 		btAtualizar.setFont(new Font("Arial", Font.BOLD, 12));
 		btAtualizar.setBackground(new Color(0, 128, 0));
@@ -255,6 +313,15 @@ public class Tarefas extends JFrame {
 		contentPane.add(btAtualizar);
 		
 		JButton btDeletar = new JButton("Deletar ");
+		btDeletar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Tarefa tarefa = new Tarefa(textCodTarefa.getText());
+				
+				TarefaDAO dao = new TarefaDAO();
+				dao.excluir(tarefa);
+			}
+		});
 		btDeletar.setForeground(Color.WHITE);
 		btDeletar.setFont(new Font("Arial", Font.BOLD, 12));
 		btDeletar.setBackground(new Color(0, 128, 0));

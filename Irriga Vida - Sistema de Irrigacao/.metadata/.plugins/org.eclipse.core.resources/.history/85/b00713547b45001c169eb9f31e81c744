@@ -1,0 +1,34 @@
+package metodos_projeto;
+
+public class Tarefa {
+
+
+	public String id;
+	private String idUsuario;
+	private String descricao;
+	private String observacao;
+	private String dtExecucao;
+	private String dtPrevista;
+	private String tipo;
+	private String status;
+
+	
+	// ID_TAREFA	ID_USUARIO	DESCRICAO	OBS_TAREFA	DT_REAL_TAREFA	DT_PREVISTA	TIPO_TAREFA	STATUS_TAREFA
+
+	/**
+	 * Método Construtor para receber todos os dados de uma Tarefa.
+	 * @param text
+	 * @param text2
+	 * @param text3
+	 * @param text4
+	 * @param dtExecucao2
+	 * @param dtPrevista2
+	 * @param tipoTarefa
+	 * @param statusTarefa
+	 */
+	public Tarefa(String text, String text2, String text3, String text4, String dtExecucao2, String dtPrevista2,
+			String tipoTarefa, String statusTarefa) {
+		
+	}
+	
+}

@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import consultas_bd.BookDAO;
 import metodos.AcessoBD;
 import metodos.DocumentoLimitado;
 import metodos_projeto.Usuario;
@@ -46,6 +45,8 @@ import java.text.SimpleDateFormat;
 import java.sql.SQLException;
 import javax.swing.JTable;
 import com.toedter.calendar.JDateChooser;
+
+import consultas_bd_arquivos_apoio.BookDAO;
 
 public class Usuarios extends JFrame {
 

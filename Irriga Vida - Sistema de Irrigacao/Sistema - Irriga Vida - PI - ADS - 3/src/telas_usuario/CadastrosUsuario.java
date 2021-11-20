@@ -27,8 +27,8 @@ public class CadastrosUsuario extends JFrame {
 	private JPanel contentPane;
 	public static CadastrosUsuario tela13;
 	public static PlantasUsuario1 tela14;
-	public static PlantiosUsuario tela15;
-	public static TarefasUsuario tela16;
+	public static PlantiosUsuario2 tela15;
+	public static TarefasUsuario3 tela16;
 	public static FertilizantesUsuario4 tela17;
 	public static EquipamentosUsuario5 tela18;
 	
@@ -117,9 +117,9 @@ public class CadastrosUsuario extends JFrame {
 		btnPlantios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				tela15 = new PlantiosUsuario();
+				tela15 = new PlantiosUsuario2();
 				tela15.setVisible(true);
-				PlantiosUsuario.tela13.setVisible(false);
+				PlantiosUsuario2.tela13.setVisible(false);
 				
 			}
 		});
@@ -133,9 +133,9 @@ public class CadastrosUsuario extends JFrame {
 		btnTarefas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				tela16 = new TarefasUsuario();
+				tela16 = new TarefasUsuario3();
 				tela16.setVisible(true);
-				TarefasUsuario.tela13.setVisible(false);
+				TarefasUsuario3.tela13.setVisible(false);
 				
 			}
 		});

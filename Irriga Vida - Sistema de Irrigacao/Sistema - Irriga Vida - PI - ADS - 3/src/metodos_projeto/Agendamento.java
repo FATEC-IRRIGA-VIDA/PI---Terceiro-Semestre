@@ -42,7 +42,7 @@ public class Agendamento {
 	}
 
 	/**
-	 *  Método que recebe o ID.
+	 * Método que recebe o ID.
 	 * @return - retorna ID.
 	 */
 	public String getId() {

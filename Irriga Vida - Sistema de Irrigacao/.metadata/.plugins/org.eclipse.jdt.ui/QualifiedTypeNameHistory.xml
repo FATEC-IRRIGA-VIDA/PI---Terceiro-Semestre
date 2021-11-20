@@ -31,4 +31,9 @@
     <fullyQualifiedTypeName name="metodos_projeto.FertilizanteDAO"/>
     <fullyQualifiedTypeName name="telas_usuario.FertilizantesUsuario4"/>
     <fullyQualifiedTypeName name="metodos_projeto.Tarefa"/>
+    <fullyQualifiedTypeName name="metodos_projeto.TarefaDAO"/>
+    <fullyQualifiedTypeName name="javax.swing.plaf.basic.BasicTextAreaUI"/>
+    <fullyQualifiedTypeName name="telas_usuario.TarefasUsuario3"/>
+    <fullyQualifiedTypeName name="metodos_projeto.Plantio"/>
+    <fullyQualifiedTypeName name="metodos_projeto.PlantioDAO"/>
 </qualifiedTypeNameHistroy>
