@@ -1,0 +1,18 @@
+package metodos_projeto;
+
+public class Planta {
+
+	public String id;
+	private String nomePop;
+	private String dtCadastro;
+	private String observacao;
+	private String tipo;
+	private String origem;
+	private String nomeCient;
+	private String familia;
+	private String clima;
+	
+	
+	
+	
+}

@@ -1,0 +1,104 @@
+package metodos_projeto;
+
+public class Agendamento {
+	
+	public String id;
+	public String idUsuario;
+	public String idEquipamento;
+	private String descricao;
+	private String tipoAgendamento;
+	private String dtAgendamento;
+	private String statusAgendamento;
+
+	// ID_AGENDAMENTO	ID_USUARIO	ID_EQUIPAMENTO	DESCRICAO	TIPO_AGEN	DT_MARCADA_AGEND	STATUS_AGEN
+	
+	/**
+	 * Método Construtor para receber todos os dados de um Agendamento.
+	 * @param text - variável que armazena o valor recebido ID.
+	 * @param text2 - variável que armazena o valor recebido ID DO USUÁRIO.
+	 * @param text3 - variável que armazena o valor recebido ID DO EQUIPAMENTO.
+	 * @param text4 - variável que armazena o valor recebido DESCRIÇÃO.
+	 * @param statusTipoDoAgendamento - variável que armazena o valor recebido TIPO DO AGENDAMENTO.
+	 * @param dtAgendamento2 - variável que armazena o valor recebido DATA MARCADA DO AGENDAMENTO.
+	 * @param statusAgendamento2 - variável que armazena o valor recebido STATUS DO AGENDAMENTO.
+	 */
+	public Agendamento(String text, String text2, String text3, String text4, String statusTipoDoAgendamento,
+			String dtAgendamento2, String statusAgendamento2) {
+		this.id=text;
+		this.idUsuario=text2;
+		this.idEquipamento=text3;
+		this.descricao=text4;
+		this.tipoAgendamento=statusTipoDoAgendamento;
+		this.dtAgendamento=dtAgendamento2;
+		this.statusAgendamento=statusAgendamento2;
+	}
+
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String text) {
+		this.id = text;
+	}
+	
+	
+
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(String text2) {
+		this.idUsuario = text2;
+	}
+	
+	
+
+	public String getIdEquipamento() {
+		return idEquipamento;
+	}
+
+	public void setIdEquipamento(String text3) {
+		this.idEquipamento = text3;
+	}
+	
+	
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String text4) {
+		this.descricao = text4;
+	}
+	
+	
+
+	public String getTipoAgendamento() {
+		return tipoAgendamento;
+	}
+
+	public void setTipoAgendamento(String statusTipoDoAgendamento) {
+		this.tipoAgendamento = statusTipoDoAgendamento;
+	}
+	
+	
+
+	public String getDtAgendamento() {
+		return dtAgendamento;
+	}
+
+	public void setDtAgendamento(String dtAgendamento2) {
+		this.dtAgendamento = dtAgendamento2;
+	}
+	
+	
+
+	public String getStatusAgendamento() {
+		return statusAgendamento;
+	}
+
+	public void setStatusAgendamento(String statusAgendamento2) {
+		this.statusAgendamento = statusAgendamento2;
+	}
+}

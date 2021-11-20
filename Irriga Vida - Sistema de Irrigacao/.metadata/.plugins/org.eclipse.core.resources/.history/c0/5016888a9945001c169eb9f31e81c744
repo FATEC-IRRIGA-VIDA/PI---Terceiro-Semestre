@@ -1,0 +1,14 @@
+package metodos_projeto;
+
+import metodos.AcessoBD;
+
+public class PlantioDAO {
+
+	private AcessoBD bd;
+	private String men, sql;
+	
+	// Esatabelecendo o Construtor para a Classe PlantioDAO
+	public PlantioDAO() {
+		bd = new AcessoBD(); // instancia um objeto da Classe BD.
+	}
+}

@@ -1,0 +1,14 @@
+package metodos_projeto;
+
+import metodos.AcessoBD;
+
+public class EquipamentoDAO {
+
+	private AcessoBD bd;
+	private String men, sql;
+	
+	// Esatabelecendo o Construtor para a Classe EquipamentoDAO
+	public EquipamentoDAO() {
+		bd = new AcessoBD(); // instancia um objeto da Classe BD.
+	}
+}

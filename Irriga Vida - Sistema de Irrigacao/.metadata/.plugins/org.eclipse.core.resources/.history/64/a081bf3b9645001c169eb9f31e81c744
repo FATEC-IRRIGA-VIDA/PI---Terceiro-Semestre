@@ -1,0 +1,20 @@
+package metodos_projeto;
+
+public class Plantio {
+
+	public String id;
+	private String idplanta;
+	private String idFertilizante;
+	private String tipoAdubo;
+	private String tempirrigui;
+	private String metragem;
+	private String qtdeSemente;
+	private String tipoPlantio;
+	private String dtIniPlantio;
+	private String dtFimPlantio;
+	private String dtIniColheita;
+	private String dtFimColheita;
+
+	// ID_PLANTIO	ID_PLANTA	ID_FERTILIZANTE	TIPO_ADUBO	TEMPO_MED_IRRIGA	METRAGEM	QTD_SEMENTE	TIPO_PLANTIO	
+	//  DT_INI_PLANTIO	DT_FIM_PLANTIO	DT_INI_COLHEITA	DT_FIM_COLHEITA
+}

@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import consultas_bd.BookDAO;
 import metodos.AcessoBD;
 import metodos.DocumentoLimitado;
 import metodos_projeto.Usuario;
@@ -46,6 +45,8 @@ import java.text.SimpleDateFormat;
 import java.sql.SQLException;
 import javax.swing.JTable;
 import com.toedter.calendar.JDateChooser;
+
+import consultas_bd_arquivos_apoio.BookDAO;
 
 public class Usuarios extends JFrame {
 
@@ -143,8 +144,8 @@ public class Usuarios extends JFrame {
 						
 						// STATUS_USUARIO
 						// PERFIL_USUARIO*/
-						//DT_CADASTRO_USU
-						//DT_ALTERACAO_USU
+						// DT_CADASTRO_USU
+						// DT_ALTERACAO_USU
 						
 						bd.st = bd.con.prepareStatement(sql); // preparar a instrução para ser executada.
 						bd.st.setString(1, textCodUsuario.getText());
@@ -376,7 +377,7 @@ public class Usuarios extends JFrame {
 		btNovoCadastro.setForeground(Color.WHITE);
 		btNovoCadastro.setFont(new Font("Arial", Font.BOLD, 12));
 		btNovoCadastro.setBackground(new Color(0, 128, 0));
-		btNovoCadastro.setBounds(481, 12, 266, 25);
+		btNovoCadastro.setBounds(527, 288, 231, 25);
 		contentPane.add(btNovoCadastro);
 		
 		JLabel labelCodUusario = new JLabel("C\u00F3digo do Usu\u00E1rio ");
@@ -499,7 +500,7 @@ public class Usuarios extends JFrame {
 		btFiltroUsuarios.setForeground(Color.WHITE);
 		btFiltroUsuarios.setFont(new Font("Arial", Font.BOLD, 12));
 		btFiltroUsuarios.setBackground(new Color(0, 128, 0));
-		btFiltroUsuarios.setBounds(527, 304, 231, 25);
+		btFiltroUsuarios.setBounds(516, 12, 231, 25);
 		contentPane.add(btFiltroUsuarios);
 		
 	}

@@ -1,0 +1,73 @@
+package metodos_projeto;
+
+public class Equipamento {
+
+	public String id;
+	private String descricao;
+	private String valor;
+	private String dtUltManutencao;
+	
+	/**
+	 *  Método Construtor para receber todos os dados de um Equipamento.
+	 * @param text - variável que armazena o valor recebido do ID.
+	 * @param text2 - variável que armazena o valor recebido da DESCRIÇÃO.
+	 * @param text3 - variável que armazena o valor recebido do VALOR.
+	 * @param dataUm - variável que armazena o valor recebido da DATA DA ÚLTIMA MANUTENÇÃO.
+	 */
+	public Equipamento(String text, String text2, String text3, String dataUm) {
+		this.id=text;
+		this.descricao=text2;
+		this.valor=text3;
+		this.dtUltManutencao=dataUm;
+	}
+
+	/**
+	 * Método que recebe o ID.
+	 * @return - retorna o ID.
+	 */
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	/**
+	 * Método que recebe a DESCRIÇÃO.
+	 * @return - retorna a DESCRIÇÃO.
+	 */
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	/**
+	 * Método que recebe o VALOR.
+	 * @return - retorna o VALOR.
+	 */
+	public String getValor() {
+		return valor;
+	}
+
+	public void setValor(String valor) {
+		this.valor = valor;
+	}
+
+	/**
+	 * Método que recebe a DATA DA ÚLTIMA MANUTENÇÃO.
+	 * @return - retorna a DATA DA ÚLTIMA MANUTENÇÃO.
+	 */
+	public String getDtUltManutencao() {
+		return dtUltManutencao;
+	}
+
+	public void setDtUltManutencao(String dtUltManutencao) {
+		this.dtUltManutencao = dtUltManutencao;
+	}
+	
+	
+}

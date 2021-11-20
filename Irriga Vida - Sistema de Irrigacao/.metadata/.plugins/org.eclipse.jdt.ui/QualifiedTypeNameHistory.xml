@@ -19,8 +19,21 @@
     <fullyQualifiedTypeName name="metodos.AcessoBD"/>
     <fullyQualifiedTypeName name="consultas_bd.Book"/>
     <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
-    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="java.sql.SQLInvalidAuthorizationSpecException"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="com.microsoft.sqlserver.jdbc.SQLServerException"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="metodos_projeto.Planta"/>
+    <fullyQualifiedTypeName name="metodos_projeto.PlantaDAO"/>
+    <fullyQualifiedTypeName name="metodos_projeto.Equipamento"/>
+    <fullyQualifiedTypeName name="metodos_projeto.EquipamentoDAO"/>
+    <fullyQualifiedTypeName name="metodos_projeto.Fertilizante"/>
+    <fullyQualifiedTypeName name="metodos_projeto.FertilizanteDAO"/>
+    <fullyQualifiedTypeName name="telas_usuario.FertilizantesUsuario4"/>
+    <fullyQualifiedTypeName name="metodos_projeto.Tarefa"/>
+    <fullyQualifiedTypeName name="metodos_projeto.TarefaDAO"/>
+    <fullyQualifiedTypeName name="javax.swing.plaf.basic.BasicTextAreaUI"/>
+    <fullyQualifiedTypeName name="telas_usuario.TarefasUsuario3"/>
+    <fullyQualifiedTypeName name="metodos_projeto.Plantio"/>
+    <fullyQualifiedTypeName name="metodos_projeto.PlantioDAO"/>
 </qualifiedTypeNameHistroy>

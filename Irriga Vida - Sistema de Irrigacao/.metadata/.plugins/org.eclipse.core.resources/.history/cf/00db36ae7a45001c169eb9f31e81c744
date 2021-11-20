@@ -1,0 +1,17 @@
+package metodos_projeto;
+
+public class Tarefa {
+
+	public String id;
+	private String idUsuario;
+	private String descricao;
+	private String observacao;
+	private String dtExecucao;
+	private String dtPrevista;
+	private String tipo;
+	private String status;
+
+	
+	// ID_TAREFA	ID_USUARIO	DESCRICAO	OBS_TAREFA	DT_REAL_TAREFA	DT_PREVISTA	TIPO_TAREFA	STATUS_TAREFA
+
+}

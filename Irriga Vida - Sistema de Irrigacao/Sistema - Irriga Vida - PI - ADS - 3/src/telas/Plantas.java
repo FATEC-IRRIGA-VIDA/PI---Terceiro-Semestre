@@ -9,6 +9,10 @@ import javax.swing.border.EmptyBorder;
 
 import metodos.AcessoBD;
 import metodos.DocumentoLimitado;
+import metodos_projeto.Planta;
+import metodos_projeto.PlantaDAO;
+import metodos_projeto.Usuario;
+import metodos_projeto.UsuarioDAO;
 import net.proteanit.sql.DbUtils;
 import telas_usuario.CadastrosUsuario;
 
@@ -25,12 +29,15 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.BevelBorder;
 import javax.swing.DropMode;
 import javax.swing.JScrollPane;
+import com.toedter.calendar.JDateChooser;
 
 public class Plantas extends JFrame {
 
@@ -45,7 +52,32 @@ public class Plantas extends JFrame {
 	private JTextField textTipoDaPlanta;
 	private JTextField textClima;
 	private JTextField textObservacoes;
-	private JTable table;
+	private JTable table_planta;
+	private JDateChooser dateChooserDtCadastro;
+	
+	/***
+	 * Metódo que executa uma pesquisa em toda a tabela de Planta. (FILTRO)
+	 */
+	public void refreshTable() {
+		
+		AcessoBD bd = new AcessoBD();
+		if(bd.getConnection()){ 
+			
+			String sql ="select * from TB_PLANTA"; // instrução executada no banco de dados.
+			try {
+				bd.st = bd.con.prepareStatement(sql); // preparar a instrução para ser executada.
+				bd.rs = bd.st.executeQuery(); // Obtém a posicao BOF da tabela e executa a Consulta.
+				table_planta.setModel(DbUtils.resultSetToTableModel(bd.rs));	
+				}	
+			
+			catch(SQLException erro) { 
+				System.out.println(erro); // mostra o erro encontrado quando tentou a conexão.
+			}
+			finally {
+				bd.close(); // encerra a conexão ao BD.
+			}
+		}
+	}
 
 	/**
 	 * Launch the application.
@@ -105,25 +137,32 @@ public class Plantas extends JFrame {
 				if(bd.getConnection()){ 
 					
 					String sql ="select * from TB_PLANTA where ID_PLANTA = ? or NOME_POPULAR = ? "
-							+ "or NOME_CIENT = ?"; // instrução executada no banco de dados.
+							+ "or OBSERVACOES = ? or TIPO_PLANTA = ? or ORIGEM = ? or NOME_CIENT = ? "
+							+ "or FAMILIA = ?  or CLIMA = ?"; // instrução executada no banco de dados.
 					try {
 						
 						// Recebendo os valores inseridos.
-						String  id = textCodPlanta.getText(); // ID_PLANTA							
+						/*String  id = textCodPlanta.getText(); // ID_PLANTA							
 						String nome = textNomePlanta.getText(); // NOME_POPULAR
-						String nomect = textNomeCientifico.getText(); // NOME_CIENT
-						String origem = textOrigem.getText(); // ORIGEM
-						String familia = textFamilia.getText(); // FAMILIA
-						String tipo = textTipoDaPlanta.getText(); // TIPO_PLANTA
-						String clima = textClima.getText(); // CLIMA
 						String obs = textObservacoes.getText(); // OBSERVACOES
+						String tipo = textTipoDaPlanta.getText(); // TIPO_PLANTA
+						String origem = textOrigem.getText(); // ORIGEM
+						String nomect = textNomeCientifico.getText(); // NOME_CIENT
+						String familia = textFamilia.getText(); // FAMILIA
+						String clima = textClima.getText(); // CLIMA*/
+						
 						
 						bd.st = bd.con.prepareStatement(sql); // preparar a instrução para ser executada.
 						bd.st.setString(1, textCodPlanta.getText());
 						bd.st.setString(2, textNomePlanta.getText());
-						bd.st.setString(3, textNomeCientifico.getText());
+						bd.st.setString(3, textObservacoes.getText());
+						bd.st.setString(4, textTipoDaPlanta.getText());
+						bd.st.setString(5, textOrigem.getText());
+						bd.st.setString(6, textNomeCientifico.getText());
+						bd.st.setString(7, textFamilia.getText());
+						bd.st.setString(8, textClima.getText());
 						bd.rs = bd.st.executeQuery(); // Obtém a posicao BOF da tabela e executa a Consulta.
-						table.setModel(DbUtils.resultSetToTableModel(bd.rs));	
+						table_planta.setModel(DbUtils.resultSetToTableModel(bd.rs));	
 						}	
 					
 					catch(SQLException erro) { 
@@ -165,12 +204,39 @@ public class Plantas extends JFrame {
 		btLimpar.setForeground(Color.WHITE);
 		btLimpar.setFont(new Font("Arial", Font.BOLD, 12));
 		btLimpar.setBackground(new Color(0, 128, 0));
-		btLimpar.setBounds(175, 189, 122, 25);
+		btLimpar.setBounds(599, 189, 122, 25);
 		contentPane.add(btLimpar);
 		
 		JButton btAtualizar = new JButton("Atualizar");
 		btAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				//Definindo condicional para a Data Cadastro
+				//DateFormat df = new  SimpleDateFormat("yyyy-MM-dd");
+				DateFormat df = new  SimpleDateFormat("dd-MM-yyyy");
+				
+				String dtCadastro = "0";
+				if(dateChooserDtCadastro.getDate() != null) {
+					dtCadastro = (df.format(dateChooserDtCadastro.getDate()));  //Formatação da DT_CADASTRO
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Insira data válida no Campo Data");
+				
+				String  id = textCodPlanta.getText(); // ID_PLANTA		
+				String nome = textNomePlanta.getText(); // NOME_POPULAR
+				String obs = textObservacoes.getText(); // OBSERVACOES
+				String tipo = textTipoDaPlanta.getText(); // TIPO_PLANTA
+				String origem = textOrigem.getText(); // ORIGEM
+				String nomect = textNomeCientifico.getText(); // NOME_CIENT
+				String familia = textFamilia.getText(); // FAMILIA
+				String clima = textClima.getText(); // CLIMA*/
+				
+				Planta planta = new Planta(textCodPlanta.getText(),textNomePlanta.getText(),dtCadastro,textObservacoes.getText(),
+						textTipoDaPlanta.getText(), textOrigem.getText(),textNomeCientifico.getText(),textFamilia.getText(),
+						textClima.getText());
+				
+				PlantaDAO dao = new PlantaDAO();
+				dao.alterar(planta);
 			}
 		});
 		btAtualizar.setForeground(Color.WHITE);
@@ -186,18 +252,58 @@ public class Plantas extends JFrame {
 		textNomePlanta.setBounds(21, 344, 152, 20);
 		contentPane.add(textNomePlanta);
 		
-		JButton btCancelar = new JButton("Cancelar");
-		btCancelar.setForeground(Color.WHITE);
-		btCancelar.setFont(new Font("Arial", Font.BOLD, 12));
-		btCancelar.setBackground(new Color(0, 128, 0));
-		btCancelar.setBounds(460, 189, 122, 25);
-		contentPane.add(btCancelar);
+		JButton btDeletar = new JButton("Deletar");
+		btDeletar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Planta planta = new Planta(textCodPlanta.getText());
+				
+				PlantaDAO dao = new PlantaDAO();
+				dao.excluir(planta);
+			}
+		});
+		btDeletar.setForeground(Color.WHITE);
+		btDeletar.setFont(new Font("Arial", Font.BOLD, 12));
+		btDeletar.setBackground(new Color(0, 128, 0));
+		btDeletar.setBounds(460, 189, 122, 25);
+		contentPane.add(btDeletar);
 		
 		JButton btNovoCadastro = new JButton("Novo Cadastro");
+		btNovoCadastro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//Definindo condicional para a Data Cadastro
+				//DateFormat df = new  SimpleDateFormat("yyyy-MM-dd");
+				DateFormat df = new  SimpleDateFormat("dd-MM-yyyy");
+				
+				String dtCadastro = "0";
+				if(dateChooserDtCadastro.getDate() != null) {
+					dtCadastro = (df.format(dateChooserDtCadastro.getDate()));  //Formatação da DT_CADASTRO
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Insira data válida no Campo Data");
+				
+				/*String  id = textCodPlanta.getText(); // ID_PLANTA		
+				String nome = textNomePlanta.getText(); // NOME_POPULAR
+				String obs = textObservacoes.getText(); // OBSERVACOES
+				String tipo = textTipoDaPlanta.getText(); // TIPO_PLANTA
+				String origem = textOrigem.getText(); // ORIGEM
+				String nomect = textNomeCientifico.getText(); // NOME_CIENT
+				String familia = textFamilia.getText(); // FAMILIA
+				String clima = textClima.getText(); // CLIMA*/
+				
+				Planta planta = new Planta(textCodPlanta.getText(),textNomePlanta.getText(),dtCadastro,textObservacoes.getText(),
+						textTipoDaPlanta.getText(), textOrigem.getText(),textNomeCientifico.getText(),textFamilia.getText(),
+						textClima.getText());
+				
+				PlantaDAO dao = new PlantaDAO();
+				dao.incluir(planta);
+			}
+		});
 		btNovoCadastro.setForeground(Color.WHITE);
 		btNovoCadastro.setFont(new Font("Arial", Font.BOLD, 12));
 		btNovoCadastro.setBackground(new Color(0, 128, 0));
-		btNovoCadastro.setBounds(625, 189, 122, 25);
+		btNovoCadastro.setBounds(174, 189, 122, 25);
 		contentPane.add(btNovoCadastro);
 		
 		textNomeCientifico = new JTextField();
@@ -290,14 +396,14 @@ public class Plantas extends JFrame {
 		JLabel labelClima = new JLabel("Clima");
 		labelClima.setForeground(Color.WHITE);
 		labelClima.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelClima.setBounds(394, 369, 132, 14);
+		labelClima.setBounds(394, 382, 132, 14);
 		contentPane.add(labelClima);
 		
 		textClima = new JTextField();
 		textClima.setDocument( new DocumentoLimitado(20) ); //definindo o tamanho do campo
 		textClima.setFont(new Font("Arial", Font.PLAIN, 12));
 		textClima.setColumns(10);
-		textClima.setBounds(394, 392, 152, 20);
+		textClima.setBounds(394, 405, 152, 20);
 		contentPane.add(textClima);
 		
 		JLabel labelObservacoes = new JLabel("Observa\u00E7\u00F5es");
@@ -311,14 +417,38 @@ public class Plantas extends JFrame {
 		textObservacoes.setDocument( new DocumentoLimitado(120) ); //definindo o tamanho do campo
 		textObservacoes.setFont(new Font("Arial", Font.PLAIN, 12));
 		textObservacoes.setColumns(10);
-		textObservacoes.setBounds(571, 284, 220, 141);
+		textObservacoes.setBounds(571, 284, 229, 80);
 		contentPane.add(textObservacoes);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 47, 794, 131);
 		contentPane.add(scrollPane);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		table_planta = new JTable();
+		scrollPane.setViewportView(table_planta);
+		
+		JLabel labelDtCadastro = new JLabel("Data Cadastro");
+		labelDtCadastro.setForeground(Color.WHITE);
+		labelDtCadastro.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelDtCadastro.setBounds(571, 380, 150, 14);
+		contentPane.add(labelDtCadastro);
+		
+		// JDateChooser dateChooserDtCadastro = new JDateChooser();
+		dateChooserDtCadastro = new JDateChooser();
+		dateChooserDtCadastro.setBounds(571, 405, 136, 20);
+		contentPane.add(dateChooserDtCadastro);
+		
+		JButton btFiltroPlanta = new JButton("Filtrar Plantas");
+		btFiltroPlanta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				refreshTable();
+			}
+		});
+		btFiltroPlanta.setForeground(Color.WHITE);
+		btFiltroPlanta.setFont(new Font("Arial", Font.BOLD, 12));
+		btFiltroPlanta.setBackground(new Color(0, 128, 0));
+		btFiltroPlanta.setBounds(569, 13, 231, 25);
+		contentPane.add(btFiltroPlanta);
 	}
 }

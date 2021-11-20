@@ -11,7 +11,7 @@ public class UsuarioDAO {
 	private AcessoBD bd;
 	private String men, sql;
 	
-	// Esatabelecendo o Construtor para a Classe BookDAO
+	// Esatabelecendo o Construtor para a Classe UsuarioDAO
 	public UsuarioDAO() {
 		bd = new AcessoBD(); // instancia um objeto da Classe BD.
 	}
@@ -75,7 +75,7 @@ public class UsuarioDAO {
 	}
 	
 	/**
-	 * Armazena um Usuario no banco de dados.
+	 * Altera um Usuario no banco de dados.
 	 * @param Usuario - o usuario a ser gravado.
 	 * @return - uma mensagem informando o resultado de uma operação.
 	 */
@@ -137,8 +137,8 @@ public class UsuarioDAO {
 	
 	/**
 	 * Exclui um Usuario a partir de seu ID.
-	 * @param Text - o ID do Usuario
-	 * @return - uma mensagem informando o resultado da operação
+	 * @param Usuario - o ID do Usuario.
+	 * @return - uma mensagem informando o resultado da operação.
 	 */
 	public String excluir(Usuario usuario) {
 		

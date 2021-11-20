@@ -1,0 +1,154 @@
+package metodos_projeto;
+
+public class Tarefa {
+
+
+	public String id;
+	private String idUsuario;
+	private String descricao;
+	private String observacao;
+	private String dtExecucao;
+	private String dtPrevista;
+	private String tipo;
+	private String status;
+
+	
+	// ID_TAREFA	ID_USUARIO	DESCRICAO	OBS_TAREFA	DT_REAL_TAREFA	DT_PREVISTA	TIPO_TAREFA	STATUS_TAREFA
+
+	/**
+	 * Método Construtor para receber todos os dados de uma Tarefa.
+	 * @param text - variável que armazena o valor recebido do ID.
+	 * @param text2 - variável que armazena o valor recebido do ID DO USUÁRIO.
+	 * @param text3 - variável que armazena o valor recebido da DESCRIÇÃO.
+	 * @param text4 - variável que armazena o valor recebido da OBSERVAÇÃO DA TAREFA.
+	 * @param dtExecucao2 - variável que armazena o valor recebido da DATA REAL DA TAREFA. 
+	 * @param dtPrevista2 - variável que armazena o valor recebido da DATA PREVISTA.
+	 * @param tipoTarefa - variável que armazena o valor recebido do TIPO DA TAREFA.
+	 * @param statusTarefa - variável que armazena o valor recebido do STATUS DA  TAREFA.
+	 */
+	public Tarefa(String text, String text2, String text3, String text4, String dtExecucao2, String dtPrevista2,
+			String tipoTarefa, String statusTarefa) {
+		this.id=text;
+		this.idUsuario=text2;
+		this.descricao=text3;
+		this.observacao=text4;
+		this.dtExecucao=dtExecucao2;
+		this.dtPrevista=dtPrevista2;
+		this.tipo=tipoTarefa;
+		this.status=statusTarefa;
+	}
+
+	
+	/**
+	 * Método que recebe
+	 * @return
+	 */
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String text) {
+		this.id = text;
+	}
+
+
+	/**
+	 * Método que recebe
+	 * @return
+	 */
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+
+
+	public void setIdUsuario(String text2) {
+		this.idUsuario = text2;
+	}
+
+
+	/**
+	 * Método que recebe
+	 * @return
+	 */
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+	public void setDescricao(String text3) {
+		this.descricao = text3;
+	}
+
+
+	/**
+	 * Método que recebe
+	 * @return
+	 */
+	public String getObservacao() {
+		return observacao;
+	}
+
+
+	public void setObservacao(String text4) {
+		this.observacao = text4;
+	}
+
+
+	/**
+	 * Método que recebe
+	 * @return
+	 */
+	public String getDtExecucao() {
+		return dtExecucao;
+	}
+
+
+	public void setDtExecucao(String dtExecucao2) {
+		this.dtExecucao = dtExecucao2;
+	}
+
+	
+	
+	/**
+	 * Método que recebe
+	 * @return
+	 */
+	public String getDtPrevista() {
+		return dtPrevista;
+	}
+
+
+	public void setDtPrevista(String dtPrevista2) {
+		this.dtPrevista = dtPrevista2;
+	}
+
+
+	/**
+	 * Método que recebe
+	 * @return
+	 */
+	public String getTipo() {
+		return tipo;
+	}
+
+
+	public void setTipo(String tipoTarefa) {
+		this.tipo = tipoTarefa;
+	}
+
+
+	/**
+	 * Método que recebe
+	 * @return
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String statusTarefa) {
+		this.status = statusTarefa;
+	}
+	
+}

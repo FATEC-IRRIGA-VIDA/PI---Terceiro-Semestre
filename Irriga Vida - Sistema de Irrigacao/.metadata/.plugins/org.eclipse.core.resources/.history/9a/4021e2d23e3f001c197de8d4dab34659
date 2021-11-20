@@ -1,0 +1,23 @@
+package metodos_projeto;
+
+public class Planta {
+
+	public String id;
+	private String nomeCient;
+	private String nomePop;
+	private String familia;
+	private String origem;
+	private String tipo;
+	private String clima;
+	private String dtCadastro;
+	private String observacao;
+	
+	/***
+	 *  Método que irá realizar as operações do sistema á respeito as plantas (Cadastrar, Editar, Excluir, Consultar) 
+	 */
+	private void manterPlanta() {
+		
+		// Lógica ainda a ser implementada
+	}
+	
+}
