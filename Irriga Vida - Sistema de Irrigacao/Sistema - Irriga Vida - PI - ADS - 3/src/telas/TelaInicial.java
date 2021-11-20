@@ -26,7 +26,7 @@ public class TelaInicial extends JFrame {
 	public static TelaInicial tela2;
 	public static Cadastros tela3;
 	public static Relatorios tela10;
-	public static Configuracoes tela11;
+	public static Tarefas tela11;
 
 	/**
 	 * Launch the application.
@@ -107,23 +107,9 @@ public class TelaInicial extends JFrame {
 		btRelatorios.setBounds(271, 130, 138, 25);
 		contentPane.add(btRelatorios);
 		
-		JButton btConfiguracoes = new JButton("Configura\u00E7\u00F5es");
-		btConfiguracoes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				tela11 = new Configuracoes();
-				tela11.setVisible(true);
-				Configuracoes.tela2.setVisible(false);
-			}
-		});
-		btConfiguracoes.setForeground(Color.WHITE);
-		btConfiguracoes.setFont(new Font("Arial", Font.BOLD, 12));
-		btConfiguracoes.setBackground(new Color(0, 128, 0));
-		btConfiguracoes.setBounds(271, 166, 138, 25);
-		contentPane.add(btConfiguracoes);
-		
 		JLabel labelLogo = new JLabel("New label");
 		labelLogo.setIcon(new ImageIcon("C:\\Users\\Mateus Acer\\Desktop\\App_Study\\Irriga Vida - Sistema de Irrigacao\\Logo.JPG"));
+		labelLogo.setIcon(new ImageIcon("C:\\Users\\User\\Documents\\Irriga Vida - Sistema de Irrigacao\\Logo.JPG"));
 		labelLogo.setBackground(new Color(0, 128, 0));
 		labelLogo.setBounds(34, 68, 161, 166);
 		contentPane.add(labelLogo);
