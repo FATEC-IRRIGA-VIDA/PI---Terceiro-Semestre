@@ -14,6 +14,9 @@ import javax.swing.JEditorPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
+
+import metodos.DocumentoLimitado;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -28,6 +31,7 @@ public class Tarefas extends JFrame {
 	private JTextField textCodTarefa;
 	public static Cadastros tela3;
 	public static Tarefas tela7;
+	private JTextField textCodUsuario;
 
 	/**
 	 * Launch the application.
@@ -106,42 +110,47 @@ public class Tarefas extends JFrame {
 		contentPane.add(labelDapTarefa);
 		
 		textObservacao = new JTextField();
+		textObservacao.setDocument( new DocumentoLimitado(150) ); //definindo o tamanho do campo
 		textObservacao.setFont(new Font("Arial", Font.PLAIN, 12));
 		textObservacao.setColumns(10);
-		textObservacao.setBounds(460, 236, 181, 20);
+		textObservacao.setBounds(460, 305, 181, 20);
 		contentPane.add(textObservacao);
 		
 		JLabel labelObservacao = new JLabel("Observa\u00E7\u00E3o");
 		labelObservacao.setForeground(Color.WHITE);
 		labelObservacao.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelObservacao.setBounds(458, 213, 152, 14);
+		labelObservacao.setBounds(458, 282, 152, 14);
 		contentPane.add(labelObservacao);
 		
 		textTipo = new JTextField();
+		textTipo.setToolTipText("C - COLHEITA | A - AVALIA\u00C7\u00C3O ");
+		textTipo.setDocument( new DocumentoLimitado(1) ); //definindo o tamanho do campo
 		textTipo.setFont(new Font("Arial", Font.PLAIN, 12));
 		textTipo.setColumns(10);
-		textTipo.setBounds(458, 182, 183, 20);
+		textTipo.setBounds(458, 251, 183, 20);
 		contentPane.add(textTipo);
 		
 		JLabel labelTipo = new JLabel("Tipo");
 		labelTipo.setForeground(Color.WHITE);
 		labelTipo.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelTipo.setBounds(458, 159, 132, 14);
+		labelTipo.setBounds(458, 228, 132, 14);
 		contentPane.add(labelTipo);
 		
 		textDescricao = new JTextField();
+		textDescricao.setDocument( new DocumentoLimitado(80) ); //definindo o tamanho do campo
 		textDescricao.setFont(new Font("Arial", Font.PLAIN, 12));
 		textDescricao.setColumns(10);
-		textDescricao.setBounds(458, 128, 183, 20);
+		textDescricao.setBounds(458, 197, 183, 20);
 		contentPane.add(textDescricao);
 		
 		JLabel labelDescricao = new JLabel("Descri\u00E7\u00E3o");
 		labelDescricao.setForeground(Color.WHITE);
 		labelDescricao.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelDescricao.setBounds(458, 103, 132, 14);
+		labelDescricao.setBounds(458, 172, 132, 14);
 		contentPane.add(labelDescricao);
 		
 		textCodTarefa = new JTextField();
+		//textCodTarefa.setDocument( new DocumentoLimitado(10) ); //definindo o tamanho do campo
 		textCodTarefa.setFont(new Font("Arial", Font.PLAIN, 12));
 		textCodTarefa.setColumns(10);
 		textCodTarefa.setBounds(458, 72, 183, 20);
@@ -161,6 +170,18 @@ public class Tarefas extends JFrame {
 		contentPane.add(btPesquisar);
 		
 		JButton btLimpar = new JButton("Limpar");
+		btLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// Limpando dados inseridos nas textboxs.
+				textCodTarefa.setText("");
+				textDescricao.setText("");
+				textTipo.setText("");
+				textObservacao.setText("");
+				textCodUsuario.setText("");
+				
+			}
+		});
 		btLimpar.setForeground(Color.WHITE);
 		btLimpar.setFont(new Font("Arial", Font.BOLD, 12));
 		btLimpar.setBackground(new Color(0, 128, 0));
@@ -205,12 +226,25 @@ public class Tarefas extends JFrame {
 		JLabel labelStatus = new JLabel("Status");
 		labelStatus.setForeground(Color.WHITE);
 		labelStatus.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelStatus.setBounds(460, 269, 132, 14);
+		labelStatus.setBounds(662, 258, 132, 14);
 		contentPane.add(labelStatus);
 		
 		JComboBox ComboBoxStatus = new JComboBox();
-		ComboBoxStatus.setModel(new DefaultComboBoxModel(new String[] {"Efetuado", "Pendente", "Cancelado"}));
-		ComboBoxStatus.setBounds(460, 295, 98, 31);
+		ComboBoxStatus.setModel(new DefaultComboBoxModel(new String[] {"Pendente", "Finalizada"}));
+		ComboBoxStatus.setBounds(662, 284, 98, 31);
 		contentPane.add(ComboBoxStatus);
+		
+		JLabel labelCodUsuario = new JLabel("C\u00F3digo do Usuario");
+		labelCodUsuario.setForeground(Color.WHITE);
+		labelCodUsuario.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelCodUsuario.setBounds(458, 103, 132, 14);
+		contentPane.add(labelCodUsuario);
+		
+		textCodUsuario = new JTextField();
+		//textCodUsuario.setDocument( new DocumentoLimitado(10) ); //definindo o tamanho do campo
+		textCodUsuario.setFont(new Font("Arial", Font.PLAIN, 12));
+		textCodUsuario.setColumns(10);
+		textCodUsuario.setBounds(458, 128, 183, 20);
+		contentPane.add(textCodUsuario);
 	}
 }

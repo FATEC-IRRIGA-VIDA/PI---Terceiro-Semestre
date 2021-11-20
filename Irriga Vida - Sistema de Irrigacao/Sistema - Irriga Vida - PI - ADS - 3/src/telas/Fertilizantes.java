@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import metodos.DocumentoLimitado;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -25,10 +28,8 @@ public class Fertilizantes extends JFrame {
 	private JTextField textNomeFertilizante;
 	private JTextField textCodFertilizante;
 	private JTextField textObservacao;
-	private JTextField textTaxa;
 	private JTextField textTipoDeAplicacao;
 	private JTextField textClassificacao;
-	private JTextField textAlcalidade;
 	public static Cadastros tela3;
 	public static Fertilizantes tela8;
 
@@ -52,7 +53,7 @@ public class Fertilizantes extends JFrame {
 	 * Create the frame.
 	 */
 	public Fertilizantes() {
-		setTitle("Fertilizante");
+		setTitle("Fertilizantes");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 828, 561);
 		contentPane = new JPanel();
@@ -102,18 +103,20 @@ public class Fertilizantes extends JFrame {
 		contentPane.add(btVoltar);
 		
 		textPesoEmbalagem = new JTextField();
+		textPesoEmbalagem.setDocument( new DocumentoLimitado(4) ); //definindo o tamanho do campo
 		textPesoEmbalagem.setFont(new Font("Arial", Font.PLAIN, 12));
 		textPesoEmbalagem.setColumns(10);
-		textPesoEmbalagem.setBounds(458, 281, 152, 20);
+		textPesoEmbalagem.setBounds(629, 117, 152, 20);
 		contentPane.add(textPesoEmbalagem);
 		
 		JLabel labelPesoEmbalagem = new JLabel("Peso Embalagem");
 		labelPesoEmbalagem.setForeground(Color.WHITE);
 		labelPesoEmbalagem.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelPesoEmbalagem.setBounds(458, 256, 132, 14);
+		labelPesoEmbalagem.setBounds(629, 92, 132, 14);
 		contentPane.add(labelPesoEmbalagem);
 		
 		textMarcaFertilizante = new JTextField();
+		textMarcaFertilizante.setDocument( new DocumentoLimitado(30) ); //definindo o tamanho do campo
 		textMarcaFertilizante.setFont(new Font("Arial", Font.PLAIN, 12));
 		textMarcaFertilizante.setColumns(10);
 		textMarcaFertilizante.setBounds(458, 225, 152, 20);
@@ -126,6 +129,7 @@ public class Fertilizantes extends JFrame {
 		contentPane.add(labelMarcaFertilizante);
 		
 		textTipoFertilizante = new JTextField();
+		textTipoFertilizante.setDocument( new DocumentoLimitado(10) ); //definindo o tamanho do campo
 		textTipoFertilizante.setFont(new Font("Arial", Font.PLAIN, 12));
 		textTipoFertilizante.setColumns(10);
 		textTipoFertilizante.setBounds(458, 171, 152, 20);
@@ -138,6 +142,7 @@ public class Fertilizantes extends JFrame {
 		contentPane.add(labelTipoFertilizante);
 		
 		textNomeFertilizante = new JTextField();
+		textNomeFertilizante.setDocument( new DocumentoLimitado(20) ); //definindo o tamanho do campo
 		textNomeFertilizante.setFont(new Font("Arial", Font.PLAIN, 12));
 		textNomeFertilizante.setColumns(10);
 		textNomeFertilizante.setBounds(458, 117, 152, 20);
@@ -150,6 +155,7 @@ public class Fertilizantes extends JFrame {
 		contentPane.add(labelNomeFertilizante);
 		
 		textCodFertilizante = new JTextField();
+		//textCodFertilizante.setDocument( new DocumentoLimitado(20) ); //definindo o tamanho do campo
 		textCodFertilizante.setFont(new Font("Arial", Font.PLAIN, 12));
 		textCodFertilizante.setColumns(10);
 		textCodFertilizante.setBounds(458, 57, 152, 20);
@@ -165,35 +171,50 @@ public class Fertilizantes extends JFrame {
 		btPesquisar.setForeground(Color.WHITE);
 		btPesquisar.setFont(new Font("Arial", Font.BOLD, 12));
 		btPesquisar.setBackground(new Color(0, 128, 0));
-		btPesquisar.setBounds(488, 349, 122, 25);
+		btPesquisar.setBounds(488, 306, 122, 25);
 		contentPane.add(btPesquisar);
 		
 		JButton btLimpar = new JButton("Limpar");
+		btLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// Limpando dados inseridos nas textboxs.
+				textCodFertilizante.setText("");
+				textNomeFertilizante.setText("");
+				textTipoFertilizante.setText("");
+				textMarcaFertilizante.setText("");
+				textPesoEmbalagem.setText("");
+				textObservacao.setText("");
+				textTipoDeAplicacao.setText("");
+				textClassificacao.setText("");
+		
+			}
+		});
 		btLimpar.setForeground(Color.WHITE);
 		btLimpar.setFont(new Font("Arial", Font.BOLD, 12));
 		btLimpar.setBackground(new Color(0, 128, 0));
-		btLimpar.setBounds(488, 391, 122, 25);
+		btLimpar.setBounds(488, 348, 122, 25);
 		contentPane.add(btLimpar);
 		
 		JButton btAtualizar = new JButton("Atualizar");
 		btAtualizar.setForeground(Color.WHITE);
 		btAtualizar.setFont(new Font("Arial", Font.BOLD, 12));
 		btAtualizar.setBackground(new Color(0, 128, 0));
-		btAtualizar.setBounds(639, 336, 122, 25);
+		btAtualizar.setBounds(642, 289, 122, 25);
 		contentPane.add(btAtualizar);
 		
 		JButton btCancelar = new JButton("Cancelar");
 		btCancelar.setForeground(Color.WHITE);
 		btCancelar.setFont(new Font("Arial", Font.BOLD, 12));
 		btCancelar.setBackground(new Color(0, 128, 0));
-		btCancelar.setBounds(639, 372, 122, 25);
+		btCancelar.setBounds(642, 333, 122, 25);
 		contentPane.add(btCancelar);
 		
 		JButton btNovoCadastro = new JButton("Novo Cadastro");
 		btNovoCadastro.setForeground(Color.WHITE);
 		btNovoCadastro.setFont(new Font("Arial", Font.BOLD, 12));
 		btNovoCadastro.setBackground(new Color(0, 128, 0));
-		btNovoCadastro.setBounds(639, 408, 122, 25);
+		btNovoCadastro.setBounds(642, 369, 122, 25);
 		contentPane.add(btNovoCadastro);
 		
 		JLabel labelObservacao = new JLabel("Observa\u00E7\u00E3o");
@@ -203,33 +224,23 @@ public class Fertilizantes extends JFrame {
 		contentPane.add(labelObservacao);
 		
 		textObservacao = new JTextField();
+		textObservacao.setDocument( new DocumentoLimitado(150) ); //definindo o tamanho do campo
 		textObservacao.setFont(new Font("Arial", Font.PLAIN, 12));
 		textObservacao.setColumns(10);
 		textObservacao.setBounds(629, 53, 152, 20);
 		contentPane.add(textObservacao);
 		
-		JLabel labelTaxa = new JLabel("Taxa");
-		labelTaxa.setForeground(Color.WHITE);
-		labelTaxa.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelTaxa.setBounds(629, 84, 132, 14);
-		contentPane.add(labelTaxa);
-		
-		textTaxa = new JTextField();
-		textTaxa.setFont(new Font("Arial", Font.PLAIN, 12));
-		textTaxa.setColumns(10);
-		textTaxa.setBounds(629, 109, 152, 20);
-		contentPane.add(textTaxa);
-		
 		JLabel labelTipoDeAplicacao = new JLabel("Tipo de Aplica\u00E7\u00E3o");
 		labelTipoDeAplicacao.setForeground(Color.WHITE);
 		labelTipoDeAplicacao.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelTipoDeAplicacao.setBounds(629, 137, 132, 14);
+		labelTipoDeAplicacao.setBounds(629, 148, 132, 14);
 		contentPane.add(labelTipoDeAplicacao);
 		
 		textTipoDeAplicacao = new JTextField();
+		textTipoDeAplicacao.setDocument( new DocumentoLimitado(20) ); //definindo o tamanho do campo
 		textTipoDeAplicacao.setFont(new Font("Arial", Font.PLAIN, 12));
 		textTipoDeAplicacao.setColumns(10);
-		textTipoDeAplicacao.setBounds(629, 162, 152, 20);
+		textTipoDeAplicacao.setBounds(629, 171, 152, 20);
 		contentPane.add(textTipoDeAplicacao);
 		
 		JLabel labelClassificacao = new JLabel("Classifica\u00E7\u00E3o");
@@ -239,22 +250,11 @@ public class Fertilizantes extends JFrame {
 		contentPane.add(labelClassificacao);
 		
 		textClassificacao = new JTextField();
+		textClassificacao.setDocument( new DocumentoLimitado(20) ); //definindo o tamanho do campo
 		textClassificacao.setFont(new Font("Arial", Font.PLAIN, 12));
 		textClassificacao.setColumns(10);
-		textClassificacao.setBounds(629, 227, 152, 20);
+		textClassificacao.setBounds(629, 225, 152, 20);
 		contentPane.add(textClassificacao);
-		
-		JLabel labelAlcalidade = new JLabel("Alcalidade");
-		labelAlcalidade.setForeground(Color.WHITE);
-		labelAlcalidade.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelAlcalidade.setBounds(629, 256, 132, 14);
-		contentPane.add(labelAlcalidade);
-		
-		textAlcalidade = new JTextField();
-		textAlcalidade.setFont(new Font("Arial", Font.PLAIN, 12));
-		textAlcalidade.setColumns(10);
-		textAlcalidade.setBounds(629, 281, 152, 20);
-		contentPane.add(textAlcalidade);
 	}
 
 }
