@@ -1,0 +1,11 @@
+package metodos;
+
+import javax.swing.JFrame;
+
+public class BotaoSair extends JFrame{
+
+	public void sair() {
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+}

@@ -1,0 +1,26 @@
+package metodos_projeto;
+
+public class Tarefa {
+
+	public int id;
+	private String descricao;
+	private char status;
+	private String observacao;
+	private String dtExecucao;
+	private String dtPrevista;
+	private char tipo;
+	private Usuario idUsuario;
+	private Plantio idPlantio;
+	
+	private void manterTarefa() {
+		
+	}
+	
+	private Plantio buscarPlantio(int idPlantio) {
+		
+	}
+	
+	private Usuario buscarUsuario(int idUsuario) {
+		
+	}
+}

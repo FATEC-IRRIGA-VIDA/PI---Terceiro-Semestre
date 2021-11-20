@@ -1,0 +1,27 @@
+package telas;
+
+import javax.swing.JOptionPane;
+
+public class MetodoLogin {
+
+	
+	private String loginV;
+	private String senhaV;
+	private String validado;
+	
+	public String checarLogin(String login, String senha) {
+		
+		loginV = login;
+		senhaV = senha;
+		
+		if (loginV=="mateus"&&senhaV=="mateus2021")
+			validado = "Correto";
+		else 
+			validado = "Incorreto";
+		return validado;
+	}
+	
+	public void mostrar() {
+		JOptionPane.showMessageDialog(null, validado);
+	}
+}

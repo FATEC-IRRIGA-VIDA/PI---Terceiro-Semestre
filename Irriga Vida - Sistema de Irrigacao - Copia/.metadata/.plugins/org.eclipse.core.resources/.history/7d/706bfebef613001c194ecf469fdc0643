@@ -1,0 +1,202 @@
+package telas;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import java.awt.Component;
+import javax.swing.Box;
+import java.awt.Dimension;
+import javax.swing.JEditorPane;
+import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JScrollBar;
+import javax.swing.JCheckBoxMenuItem;
+import java.awt.List;
+import javax.swing.ListSelectionModel;
+
+public class Usuarios extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Usuarios frame = new Usuarios();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Usuarios() {
+		setTitle("Usu\u00E1rios");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 784, 447);
+		contentPane = new JPanel();
+		contentPane.setForeground(new Color(0, 0, 0));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel labelSI = new JLabel("Sistema de Irriga\u00E7\u00E3o");
+		labelSI.setHorizontalAlignment(SwingConstants.CENTER);
+		labelSI.setForeground(Color.WHITE);
+		labelSI.setFont(new Font("Arial", Font.BOLD, 14));
+		labelSI.setBackground(Color.WHITE);
+		labelSI.setBounds(217, 11, 168, 25);
+		contentPane.add(labelSI);
+		
+		JButton btPesquisar = new JButton("Pesquisar");
+		btPesquisar.setForeground(Color.WHITE);
+		btPesquisar.setFont(new Font("Arial", Font.BOLD, 12));
+		btPesquisar.setBackground(new Color(0, 128, 0));
+		btPesquisar.setBounds(620, 71, 122, 25);
+		contentPane.add(btPesquisar);
+		
+		JButton btSair = new JButton("Sair");
+		btSair.setForeground(Color.WHITE);
+		btSair.setFont(new Font("Arial", Font.BOLD, 12));
+		btSair.setBackground(new Color(0, 128, 0));
+		btSair.setBounds(20, 374, 89, 23);
+		contentPane.add(btSair);
+		
+		JButton btVoltar = new JButton("Voltar");
+		btVoltar.setForeground(Color.WHITE);
+		btVoltar.setFont(new Font("Arial", Font.BOLD, 12));
+		btVoltar.setBackground(new Color(0, 128, 0));
+		btVoltar.setBounds(669, 374, 89, 23);
+		contentPane.add(btVoltar);
+		
+		JEditorPane dtrpnA = new JEditorPane();
+		dtrpnA.setBackground(new Color(192, 192, 192));
+		dtrpnA.setBounds(10, 47, 438, 305);
+		contentPane.add(dtrpnA);
+		
+		JButton btLimpar = new JButton("Limpar");
+		btLimpar.setForeground(Color.WHITE);
+		btLimpar.setFont(new Font("Arial", Font.BOLD, 12));
+		btLimpar.setBackground(new Color(0, 128, 0));
+		btLimpar.setBounds(620, 113, 122, 25);
+		contentPane.add(btLimpar);
+		
+		JButton btAtualizar = new JButton("Atualizar");
+		btAtualizar.setForeground(Color.WHITE);
+		btAtualizar.setFont(new Font("Arial", Font.BOLD, 12));
+		btAtualizar.setBackground(new Color(0, 128, 0));
+		btAtualizar.setBounds(620, 149, 122, 25);
+		contentPane.add(btAtualizar);
+		
+		JButton btCancelar = new JButton("Cancelar");
+		btCancelar.setForeground(Color.WHITE);
+		btCancelar.setFont(new Font("Arial", Font.BOLD, 12));
+		btCancelar.setBackground(new Color(0, 128, 0));
+		btCancelar.setBounds(620, 185, 122, 25);
+		contentPane.add(btCancelar);
+		
+		JButton btNovoCadastro = new JButton("Novo Cadastro");
+		btNovoCadastro.setForeground(Color.WHITE);
+		btNovoCadastro.setFont(new Font("Arial", Font.BOLD, 12));
+		btNovoCadastro.setBackground(new Color(0, 128, 0));
+		btNovoCadastro.setBounds(620, 221, 122, 25);
+		contentPane.add(btNovoCadastro);
+		
+		JLabel labelCodUusario = new JLabel("C\u00F3digo do Usu\u00E1rio ");
+		labelCodUusario.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelCodUusario.setBounds(458, 47, 132, 14);
+		contentPane.add(labelCodUusario);
+		
+		JLabel labelNomeUsuario = new JLabel("Nome do Usu\u00E1rio");
+		labelNomeUsuario.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelNomeUsuario.setBounds(458, 118, 132, 14);
+		contentPane.add(labelNomeUsuario);
+		
+		JLabel labelSenha2 = new JLabel("Senha");
+		labelSenha2.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelSenha2.setBounds(458, 190, 132, 14);
+		contentPane.add(labelSenha2);
+		
+		JLabel labelEmail = new JLabel("E-mail");
+		labelEmail.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelEmail.setBounds(458, 253, 132, 14);
+		contentPane.add(labelEmail);
+		
+		JLabel labelStatus = new JLabel("Status");
+		labelStatus.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelStatus.setBounds(458, 307, 132, 14);
+		contentPane.add(labelStatus);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(458, 76, 130, 20);
+		contentPane.add(textField);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(458, 143, 130, 20);
+		contentPane.add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(458, 215, 130, 20);
+		contentPane.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(458, 278, 130, 20);
+		contentPane.add(textField_3);
+		
+		JList list = new JList();
+		list.setBounds(458, 361, 132, -32);
+		contentPane.add(list);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.setBounds(122, 149, 17, 48);
+		contentPane.add(scrollBar);
+		
+		JList list_1 = new JList();
+		list_1.setBounds(468, 340, 1, 1);
+		contentPane.add(list_1);
+		
+		JList list_2 = new JList();
+		list_2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list_2.setModel(new AbstractListModel() {
+			String[] values = new String[] {"a", "b"};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		list_2.setBounds(458, 332, 132, 36);
+		contentPane.add(list_2);
+	}
+}

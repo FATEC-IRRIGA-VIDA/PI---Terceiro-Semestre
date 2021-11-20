@@ -1,0 +1,95 @@
+package metodos_projeto;
+
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
+import metodos.AcessoBD;
+
+public class UsuarioDAO {
+
+	private AcessoBD bd;
+	private String men, sql;
+	
+	// Esatabelecendo o Construtor para a Classe BookDAO
+	public UsuarioDAO() {
+		bd = new AcessoBD(); // instancia um objeto da Classe BD.
+	}
+	
+	/**
+	 * Armazena um Usuario no banco de dados.
+	 * @param Usuario - o usuario a ser gravado.
+	 * @return - uma mensagem informando o resultado de uma operação.
+	 */
+	public String incluir(Usuario usuario) {
+		
+		System.out.println(usuario.getId() + usuario.getNome() + usuario.getSenha() + usuario.getEmail() + usuario.getStatus() +
+				usuario.getPerfil());
+		
+		sql = "insert into TB_USUARIO (NOME_USUARIO, SENHA_USU, EMAIL_USU, STATUS_USUARIO, PERFIL_USUARIO) values (?,?,?,?,?)";
+		bd.getConnection();
+		try {
+			bd.st = bd.con.prepareStatement(sql);
+			bd.st.setString(1, usuario.getNome());
+			bd.st.setString(2, usuario.getSenha());
+			bd.st.setString(3, usuario.getEmail());
+			bd.st.setString(4, usuario.getStatus());
+			bd.st.setString(5, usuario.getPerfil());
+			bd.st.executeUpdate();
+			men = "Usuário inserido com sucesso!";
+		}
+		
+		catch(SQLException erro) {
+
+				men = "Falha: " + erro;
+				JOptionPane.showMessageDialog(null, men);
+			}
+			
+		finally {
+			bd.close();
+		}
+		
+		JOptionPane.showMessageDialog(null, men);
+		return men;
+	}
+	
+	/**
+	 * Armazena um Usuario no banco de dados.
+	 * @param Usuario - o usuario a ser gravado.
+	 * @return - uma mensagem informando o resultado de uma operação.
+	 */
+	public String alterar(Usuario usuario) {
+		
+		System.out.println(usuario.getId() + usuario.getNome() + usuario.getSenha() + usuario.getEmail() + usuario.getStatus() +
+				usuario.getPerfil());
+		
+		//sql = "update livros set titulo = ?, preco = ? where isbn = ?";
+		sql = "update TB_USUARIO set NOME_USUARIO = ?, SENHA_USU = ?, EMAIL_USU = ?, STATUS_USUARIO = ?, "
+				+ "PERFIL_USUARIO = ? where ID_USUARIO = ?";
+		bd.getConnection();
+		try {
+			bd.st = bd.con.prepareStatement(sql);
+			bd.st.setString(1, usuario.getNome());
+			bd.st.setString(2, usuario.getSenha());
+			bd.st.setString(3, usuario.getEmail());
+			bd.st.setString(4, usuario.getStatus());
+			bd.st.setString(5, usuario.getPerfil());
+			bd.st.setString(6, usuario.getId());
+			bd.st.executeUpdate();
+			men = "Usuário inserido com sucesso!";
+		}
+		
+		catch(SQLException erro) {
+
+				men = "Falha: " + erro;
+				JOptionPane.showMessageDialog(null, men);
+			}
+			
+		finally {
+			bd.close();
+		}
+		
+		JOptionPane.showMessageDialog(null, men);
+		return men;
+	}
+}

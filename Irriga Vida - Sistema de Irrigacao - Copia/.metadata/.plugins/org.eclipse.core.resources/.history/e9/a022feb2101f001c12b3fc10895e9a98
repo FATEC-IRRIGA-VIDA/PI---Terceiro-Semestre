@@ -1,0 +1,38 @@
+package metodos;
+
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
+
+
+@SuppressWarnings("serial")
+public class DocumentoLimitado extends PlainDocument{
+	
+	private int tamanhoMax = 10;
+
+	/***
+	 * Método que recebe o valor máximo de caractres do campo do JTextField.
+	 * @param tamanhoMax - tamanho máximo armazenado.
+	 */
+	public DocumentoLimitado(int tamanhoMax){
+		this.tamanhoMax = tamanhoMax;
+	}
+	
+	/***
+	 * Método que irá testar as condições de validação dos campos entre o valor definido e o inserido na JTextField.
+	 */
+	public void insertString(int offset, String str, javax.swing.text.AttributeSet attr) throws BadLocationException {
+
+		if (str == null) return;  
+
+		String stringAntiga = getText (0, getLength() );  
+		int tamanhoNovo = stringAntiga.length() + str.length(); 
+
+		if (tamanhoNovo <= tamanhoMax) {  
+			super.insertString(offset, str , attr);  
+			//super.insertString(offset, str.replaceAll("[^a-z]","") , attr); // apenas letras
+			//super.insertString(offset, str.replaceAll("[^a-z|^0-9]","") , attr); // letras e números
+		} else {    
+			super.insertString(offset, "", attr); 
+		}  
+	}
+}

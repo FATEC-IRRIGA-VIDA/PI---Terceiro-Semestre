@@ -1,0 +1,13 @@
+package metodos;
+
+import telas.TelaInicial;
+
+public class BotaoSair {
+
+	public void sair() {
+		
+		TelaInicial telasair = new TelaInicial();
+		telasair.setVisible(true);
+		telasair.setVisible(false);
+	}
+}

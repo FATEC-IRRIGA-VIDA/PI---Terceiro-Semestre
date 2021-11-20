@@ -1,0 +1,53 @@
+package telas;
+
+import java.sql.SQLException;
+
+import consultas_bd.BD;
+import consultas_bd.Book;
+import metodos.AcessoBD;
+
+public class UsuarioDAO {
+
+	private AcessoBD bd;
+	private String men, sql;
+	
+	// Esatabelecendo o Construtor para a Classe BookDAO
+	public UsuarioDAO() {
+		bd = new AcessoBD(); // instancia um objeto da Classe BD.
+	}
+	
+	/**
+	 * Armazena um livro no banco de dados
+	 * @param livro - o livro a ser gravado
+	 * @return - uma mensagem informando o resultado de uma operação
+	 */
+	public String incluir(Book livro) {
+		
+		sql = "insert into livros values (?,?,?)";
+		bd.getConnection();
+		try {
+			bd.st = bd.con.prepareStatement(sql);
+			bd.st.setString(1, livro.getIsbn());
+			bd.st.setString(2, livro.getTitulo());
+			bd.st.setDouble(3, livro.getPreco());
+			bd.st.executeUpdate();
+			men = "Livro inserido com sucesso!";
+		}
+		
+		catch(SQLException erro) {
+			
+			if(erro.toString().indexOf("KEY")>=0) {
+				men = "Erro de chave primária";
+			}
+			else {
+				men = "Erro de nulo";
+			}
+			
+		}
+		finally {
+			bd.close();
+		}
+		
+		return men;
+	}
+}

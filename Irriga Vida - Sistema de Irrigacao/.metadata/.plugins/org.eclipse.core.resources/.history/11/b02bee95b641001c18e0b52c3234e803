@@ -1,0 +1,40 @@
+package metodos_projeto;
+
+public class Fertilizante {
+
+	public String id;
+	private String nome;
+	private String tipo;
+	private String marca;
+	private String peso;
+	private String observacao;
+	private String tipoAplicacao;
+	private String classificacao;
+	
+	// Recebendo os valores inseridos.
+	/*String  id = textCodFertilizante.getText(); // ID_FERTILIZANTE	
+	String  nome = textNomeFertilizante.getText(); // NOME_FERTILIZANTE		
+	String  tipo =  textTipoFertilizante.getText(); // TIPO_FERTILIZANTE		
+	String  marca =  textMarcaFertilizante.getText(); // MARCA_FERT	
+	String  pesoEmbalagem =  textPesoEmbalagem.getText(); // PESO_EMBALAGEM	
+	String  observacao =  textObservacao.getText(); // OBSERVACAO		
+	String  tipoAplicacao =  textTipoDeAplicacao.getText(); // TIPO_APLIC		
+	String  classificacao =  textClassificacao.getText(); // CLASSIF*/									
+	
+	/**
+	 * Método Construtor para receber todos os dados de um Fertilizante.
+	 * @param text - variável que armazena o valor recebido do ID.
+	 * @param text2 - variável que armazena o valor recebido do NOME.
+	 * @param text3 - variável que armazena o valor recebido do TIPO.
+	 * @param text4 - variável que armazena o valor recebido da MARCA.
+	 * @param text5 - variável que armazena o valor recebido do PESO DA EMBALAGEM.
+	 * @param text6 - variável que armazena o valor recebido da OBSERVAÇÃO.
+	 * @param text7 - variável que armazena o valor recebido do TIPO DE APLICAÇÃO.
+	 * @param text8 - variável que armazena o valor recebido da CLASSIICAÇÃO.
+	 */
+	public Fertilizante(String text, String text2, String text3, String text4, String text5, String text6, String text7,
+			String text8) {
+
+	}
+	
+}

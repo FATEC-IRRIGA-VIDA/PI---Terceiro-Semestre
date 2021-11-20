@@ -1,0 +1,192 @@
+package metodos_projeto;
+
+public class Planta {
+
+	
+	public String id;
+	private String nomePop;
+	private String dtCadastro;
+	private String observacao;
+	private String tipo;
+	private String origem;
+	private String nomeCient;
+	private String familia;
+	private String clima;
+	
+	/**
+	 *  Método Construtor para receber todos os dados de uma Planta.
+	 * @param text - variável que armazena o valor recebido do ID.
+	 * @param text2 - variável que armazena o valor recebido do NOME POUPULAR.
+	 * @param dtCadastro2 - variável que armazena o valor recebido da DATA DE CADASTRO.
+	 * @param text3 - variável que armazena o valor recebido da OBSERVAÇÃO.
+	 * @param text4 - variável que armazena o valor recebido do TIPO DA PLANTA.
+	 * @param text5 - variável que armazena o valor recebido da ORIGEM.
+	 * @param text6 - variável que armazena o valor recebido do NOME CIENTIFÍCO.
+	 * @param text7 - variável que armazena o valor recebido da FAMÍLIA.
+	 * @param text8 - variável que armazena o valor recebido do CLIMA.
+	 */
+	public Planta(String text, String text2, String dtCadastro2, String text3, String text4, String text5, String text6,
+			String text7, String text8) {
+		this.id=text;
+		this.nomePop=text2;
+		this.dtCadastro=dtCadastro2;
+		this.observacao=text3;
+		this.tipo=text4;
+		this.origem=text5;
+		this.nomeCient=text6;
+		this.familia=text7;
+		this.clima=text8;
+	}
+
+	/**
+	 * Método Construtor para receber o código de uma Planta.
+	 * @param text - variável que armazena o valor recebido do ID.
+	 */
+	public Planta(String text) {
+		this.id=text;
+	}
+
+	/**
+	 * Método que recebe o ID.
+	 * @return - retorna o ID.
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * Método que define o ID.
+	 * @param text - variável que armazena o ID.
+	 */
+	public void setId(String text) {
+		this.id = text;
+	}
+
+	/**
+	 * Método que recebe o NOME POUPULAR.
+	 * @return - retorna o NOME POUPULAR.
+	 */
+	public String getNomePop() {
+		return nomePop;
+	}
+
+	/**
+	 * Método que define o NOME POUPULAR.
+	 * @param text2 - variável que armazena o NOME POUPULAR.
+	 */
+	public void setNomePop(String text2) {
+		this.nomePop = text2;
+	}
+
+	/**
+	 * Método que recebe a DATA DE CADASTRO.
+	 * @return - retorna a DATA DE CADASTRO.
+	 */
+	public String getDtCadastro() {
+		return dtCadastro;
+	}
+
+	/**
+	 * Método que define a DATA DE CADASTRO.
+	 * @param dtCadastro2 - variável que armazena a DATA DE CADASTRO.
+	 */
+	public void setDtCadastro(String dtCadastro2) {
+		this.dtCadastro = dtCadastro2;
+	}
+
+	/**
+	 * Método que recebe a OBSERVAÇÃO.
+	 * @return - retorna a  OBSERVAÇÃO.
+	 */
+	public String getObservacao() {
+		return observacao;
+	}
+
+	/**
+	 * Método que define a OBSERVAÇÃO.
+	 * @param text3 - variável que armazena a OBSERVAÇÃO.
+	 */
+	public void setObservacao(String text3) {
+		this.observacao = text3;
+	}
+
+	/**
+	 * Método que recebe o TIPO DA PLANTA.
+	 * @return - retorna o TIPO DA PLANTA.
+	 */
+	public String getTipo() {
+		return tipo;
+	}
+
+	/**
+	 * Método que define o TIPO DA PLANTA.
+	 * @param text4 - variável que armazena o TIPO DA PLANTA.
+	 */
+	public void setTipo(String text4) {
+		this.tipo = text4;
+	}
+
+	/**
+	 * Método que recebe a ORIGEM.
+	 * @return - retorna a ORIGEM.
+	 */
+	public String getOrigem() {
+		return origem;
+	}
+
+	/**
+	 * Método que define a ORIGEM.
+	 * @param text5 - variável que armazena a ORIGEM.
+	 */
+	public void setOrigem(String text5) {
+		this.origem = text5;
+	}
+
+	/**
+	 * Método que recebe o NOME CIENTIFÍCO.
+	 * @return - retorna o NOME CIENTIFÍCO.
+	 */
+	public String getNomeCient() {
+		return nomeCient;
+	}
+
+	/**
+	 * Método que define o NOME CIENTIFÍCO.
+	 * @param text6 - variável que armazena o NOME CIENTIFÍCO.
+	 */
+	public void setNomeCient(String text6) {
+		this.nomeCient = text6;
+	}
+
+	/**
+	 * Método que recebe a FAMÍLIA.
+	 * @return - retorna a FAMÍLIA.
+	 */
+	public String getFamilia() {
+		return familia;
+	}
+
+	/**
+	 * Método que define a FAMÍLIA.
+	 * @param text7 - variável que armazena a FAMÍLIA.
+	 */ 
+	public void setFamilia(String text7) {
+		this.familia = text7;
+	}
+
+	/**
+	 * Método que recebe o CLIMA.
+	 * @return - retorna o CLIMA.
+	 */
+	public String getClima() {
+		return clima;
+	}
+
+	/**
+	 * Método que define o CLIMA.
+	 * @param text8 - variável que armazena o CLIMA.
+	 */
+	public void setClima(String text8) {
+		this.clima = text8;
+	}
+}

@@ -1,0 +1,28 @@
+package metodos;
+
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
+
+@SuppressWarnings("serial")
+public class DocumentoLimitado extends PlainDocument{
+    private int tamanhoMax = 10;
+         
+    public DocumentoLimitado(int tamanhoMax){
+        this.tamanhoMax = tamanhoMax;
+    }
+    public void insertString(int offset, String str, javax.swing.text.AttributeSet attr) throws BadLocationException {
+ 
+            if (str == null) return;  
+                    
+             String stringAntiga = getText (0, getLength() );  
+             int tamanhoNovo = stringAntiga.length() + str.length(); 
+                        
+             if (tamanhoNovo <= tamanhoMax) {  
+                 //super.insertString(offset, str , attr);  
+            	 super.insertString(offset, str.replaceAll("[^a-z]","") , attr); 
+                 //super.insertString(offset, str.replaceAll("[^a-z|^0-9]","") , attr); 
+             } else {    
+                 super.insertString(offset, "", attr); 
+             }  
+    }
+}

@@ -1,0 +1,129 @@
+package metodos_projeto;
+
+public class Usuario {
+
+	public String id;
+	public String nome;
+	private String senha;
+	private String email;
+	private String status;
+	private String perfil;
+	private String dtCadastro;
+	private String dtAlteracao;
+	
+	/**
+	 * Método Construtor para receber o código do Usuário.
+	 * @param text - variável que armazena o valor recebido do ID.
+	 */
+	public Usuario(String text) {
+		this.id= text;
+	}
+
+
+	/**
+	 * Método Construtor para receber todos os dados de um Usuário.
+	 * @param text - variável que armazena o valor recebido do ID.
+	 * @param text2 - variável que armazena o valor recebido do NOME.
+	 * @param text3 - variável que armazena o valor recebido da SENHA.
+	 * @param dtCadastro - variável que armazena o valor recebido da DATA DE CADASTRO.
+	 * @param text4 - variável que armazena o valor recebido dO EMAIL.
+	 * @param dtAlteracao - variável que armazena o valor recebido da DATA DE ALTERAÇÃO.
+	 * @param statusUsuario - variável que armazena o valor recebido do STATUS DO USUÁRIO.
+	 * @param statusPerfil - variável que armazena o valor recebido do PERFIL.
+	 */
+	public Usuario(String text, String text2, String text3, String dtCadastro, String text4, String dtAlteracao,
+			String statusUsuario, String statusPerfil) {
+		this.id= text;
+		this.nome=text2;
+		this.dtCadastro=dtCadastro;
+		this.senha=text3;
+		this.email=text4;
+		this.dtAlteracao=dtAlteracao;
+		this.status=statusUsuario;
+		this.perfil=statusPerfil;
+	}
+
+
+	/**
+	 * Método que recebe  DATA DE CADASTRO.
+	 * @return - retorna a DATA DE CADASTRO.
+	 */
+	public String getDtCadastro() {
+		return dtCadastro;
+	}
+
+
+	public void setDtCadastro(String dtCadastro) {
+		this.dtCadastro = dtCadastro;
+	}
+
+
+	public String getDtAlteracao() {
+		return dtAlteracao;
+	}
+
+
+	public void setDtAlteracao(String dtAlteracao) {
+		this.dtAlteracao = dtAlteracao;
+	}
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public void setId(String text) {
+		this.id = text;
+	}
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String text2) {
+		this.nome = text2;
+	}
+
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+	public void setSenha(String text3) {
+		this.senha = text3;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String text4) {
+		this.email = text4;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String statusUsuario) {
+		this.status = statusUsuario;
+	}
+
+
+	public String getPerfil() {
+		return perfil;
+	}
+
+
+	public void setPerfil(String statusPerfil) {
+		this.perfil = statusPerfil;
+	}
+}
