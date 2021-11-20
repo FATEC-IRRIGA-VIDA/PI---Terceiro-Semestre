@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import metodos.AcessoBD;
 import metodos.DocumentoLimitado;
 
 import javax.swing.JScrollPane;
@@ -24,6 +25,7 @@ import java.awt.Dimension;
 import javax.swing.JEditorPane;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -33,6 +35,10 @@ import java.awt.List;
 import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import java.sql.SQLException;
+
+import java.sql.SQLException;
 
 public class Usuarios extends JFrame {
 
@@ -83,6 +89,65 @@ public class Usuarios extends JFrame {
 		contentPane.add(labelSI);
 		
 		JButton btPesquisar = new JButton("Pesquisar");
+		btPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//String nome = textNomeUsuario.getText();
+				//String senha = textSenha2.getText();
+				//String email = textEmail.getText();
+				//JOptionPane.showMessageDialog(null, id + "\n" + nome + "\n"+ senha + "\n"+ email);
+				
+			
+				AcessoBD bd = new AcessoBD();
+				if(bd.getConnection()){ 
+					//String sql ="select NOME_USUARIO from TB_USUARIO where ID_USUARIO = ? "; // instrução executada no banco de dados.
+					String sql ="select * from TB_USUARIO "; // instrução executada no banco de dados.
+					try {
+						//JOptionPane.showMessageDialog(null, id);
+						//int id = Integer.parseInt(textCodUsuario.getText());
+						
+						String id = textCodUsuario.getText(); // ID_USUARIO
+						String nome = textNomeUsuario.getText(); // NOME_USUARIO
+						String senha = textSenha2.getText(); // SENHA_USU
+						String email = textEmail.getText(); // EMAIL_USU
+						
+						
+						bd.st = bd.con.prepareStatement(sql); // preparar a instrução para ser executada.
+						//bd.st.setInt(1,id); 
+						bd.rs = bd.st.executeQuery(); // Obtém a posicao BOF da tabela e executa a Consulta.
+						while (bd.rs.next()) { // enquanto existir o próximo registro
+							
+							
+							//JOptionPane.showMessageDialog(null, "Usuário cadastrado" + ": " + bd.rs.getString("NOME_USUARIO"));
+							
+							if (id.equals(bd.rs.getString("ID_USUARIO"))
+									&& nome.equals(bd.rs.getString("NOME_USUARIO")) && senha.equals(bd.rs.getString("SENHA_USU")) 
+										&& email.equals(bd.rs.getString("EMAIL_USU")))
+								JOptionPane.showMessageDialog(null, "Usuário cadastrado");
+							
+							else if (id.equals(bd.rs.getString("ID_USUARIO")))
+									JOptionPane.showMessageDialog(null, "Usuário cadastrado" + ": " + bd.rs.getString("NOME_USUARIO"));
+							else
+								JOptionPane.showMessageDialog(null, "Usuário não cadastrado");	
+							}
+
+						}	
+					
+					catch(SQLException erro) { 
+						System.out.println(erro); // mostra o erro encontrado quando tentou a conexão.
+					}
+					catch(NumberFormatException erro) { 
+						System.out.println("Insira um dado para busca !"); // mostra o erro encontrado quando tentou a conexão.
+					}
+					finally {
+						bd.close(); // encerra a conexão ao BD.
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Falha na conexão com o BD!"); // retorna a mensagem de falha de conexão ao BD.
+				}
+			}
+		});
 		btPesquisar.setForeground(Color.WHITE);
 		btPesquisar.setFont(new Font("Arial", Font.BOLD, 12));
 		btPesquisar.setBackground(new Color(0, 128, 0));
@@ -231,7 +296,7 @@ public class Usuarios extends JFrame {
 		contentPane.add(textEmail);
 		
 		JComboBox ComboBoxStatusUsuario = new JComboBox();
-		ComboBoxStatusUsuario.setModel(new DefaultComboBoxModel(new String[] {"Ativado", "Desativado", "Inativado"}));
+		ComboBoxStatusUsuario.setModel(new DefaultComboBoxModel(new String[] {"Ativado", "Desativado"}));
 		ComboBoxStatusUsuario.setBounds(458, 333, 89, 31);
 		contentPane.add(ComboBoxStatusUsuario);
 	}

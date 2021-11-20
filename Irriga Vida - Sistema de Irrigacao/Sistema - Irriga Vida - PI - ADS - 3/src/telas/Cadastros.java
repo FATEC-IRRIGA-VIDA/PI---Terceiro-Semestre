@@ -67,7 +67,7 @@ public class Cadastros extends JFrame {
 		
 		JLabel labelLogo = new JLabel("New label");
 		labelLogo.setIcon(new ImageIcon("C:\\Users\\Mateus Acer\\Desktop\\App_Study\\Irriga Vida - Sistema de Irrigacao\\Logo.JPG"));
-		labelLogo.setIcon(new ImageIcon("C:\\Users\\User\\Documents\\Irriga Vida - Sistema de Irrigacao\\Logo.JPG"));
+		//labelLogo.setIcon(new ImageIcon("C:\\Users\\User\\Documents\\Irriga Vida - Sistema de Irrigacao\\Logo.JPG"));
 		labelLogo.setBackground(new Color(0, 128, 0));
 		labelLogo.setBounds(10, 72, 161, 166);
 		contentPane.add(labelLogo);

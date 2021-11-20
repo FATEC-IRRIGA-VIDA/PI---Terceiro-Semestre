@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import metodos.DocumentoLimitado;
+import telas_usuario.CadastrosUsuario;
 
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -168,9 +169,10 @@ public class Plantas extends JFrame {
 		btVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				tela3 = new Cadastros();
-				tela3.setVisible(true);
-				Cadastros.tela5.setVisible(false);
+					tela3 = new Cadastros();
+					tela3.setVisible(true);
+					Cadastros.tela5.setVisible(false);
+					
 			}
 		});
 		btVoltar.setForeground(Color.WHITE);

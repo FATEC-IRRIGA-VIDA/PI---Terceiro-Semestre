@@ -1,0 +1,37 @@
+package consultas_bd;
+
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
+public class ConsultaUsuario {
+
+	public static void main(String[] args) {
+		
+		BD bd = new BD();
+		if(bd.getConnection()){ 
+			String sql ="select * from alunos"; // instrução executada no banco de dados.
+			try {
+				bd.st = bd.con.prepareStatement(sql); // preparar a instrução para ser executada.
+				bd.rs = bd.st.executeQuery(); // Obtém a posicao BOF da tabela e executa a Consulta.
+				while(bd.rs.next()) { // enquanto existir o próximo registro
+				System.out.println(bd.rs.getInt("Codigo") + " - " + bd.rs.getString("nome"));
+				//System.out.println(bd.rs.getInt(1) + " - " + bd.rs.getString(2));
+				}
+			}
+			catch(SQLException erro) { 
+				System.out.println(erro); // mostra o erro encontrado quando tentou a conexão.
+			}
+			finally {
+				bd.close(); // encerra a conexão ao BD.
+			}
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Falha na conexão com o BD!"); // retorna a mensagem de falha de conexão ao BD.
+		}
+	}
+}
+
+
+
+

@@ -6,6 +6,7 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 import telas.TelaInicial;
+import telas_usuario.CadastrosUsuario;
 
 public class MetodoLogin {
 
@@ -15,6 +16,7 @@ public class MetodoLogin {
 	private int tamanhoSenha;
 	private String validado2;
 	public static TelaInicial tela2;
+	public static CadastrosUsuario tela13;
 	
 	/**
 	 * Método que checa o login do usuário por meio do Login e Senha.
@@ -38,8 +40,8 @@ public class MetodoLogin {
 		else if (loginV.equals("alice")&&senhaV.equals("alice2021"))
 		{
 			validado = "Acesso Concedido!";
-			TelaInicial tela2 = new TelaInicial();
-			tela2.setVisible(true);
+			CadastrosUsuario tela13 = new CadastrosUsuario();
+			tela13.setVisible(true);
 		}
 		
 		else if (loginV.equals("lucas")&&senhaV.equals("lucas2021"))
