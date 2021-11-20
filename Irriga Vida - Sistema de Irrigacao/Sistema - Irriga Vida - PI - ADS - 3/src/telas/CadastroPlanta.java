@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import metodos.DocumentoLimitado;
+
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
@@ -13,6 +16,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JEditorPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CadastroPlanta extends JFrame {
 
@@ -21,7 +26,9 @@ public class CadastroPlanta extends JFrame {
 	private JTextField textNomePlanta;
 	private JTextField textNomeCientifico;
 	private JTextField textOrigem;
-	private JTextField textFamlia;
+	private JTextField textFamilia;
+	public static Cadastros tela3;
+	public static CadastroPlanta tela5;
 
 	/**
 	 * Launch the application.
@@ -44,7 +51,7 @@ public class CadastroPlanta extends JFrame {
 	 */
 	public CadastroPlanta() {
 		setTitle("Cadastro de Plantas");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 796, 443);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(46, 139, 87));
@@ -72,6 +79,7 @@ public class CadastroPlanta extends JFrame {
 		contentPane.add(labelCodPlanta);
 		
 		textPlanta = new JTextField();
+		//textPlanta.setDocument( new DocumentoLimitado(30) ); //definindo o tamanho do campo
 		textPlanta.setFont(new Font("Arial", Font.PLAIN, 12));
 		textPlanta.setColumns(10);
 		textPlanta.setBounds(458, 76, 152, 20);
@@ -85,6 +93,17 @@ public class CadastroPlanta extends JFrame {
 		contentPane.add(btPesquisar);
 		
 		JButton btLimpar = new JButton("Limpar");
+		btLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// Limpando dados inseridos nas textboxs.
+				textPlanta.setText("");
+				textNomePlanta.setText("");
+				textNomeCientifico.setText("");
+				textOrigem.setText("");
+				textFamilia.setText("");
+			}
+		});
 		btLimpar.setForeground(Color.WHITE);
 		btLimpar.setFont(new Font("Arial", Font.BOLD, 12));
 		btLimpar.setBackground(new Color(0, 128, 0));
@@ -99,6 +118,7 @@ public class CadastroPlanta extends JFrame {
 		contentPane.add(btAtualizar);
 		
 		textNomePlanta = new JTextField();
+		textNomePlanta.setDocument( new DocumentoLimitado(30) ); //definindo o tamanho do campo
 		textNomePlanta.setFont(new Font("Arial", Font.PLAIN, 12));
 		textNomePlanta.setColumns(10);
 		textNomePlanta.setBounds(458, 149, 152, 20);
@@ -119,18 +139,25 @@ public class CadastroPlanta extends JFrame {
 		contentPane.add(btNovoCadastro);
 		
 		textNomeCientifico = new JTextField();
+		textNomeCientifico.setDocument( new DocumentoLimitado(50) ); //definindo o tamanho do campo
 		textNomeCientifico.setFont(new Font("Arial", Font.PLAIN, 12));
 		textNomeCientifico.setColumns(10);
 		textNomeCientifico.setBounds(458, 215, 152, 20);
 		contentPane.add(textNomeCientifico);
 		
 		textOrigem = new JTextField();
+		textOrigem.setDocument( new DocumentoLimitado(20) ); //definindo o tamanho do campo
 		textOrigem.setFont(new Font("Arial", Font.PLAIN, 12));
 		textOrigem.setColumns(10);
 		textOrigem.setBounds(460, 278, 152, 20);
 		contentPane.add(textOrigem);
 		
 		JButton btSair = new JButton("Sair");
+		btSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btSair.setForeground(Color.WHITE);
 		btSair.setFont(new Font("Arial", Font.BOLD, 12));
 		btSair.setBackground(new Color(0, 128, 0));
@@ -138,6 +165,14 @@ public class CadastroPlanta extends JFrame {
 		contentPane.add(btSair);
 		
 		JButton btVoltar = new JButton("Voltar");
+		btVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tela3 = new Cadastros();
+				tela3.setVisible(true);
+				Cadastros.tela5.setVisible(false);
+			}
+		});
 		btVoltar.setForeground(Color.WHITE);
 		btVoltar.setFont(new Font("Arial", Font.BOLD, 12));
 		btVoltar.setBackground(new Color(0, 128, 0));
@@ -168,11 +203,12 @@ public class CadastroPlanta extends JFrame {
 		labelFamlia.setBounds(458, 309, 132, 14);
 		contentPane.add(labelFamlia);
 		
-		textFamlia = new JTextField();
-		textFamlia.setFont(new Font("Arial", Font.PLAIN, 12));
-		textFamlia.setColumns(10);
-		textFamlia.setBounds(458, 332, 152, 20);
-		contentPane.add(textFamlia);
+		textFamilia = new JTextField();
+		textFamilia.setDocument( new DocumentoLimitado(30) ); //definindo o tamanho do campo
+		textFamilia.setFont(new Font("Arial", Font.PLAIN, 12));
+		textFamilia.setColumns(10);
+		textFamilia.setBounds(458, 332, 152, 20);
+		contentPane.add(textFamilia);
 	}
 
 }

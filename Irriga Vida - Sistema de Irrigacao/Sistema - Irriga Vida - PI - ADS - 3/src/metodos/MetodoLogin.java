@@ -1,5 +1,8 @@
 package metodos;
 
+import java.awt.Window;
+
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 import telas.TelaInicial;
@@ -11,6 +14,7 @@ public class MetodoLogin {
 	private String validado;
 	private int tamanhoSenha;
 	private String validado2;
+	public static TelaInicial tela2;
 	
 	/**
 	 * Método que checa o login do usuário por meio do Login e Senha.

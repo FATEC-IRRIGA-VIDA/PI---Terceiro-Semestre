@@ -4,10 +4,11 @@
     <fullyQualifiedTypeName name="javax.swing.text.PlainDocument"/>
     <fullyQualifiedTypeName name="javax.swing.text.BadLocationException"/>
     <fullyQualifiedTypeName name="javax.print.attribute.AttributeSet"/>
-    <fullyQualifiedTypeName name="telas.Login"/>
     <fullyQualifiedTypeName name="metodos.BotaoSair"/>
-    <fullyQualifiedTypeName name="telas.TelaInicial"/>
     <fullyQualifiedTypeName name="java.awt.Frame"/>
     <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="telas.TelaInicial"/>
+    <fullyQualifiedTypeName name="telas.Cadastros"/>
+    <fullyQualifiedTypeName name="telas.Login"/>
 </qualifiedTypeNameHistroy>

@@ -18,6 +18,14 @@ import java.awt.event.ActionEvent;
 public class Cadastros extends JFrame {
 
 	private JPanel contentPane;
+	public static TelaInicial tela2;
+	public static Cadastros tela3;
+	public static Usuarios tela4;
+	public static CadastroPlanta tela5;
+	public static Plantio tela6;
+	public static Composicao tela7;
+	public static Fertilizante tela8;
+	public static Agendamento tela9;
 
 	/**
 	 * Launch the application.
@@ -63,6 +71,15 @@ public class Cadastros extends JFrame {
 		contentPane.add(labelLogo);
 		
 		JButton btUsuarios = new JButton("1. Usu\u00E1rios");
+		btUsuarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tela4 = new Usuarios();
+				tela4.setVisible(true);
+				Usuarios.tela3.setVisible(false);
+				
+			}
+		});
 		btUsuarios.setForeground(Color.WHITE);
 		btUsuarios.setFont(new Font("Arial", Font.BOLD, 12));
 		btUsuarios.setBackground(new Color(0, 128, 0));
@@ -70,6 +87,14 @@ public class Cadastros extends JFrame {
 		contentPane.add(btUsuarios);
 		
 		JButton btPlanta = new JButton("2. Planta");
+		btPlanta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tela5 = new CadastroPlanta();
+				tela5.setVisible(true);
+				CadastroPlanta.tela3.setVisible(false);
+			}
+		});
 		btPlanta.setForeground(Color.WHITE);
 		btPlanta.setFont(new Font("Arial", Font.BOLD, 12));
 		btPlanta.setBackground(new Color(0, 128, 0));
@@ -77,6 +102,14 @@ public class Cadastros extends JFrame {
 		contentPane.add(btPlanta);
 		
 		JButton btPlantio = new JButton("3. Plantio");
+		btPlantio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tela6 = new Plantio();
+				tela6.setVisible(true);
+				Plantio.tela3.setVisible(false);
+			}
+		});
 		btPlantio.setForeground(Color.WHITE);
 		btPlantio.setFont(new Font("Arial", Font.BOLD, 12));
 		btPlantio.setBackground(new Color(0, 128, 0));
@@ -84,6 +117,11 @@ public class Cadastros extends JFrame {
 		contentPane.add(btPlantio);
 		
 		JButton btSair = new JButton("Sair");
+		btSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btSair.setForeground(Color.WHITE);
 		btSair.setFont(new Font("Arial", Font.BOLD, 12));
 		btSair.setBackground(new Color(0, 128, 0));
@@ -94,11 +132,9 @@ public class Cadastros extends JFrame {
 		btVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				TelaInicial tela2 = new TelaInicial();
+				tela2 = new TelaInicial();
 				tela2.setVisible(true);
-				
-				Cadastros frame = new Cadastros();
-				frame.setVisible(false);
+				TelaInicial.tela3.setVisible(false);
 			}
 		});
 		btVoltar.setForeground(Color.WHITE);
@@ -116,6 +152,14 @@ public class Cadastros extends JFrame {
 		contentPane.add(labelCadastros);
 		
 		JButton btComposicao = new JButton("4. Composi\u00E7\u00E3o");
+		btComposicao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tela7 = new Composicao();
+				tela7.setVisible(true);
+				Composicao.tela3.setVisible(false);
+			}
+		});
 		btComposicao.setForeground(Color.WHITE);
 		btComposicao.setFont(new Font("Arial", Font.BOLD, 12));
 		btComposicao.setBackground(new Color(0, 128, 0));
@@ -123,6 +167,14 @@ public class Cadastros extends JFrame {
 		contentPane.add(btComposicao);
 		
 		JButton btFertilizantes = new JButton("5. Fertilizantes");
+		btFertilizantes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tela8 = new Fertilizante();
+				tela8.setVisible(true);
+				Fertilizante.tela3.setVisible(false);
+			}
+		});
 		btFertilizantes.setForeground(Color.WHITE);
 		btFertilizantes.setFont(new Font("Arial", Font.BOLD, 12));
 		btFertilizantes.setBackground(new Color(0, 128, 0));
@@ -130,6 +182,14 @@ public class Cadastros extends JFrame {
 		contentPane.add(btFertilizantes);
 		
 		JButton btAgendamentos = new JButton("6. Agendamentos");
+		btAgendamentos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tela9 = new Agendamento();
+				tela9.setVisible(true);
+				Agendamento.tela3.setVisible(false);
+			}
+		});
 		btAgendamentos.setForeground(Color.WHITE);
 		btAgendamentos.setFont(new Font("Arial", Font.BOLD, 12));
 		btAgendamentos.setBackground(new Color(0, 128, 0));

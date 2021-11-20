@@ -13,6 +13,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JEditorPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Fertilizante extends JFrame {
 
@@ -27,6 +29,8 @@ public class Fertilizante extends JFrame {
 	private JTextField textTipoDeAplicacao;
 	private JTextField textClassificacao;
 	private JTextField textAlcalidade;
+	public static Cadastros tela3;
+	public static Fertilizante tela8;
 
 	/**
 	 * Launch the application.
@@ -49,7 +53,7 @@ public class Fertilizante extends JFrame {
 	 */
 	public Fertilizante() {
 		setTitle("Fertilizante");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 828, 561);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(46, 139, 87));
@@ -71,6 +75,11 @@ public class Fertilizante extends JFrame {
 		contentPane.add(dtrpnA);
 		
 		JButton btSair = new JButton("Sair");
+		btSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btSair.setForeground(Color.WHITE);
 		btSair.setFont(new Font("Arial", Font.BOLD, 12));
 		btSair.setBackground(new Color(0, 128, 0));
@@ -78,6 +87,14 @@ public class Fertilizante extends JFrame {
 		contentPane.add(btSair);
 		
 		JButton btVoltar = new JButton("Voltar");
+		btVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tela3 = new Cadastros();
+				tela3.setVisible(true);
+				Cadastros.tela8.setVisible(false);
+			}
+		});
 		btVoltar.setForeground(Color.WHITE);
 		btVoltar.setFont(new Font("Arial", Font.BOLD, 12));
 		btVoltar.setBackground(new Color(0, 128, 0));

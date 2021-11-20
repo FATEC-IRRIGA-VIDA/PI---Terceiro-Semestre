@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Agendamento extends JFrame {
 
@@ -23,6 +25,8 @@ public class Agendamento extends JFrame {
 	private JTextField textTipoAgendamento;
 	private JTextField textCodUsuario;
 	private JTextField textCodAgendamento;
+	public static Cadastros tela3;
+	public static Agendamento tela9;
 
 	/**
 	 * Launch the application.
@@ -44,8 +48,8 @@ public class Agendamento extends JFrame {
 	 * Create the frame.
 	 */
 	public Agendamento() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Agendamento");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 758, 526);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(46, 139, 87));
@@ -67,6 +71,11 @@ public class Agendamento extends JFrame {
 		contentPane.add(dtrpnA);
 		
 		JButton btSair = new JButton("Sair");
+		btSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btSair.setForeground(Color.WHITE);
 		btSair.setFont(new Font("Arial", Font.BOLD, 12));
 		btSair.setBackground(new Color(0, 128, 0));
@@ -74,6 +83,14 @@ public class Agendamento extends JFrame {
 		contentPane.add(btSair);
 		
 		JButton btVoltar = new JButton("Voltar");
+		btVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tela3 = new Cadastros();
+				tela3.setVisible(true);
+				Cadastros.tela9.setVisible(false);
+			}
+		});
 		btVoltar.setForeground(Color.WHITE);
 		btVoltar.setFont(new Font("Arial", Font.BOLD, 12));
 		btVoltar.setBackground(new Color(0, 128, 0));

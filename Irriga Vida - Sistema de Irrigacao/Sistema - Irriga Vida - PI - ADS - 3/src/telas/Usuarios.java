@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import metodos.DocumentoLimitado;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
@@ -28,6 +31,8 @@ import javax.swing.JScrollBar;
 import javax.swing.JCheckBoxMenuItem;
 import java.awt.List;
 import javax.swing.ListSelectionModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Usuarios extends JFrame {
 
@@ -36,6 +41,8 @@ public class Usuarios extends JFrame {
 	private JTextField textNomeUsuario;
 	private JTextField textSenha2;
 	private JTextField textEmail;
+	public static Cadastros tela3;
+	public static Usuarios tela4;
 
 	/**
 	 * Launch the application.
@@ -58,7 +65,7 @@ public class Usuarios extends JFrame {
 	 */
 	public Usuarios() {
 		setTitle("Usu\u00E1rios");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 784, 447);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(46, 139, 87));
@@ -83,6 +90,11 @@ public class Usuarios extends JFrame {
 		contentPane.add(btPesquisar);
 		
 		JButton btSair = new JButton("Sair");
+		btSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btSair.setForeground(Color.WHITE);
 		btSair.setFont(new Font("Arial", Font.BOLD, 12));
 		btSair.setBackground(new Color(0, 128, 0));
@@ -90,6 +102,15 @@ public class Usuarios extends JFrame {
 		contentPane.add(btSair);
 		
 		JButton btVoltar = new JButton("Voltar");
+		btVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tela3 = new Cadastros();
+				tela3.setVisible(true);
+				Cadastros.tela4.setVisible(false);
+				
+			}
+		});
 		btVoltar.setForeground(Color.WHITE);
 		btVoltar.setFont(new Font("Arial", Font.BOLD, 12));
 		btVoltar.setBackground(new Color(0, 128, 0));
@@ -102,6 +123,16 @@ public class Usuarios extends JFrame {
 		contentPane.add(dtrpnA);
 		
 		JButton btLimpar = new JButton("Limpar");
+		btLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				// Limpando dados inseridos nas textboxs.
+				textCodUsuario.setText("");
+				textNomeUsuario.setText("");
+				textSenha2.setText("");
+				textEmail.setText("");
+			}
+		});
 		btLimpar.setForeground(Color.WHITE);
 		btLimpar.setFont(new Font("Arial", Font.BOLD, 12));
 		btLimpar.setBackground(new Color(0, 128, 0));
@@ -160,6 +191,7 @@ public class Usuarios extends JFrame {
 		contentPane.add(labelStatus);
 		
 		textCodUsuario = new JTextField();
+		// textCodUsuario.setDocument( new DocumentoLimitado(30) ); //definindo o tamanho do campo
 		textCodUsuario.setFont(new Font("Arial", Font.PLAIN, 12));
 		textCodUsuario.setColumns(10);
 		textCodUsuario.setBounds(458, 76, 152, 20);
@@ -178,18 +210,21 @@ public class Usuarios extends JFrame {
 		contentPane.add(list_1);
 		
 		textNomeUsuario = new JTextField();
+		textNomeUsuario.setDocument( new DocumentoLimitado(30) ); //definindo o tamanho do campo
 		textNomeUsuario.setFont(new Font("Arial", Font.PLAIN, 12));
 		textNomeUsuario.setColumns(10);
 		textNomeUsuario.setBounds(458, 149, 152, 20);
 		contentPane.add(textNomeUsuario);
 		
 		textSenha2 = new JTextField();
+		textSenha2.setDocument( new DocumentoLimitado(10) ); //definindo o tamanho do campo
 		textSenha2.setFont(new Font("Arial", Font.PLAIN, 12));
 		textSenha2.setColumns(10);
 		textSenha2.setBounds(458, 215, 152, 20);
 		contentPane.add(textSenha2);
 		
 		textEmail = new JTextField();
+		textEmail.setDocument( new DocumentoLimitado(50) ); //definindo o tamanho do campo
 		textEmail.setFont(new Font("Arial", Font.PLAIN, 12));
 		textEmail.setColumns(10);
 		textEmail.setBounds(460, 278, 152, 20);

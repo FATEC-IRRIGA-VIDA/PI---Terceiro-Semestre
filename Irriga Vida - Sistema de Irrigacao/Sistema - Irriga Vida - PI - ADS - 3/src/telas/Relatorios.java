@@ -13,12 +13,16 @@ import javax.swing.SwingConstants;
 import javax.swing.JEditorPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Relatorios extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField_3;
 	private JTextField textCodUmidade;
+	public static TelaInicial tela2;
+	public static Relatorios tela10;
 
 	/**
 	 * Launch the application.
@@ -63,6 +67,11 @@ public class Relatorios extends JFrame {
 		contentPane.add(dtrpnA);
 		
 		JButton btSair = new JButton("Sair");
+		btSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btSair.setForeground(Color.WHITE);
 		btSair.setFont(new Font("Arial", Font.BOLD, 12));
 		btSair.setBackground(new Color(0, 128, 0));
@@ -70,6 +79,15 @@ public class Relatorios extends JFrame {
 		contentPane.add(btSair);
 		
 		JButton btVoltar = new JButton("Voltar");
+		btVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tela2 = new TelaInicial();
+				tela2.setVisible(true);
+				TelaInicial.tela10.setVisible(false);
+				
+			}
+		});
 		btVoltar.setForeground(Color.WHITE);
 		btVoltar.setFont(new Font("Arial", Font.BOLD, 12));
 		btVoltar.setBackground(new Color(0, 128, 0));
