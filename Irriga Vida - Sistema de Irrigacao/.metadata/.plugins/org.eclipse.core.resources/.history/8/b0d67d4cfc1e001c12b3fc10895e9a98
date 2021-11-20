@@ -1,0 +1,182 @@
+package telas;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JEditorPane;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import com.toedter.calendar.JDateChooser;
+
+public class Equipamentos extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Equipamentos frame = new Equipamentos();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Equipamentos() {
+		setTitle("Equipamentos");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 767, 505);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(46, 139, 87));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JPanel contentPane_1 = new JPanel();
+		contentPane_1.setLayout(null);
+		contentPane_1.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane_1.setBackground(new Color(46, 139, 87));
+		contentPane_1.setBounds(0, 0, 876, 499);
+		contentPane.add(contentPane_1);
+		
+		JLabel labelSI = new JLabel("Sistema de Irriga\u00E7\u00E3o");
+		labelSI.setHorizontalAlignment(SwingConstants.CENTER);
+		labelSI.setForeground(Color.WHITE);
+		labelSI.setFont(new Font("Arial", Font.BOLD, 14));
+		labelSI.setBackground(Color.WHITE);
+		labelSI.setBounds(122, 11, 168, 25);
+		contentPane_1.add(labelSI);
+		
+		JEditorPane dtrpnA = new JEditorPane();
+		dtrpnA.setBackground(Color.LIGHT_GRAY);
+		dtrpnA.setBounds(10, 47, 438, 346);
+		contentPane_1.add(dtrpnA);
+		
+		JButton btSair = new JButton("Sair");
+		btSair.setForeground(Color.WHITE);
+		btSair.setFont(new Font("Arial", Font.BOLD, 12));
+		btSair.setBackground(new Color(0, 128, 0));
+		btSair.setBounds(20, 404, 89, 23);
+		contentPane_1.add(btSair);
+		
+		JButton btVoltar = new JButton("Voltar");
+		btVoltar.setForeground(Color.WHITE);
+		btVoltar.setFont(new Font("Arial", Font.BOLD, 12));
+		btVoltar.setBackground(new Color(0, 128, 0));
+		btVoltar.setBounds(641, 422, 89, 23);
+		contentPane_1.add(btVoltar);
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Arial", Font.PLAIN, 12));
+		textField_1.setColumns(10);
+		textField_1.setBounds(500, 172, 234, 20);
+		contentPane_1.add(textField_1);
+		
+		JLabel labelTempoMedio = new JLabel("Valor ");
+		labelTempoMedio.setForeground(Color.WHITE);
+		labelTempoMedio.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelTempoMedio.setBounds(458, 175, 132, 14);
+		contentPane_1.add(labelTempoMedio);
+		
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("Arial", Font.PLAIN, 12));
+		textField_2.setColumns(10);
+		textField_2.setBounds(521, 129, 213, 20);
+		contentPane_1.add(textField_2);
+		
+		JLabel labelTipoPlantio = new JLabel("Descric\u00E3o");
+		labelTipoPlantio.setForeground(Color.WHITE);
+		labelTipoPlantio.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelTipoPlantio.setBounds(458, 132, 132, 14);
+		contentPane_1.add(labelTipoPlantio);
+		
+		textField_3 = new JTextField();
+		textField_3.setFont(new Font("Arial", Font.PLAIN, 12));
+		textField_3.setColumns(10);
+		textField_3.setBounds(602, 90, 132, 20);
+		contentPane_1.add(textField_3);
+		
+		JLabel labelCodFertilizantes = new JLabel("Nome do Equipamento");
+		labelCodFertilizantes.setForeground(Color.WHITE);
+		labelCodFertilizantes.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelCodFertilizantes.setBounds(458, 93, 132, 14);
+		contentPane_1.add(labelCodFertilizantes);
+		
+		textField_4 = new JTextField();
+		textField_4.setFont(new Font("Arial", Font.PLAIN, 12));
+		textField_4.setColumns(10);
+		textField_4.setBounds(602, 47, 132, 20);
+		contentPane_1.add(textField_4);
+		
+		JLabel labelCodPlantio = new JLabel("C\u00F3digo do Equipamento");
+		labelCodPlantio.setForeground(Color.WHITE);
+		labelCodPlantio.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelCodPlantio.setBounds(458, 47, 150, 18);
+		contentPane_1.add(labelCodPlantio);
+		
+		JButton btPesquisar = new JButton("Pesquisar");
+		btPesquisar.setForeground(Color.WHITE);
+		btPesquisar.setFont(new Font("Arial", Font.BOLD, 12));
+		btPesquisar.setBackground(new Color(0, 128, 0));
+		btPesquisar.setBounds(486, 308, 122, 25);
+		contentPane_1.add(btPesquisar);
+		
+		JButton btLimpar = new JButton("Limpar");
+		btLimpar.setForeground(Color.WHITE);
+		btLimpar.setFont(new Font("Arial", Font.BOLD, 12));
+		btLimpar.setBackground(new Color(0, 128, 0));
+		btLimpar.setBounds(486, 350, 122, 25);
+		contentPane_1.add(btLimpar);
+		
+		JButton btAtualizar = new JButton("Atualizar");
+		btAtualizar.setForeground(Color.WHITE);
+		btAtualizar.setFont(new Font("Arial", Font.BOLD, 12));
+		btAtualizar.setBackground(new Color(0, 128, 0));
+		btAtualizar.setBounds(612, 308, 122, 25);
+		contentPane_1.add(btAtualizar);
+		
+		JButton btCancelar = new JButton("Cancelar");
+		btCancelar.setForeground(Color.WHITE);
+		btCancelar.setFont(new Font("Arial", Font.BOLD, 12));
+		btCancelar.setBackground(new Color(0, 128, 0));
+		btCancelar.setBounds(612, 350, 122, 25);
+		contentPane_1.add(btCancelar);
+		
+		JButton btNovoCadastro = new JButton("Novo Cadastro");
+		btNovoCadastro.setForeground(Color.WHITE);
+		btNovoCadastro.setFont(new Font("Arial", Font.BOLD, 12));
+		btNovoCadastro.setBackground(new Color(0, 128, 0));
+		btNovoCadastro.setBounds(486, 272, 248, 25);
+		contentPane_1.add(btNovoCadastro);
+		
+		JLabel labelInicioPlantio = new JLabel("Data da \u00FAltima manuten\u00E7\u00E3o");
+		labelInicioPlantio.setForeground(Color.WHITE);
+		labelInicioPlantio.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelInicioPlantio.setBounds(458, 228, 179, 20);
+		contentPane_1.add(labelInicioPlantio);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(626, 228, 108, 20);
+		contentPane_1.add(dateChooser);
+	}
+}

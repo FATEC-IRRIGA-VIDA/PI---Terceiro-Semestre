@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import metodos.DocumentoLimitado;
+import metodos.MetodoLogin;
+
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
@@ -14,6 +18,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 
@@ -51,14 +57,16 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		textLogin = new JTextField();
+		textLogin.setDocument( new DocumentoLimitado(12) ); //definindo o tamanho do campo
 		textLogin.setFont(new Font("Arial", Font.PLAIN, 12));
 		textLogin.setBounds(232, 47, 130, 20);
 		contentPane.add(textLogin);
 		textLogin.setColumns(10);
 		
 		textSenha = new JTextField();
+		textSenha.setDocument( new DocumentoLimitado(10) ); //definindo o tamanho do campo
 		textSenha.setFont(new Font("Arial", Font.PLAIN, 12));
-		textSenha.setColumns(10);
+		textSenha.setColumns(8);
 		textSenha.setBounds(232, 96, 130, 20);
 		contentPane.add(textSenha);
 		
@@ -74,7 +82,21 @@ public class Login extends JFrame {
 		labelSenha.setBounds(186, 99, 46, 14);
 		contentPane.add(labelSenha);
 		
+		//Botão Conectar ao Sistema
 		JButton btConectar = new JButton("Conectar");
+		btConectar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String login = textLogin.getText();
+				String senha = textSenha.getText();
+				
+				MetodoLogin user01 = new MetodoLogin();
+				
+				user01.checarLogin(login, senha);
+				user01.tamanhoSenha(senha);
+				user01.mostrar();
+			}
+		});
 		btConectar.setForeground(new Color(255, 255, 255));
 		btConectar.setBackground(new Color(0, 128, 0));
 		btConectar.setFont(new Font("Arial", Font.BOLD, 12));

@@ -177,20 +177,6 @@ public class Usuarios extends JFrame {
 		list_1.setBounds(468, 340, 1, 1);
 		contentPane.add(list_1);
 		
-		JList list_2 = new JList();
-		list_2.setFont(new Font("Arial", Font.PLAIN, 12));
-		list_2.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Ativo", "Desativado", "Inativado"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		list_2.setBounds(458, 332, 142, 48);
-		contentPane.add(list_2);
-		
 		textNomeUsuario = new JTextField();
 		textNomeUsuario.setFont(new Font("Arial", Font.PLAIN, 12));
 		textNomeUsuario.setColumns(10);
@@ -208,5 +194,10 @@ public class Usuarios extends JFrame {
 		textEmail.setColumns(10);
 		textEmail.setBounds(460, 278, 152, 20);
 		contentPane.add(textEmail);
+		
+		JComboBox ComboBoxStatusUsuario = new JComboBox();
+		ComboBoxStatusUsuario.setModel(new DefaultComboBoxModel(new String[] {"Ativado", "Desativado", "Inativado"}));
+		ComboBoxStatusUsuario.setBounds(458, 333, 89, 31);
+		contentPane.add(ComboBoxStatusUsuario);
 	}
 }

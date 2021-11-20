@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import com.toedter.calendar.JDayChooser;
+import com.toedter.calendar.JDateChooser;
 
 public class TelaInicial extends JFrame {
 
@@ -53,12 +55,6 @@ public class TelaInicial extends JFrame {
 		labelSI.setBounds(256, 11, 168, 25);
 		contentPane.add(labelSI);
 		
-		JLabel labelLogo = new JLabel("New label");
-		labelLogo.setIcon(new ImageIcon("C:\\Users\\Mateus Acer\\Desktop\\App_Study\\Irriga Vida - Sistema de Irrigacao\\Logo.JPG"));
-		labelLogo.setBackground(new Color(0, 128, 0));
-		labelLogo.setBounds(52, 71, 161, 166);
-		contentPane.add(labelLogo);
-		
 		JButton btSair = new JButton("Sair");
 		btSair.setForeground(Color.WHITE);
 		btSair.setFont(new Font("Arial", Font.BOLD, 12));
@@ -86,6 +82,11 @@ public class TelaInicial extends JFrame {
 		btConfiguracoes.setBackground(new Color(0, 128, 0));
 		btConfiguracoes.setBounds(271, 166, 138, 25);
 		contentPane.add(btConfiguracoes);
+		
+		JLabel labelLogo = new JLabel("New label");
+		labelLogo.setIcon(new ImageIcon("C:\\Users\\Mateus Acer\\Desktop\\App_Study\\Irriga Vida - Sistema de Irrigacao\\Logo.JPG"));
+		labelLogo.setBackground(new Color(0, 128, 0));
+		labelLogo.setBounds(34, 68, 161, 166);
+		contentPane.add(labelLogo);
 	}
-
 }

@@ -12,4 +12,37 @@
 		<item key="width" value="530"/>
 		<item key="height" value="346"/>
 	</section>
+	<section name="org.eclipse.wb.internal.core.editor.palette.dialogs.ComponentAddDialog">
+		<item key="x" value="469"/>
+		<item key="y" value="267"/>
+		<item key="width" value="981"/>
+		<item key="height" value="501"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.editor.palette.dialogs.ImportArchiveDialog">
+		<item key="x" value="522"/>
+		<item key="y" value="249"/>
+		<item key="width" value="875"/>
+		<item key="height" value="537"/>
+		<list key="HISTORY_JAR_LIST">
+			<item value="C:\Users\User\Downloads\jcalendar-1.4.jar"/>
+		</list>
+	</section>
+	<section name="org.eclipse.wb.internal.core.editor.palette.dialogs.PaletteManagerDialog">
+		<item key="x" value="522"/>
+		<item key="y" value="148"/>
+		<item key="width" value="875"/>
+		<item key="height" value="739"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.editor.palette.dialogs.PalettePreferencesDialog">
+		<item key="x" value="522"/>
+		<item key="y" value="292"/>
+		<item key="width" value="875"/>
+		<item key="height" value="450"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.model.property.order.ReorderDialog">
+		<item key="x" value="423"/>
+		<item key="y" value="186"/>
+		<item key="width" value="520"/>
+		<item key="height" value="366"/>
+	</section>
 </section>

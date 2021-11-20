@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="javax.swing.text.PlainDocument"/>
+    <fullyQualifiedTypeName name="javax.swing.text.BadLocationException"/>
+    <fullyQualifiedTypeName name="javax.print.attribute.AttributeSet"/>
+</qualifiedTypeNameHistroy>

@@ -13,11 +13,11 @@ import javax.swing.SwingConstants;
 import javax.swing.JEditorPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import com.toedter.calendar.JDateChooser;
 
 public class Configuracoes extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textDataAlteracao;
 	private JTextField textDescricaoConfiguracao;
 	private JTextField textValorConfiguracao;
 	private JTextField textCodUsuario;
@@ -78,12 +78,6 @@ public class Configuracoes extends JFrame {
 		btVoltar.setBackground(new Color(0, 128, 0));
 		btVoltar.setBounds(653, 374, 89, 23);
 		contentPane.add(btVoltar);
-		
-		textDataAlteracao = new JTextField();
-		textDataAlteracao.setFont(new Font("Arial", Font.PLAIN, 12));
-		textDataAlteracao.setColumns(10);
-		textDataAlteracao.setBounds(458, 290, 152, 20);
-		contentPane.add(textDataAlteracao);
 		
 		JLabel labelDataAlteracao = new JLabel("Data da Altera\u00E7\u00E3o");
 		labelDataAlteracao.setForeground(Color.WHITE);
@@ -173,6 +167,9 @@ public class Configuracoes extends JFrame {
 		btNovoCadastro.setBackground(new Color(0, 128, 0));
 		btNovoCadastro.setBounds(620, 221, 122, 25);
 		contentPane.add(btNovoCadastro);
+		
+		JDateChooser dateChooserDataAlteracao = new JDateChooser();
+		dateChooserDataAlteracao.setBounds(458, 292, 152, 20);
+		contentPane.add(dateChooserDataAlteracao);
 	}
-
 }

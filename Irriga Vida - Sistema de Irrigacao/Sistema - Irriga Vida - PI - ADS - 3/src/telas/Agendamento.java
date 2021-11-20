@@ -13,17 +13,16 @@ import javax.swing.SwingConstants;
 import javax.swing.JEditorPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JComboBox;
 
 public class Agendamento extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTextField textDescricaoAgendamento;
 	private JTextField textTipoAgendamento;
 	private JTextField textCodUsuario;
 	private JTextField textCodAgendamento;
-	private JTextField textField_5;
-	private JTextField textField_6;
 
 	/**
 	 * Launch the application.
@@ -80,12 +79,6 @@ public class Agendamento extends JFrame {
 		btVoltar.setBackground(new Color(0, 128, 0));
 		btVoltar.setBounds(106, 453, 89, 23);
 		contentPane.add(btVoltar);
-		
-		textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField.setColumns(10);
-		textField.setBounds(458, 332, 271, 20);
-		contentPane.add(textField);
 		
 		JLabel labelDataPrevista = new JLabel("Data Prevista");
 		labelDataPrevista.setForeground(Color.WHITE);
@@ -182,23 +175,22 @@ public class Agendamento extends JFrame {
 		labelDataRealizada.setBounds(458, 355, 132, 14);
 		contentPane.add(labelDataRealizada);
 		
-		textField_5 = new JTextField();
-		textField_5.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_5.setColumns(10);
-		textField_5.setBounds(458, 378, 271, 20);
-		contentPane.add(textField_5);
-		
 		JLabel labelStatus = new JLabel("Status");
 		labelStatus.setForeground(Color.WHITE);
 		labelStatus.setFont(new Font("Arial", Font.PLAIN, 12));
 		labelStatus.setBounds(458, 399, 132, 14);
 		contentPane.add(labelStatus);
 		
-		textField_6 = new JTextField();
-		textField_6.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_6.setColumns(10);
-		textField_6.setBounds(458, 422, 271, 20);
-		contentPane.add(textField_6);
+		JDateChooser dateChooserDataPrevista = new JDateChooser();
+		dateChooserDataPrevista.setBounds(458, 324, 168, 20);
+		contentPane.add(dateChooserDataPrevista);
+		
+		JDateChooser dateChooserDataRealizada = new JDateChooser();
+		dateChooserDataRealizada.setBounds(458, 369, 168, 20);
+		contentPane.add(dateChooserDataRealizada);
+		
+		JComboBox ComboBoxStatusAgendamento = new JComboBox();
+		ComboBoxStatusAgendamento.setBounds(458, 420, 168, 22);
+		contentPane.add(ComboBoxStatusAgendamento);
 	}
-
 }

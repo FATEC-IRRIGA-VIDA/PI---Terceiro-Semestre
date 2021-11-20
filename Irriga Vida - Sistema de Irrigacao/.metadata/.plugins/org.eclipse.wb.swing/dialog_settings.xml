@@ -19,10 +19,10 @@
 		<item key="height" value="313"/>
 	</section>
 	<section name="org.eclipse.wb.internal.swing.model.property.editor.models.combo.ComboBoxModelDialog">
-		<item key="x" value="445"/>
-		<item key="y" value="186"/>
-		<item key="width" value="476"/>
-		<item key="height" value="365"/>
+		<item key="x" value="84"/>
+		<item key="y" value="114"/>
+		<item key="width" value="742"/>
+		<item key="height" value="522"/>
 	</section>
 	<section name="org.eclipse.wb.internal.swing.model.property.editor.border.BorderDialog">
 		<item key="x" value="442"/>

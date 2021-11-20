@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JEditorPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import com.toedter.calendar.JDateChooser;
 
 public class Plantio extends JFrame {
 
@@ -26,10 +27,6 @@ public class Plantio extends JFrame {
 	private JTextField textCodUsuario;
 	private JTextField textTipoDeAdubo;
 	private JTextField textMetragem;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
 
 	/**
 	 * Launch the application.
@@ -242,29 +239,11 @@ public class Plantio extends JFrame {
 		labelFimPlantio.setBounds(458, 436, 150, 14);
 		contentPane.add(labelFimPlantio);
 		
-		textField_9 = new JTextField();
-		textField_9.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_9.setColumns(10);
-		textField_9.setBounds(458, 405, 132, 20);
-		contentPane.add(textField_9);
-		
-		textField_10 = new JTextField();
-		textField_10.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_10.setColumns(10);
-		textField_10.setBounds(458, 466, 132, 20);
-		contentPane.add(textField_10);
-		
 		JLabel labelInicioColheita = new JLabel("Inicio da Colheita");
 		labelInicioColheita.setForeground(Color.WHITE);
 		labelInicioColheita.setFont(new Font("Arial", Font.PLAIN, 12));
 		labelInicioColheita.setBounds(618, 379, 150, 14);
 		contentPane.add(labelInicioColheita);
-		
-		textField_11 = new JTextField();
-		textField_11.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_11.setColumns(10);
-		textField_11.setBounds(618, 405, 132, 20);
-		contentPane.add(textField_11);
 		
 		JLabel labelFimColheita = new JLabel("Fim da Colheita");
 		labelFimColheita.setForeground(Color.WHITE);
@@ -272,11 +251,20 @@ public class Plantio extends JFrame {
 		labelFimColheita.setBounds(618, 436, 150, 14);
 		contentPane.add(labelFimColheita);
 		
-		textField_12 = new JTextField();
-		textField_12.setFont(new Font("Arial", Font.PLAIN, 12));
-		textField_12.setColumns(10);
-		textField_12.setBounds(618, 466, 132, 20);
-		contentPane.add(textField_12);
+		JDateChooser dateChooserInicioPlantio = new JDateChooser();
+		dateChooserInicioPlantio.setBounds(454, 404, 136, 20);
+		contentPane.add(dateChooserInicioPlantio);
+		
+		JDateChooser dateChooserFimPlantio = new JDateChooser();
+		dateChooserFimPlantio.setBounds(454, 465, 136, 20);
+		contentPane.add(dateChooserFimPlantio);
+		
+		JDateChooser dateChooserInicioColheita = new JDateChooser();
+		dateChooserInicioColheita.setBounds(614, 404, 136, 20);
+		contentPane.add(dateChooserInicioColheita);
+		
+		JDateChooser dateChooserFimColheita = new JDateChooser();
+		dateChooserFimColheita.setBounds(614, 465, 136, 20);
+		contentPane.add(dateChooserFimColheita);
 	}
-
 }
