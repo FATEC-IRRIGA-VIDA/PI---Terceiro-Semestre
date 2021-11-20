@@ -1,0 +1,186 @@
+package metodos_projeto;
+
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
+import metodos.AcessoBD;
+
+public class PlantaDAO {
+
+	private AcessoBD bd;
+	private String men, sql;
+	
+	// Esatabelecendo o Construtor para a Classe PlantaDAO
+	public PlantaDAO() {
+		bd = new AcessoBD(); // instancia um objeto da Classe BD.
+	}
+	
+	/**
+	 * Armazena uma Planta no banco de dados.
+	 * @param Planta - a planta a ser gravada.
+	 * @return - uma mensagem informando o resultado de uma operação.
+	 */
+	public String incluir(Planta planta) {
+		
+		String  id = textCodPlanta.getText(); // ID_PLANTA		
+		String nome = textNomePlanta.getText(); // NOME_POPULAR
+		String obs = textObservacoes.getText(); // OBSERVACOES
+		String tipo = textTipoDaPlanta.getText(); // TIPO_PLANTA
+		String origem = textOrigem.getText(); // ORIGEM
+		String nomect = textNomeCientifico.getText(); // NOME_CIENT
+		String familia = textFamilia.getText(); // FAMILIA
+		String clima = textClima.getText(); // CLIMA*/
+		
+		// Verificação em console do recebimento das informações.
+		System.out.println(planta.getId() + planta.getNomePop() + planta.getDtCadastro() + planta.getObservacao() + planta.getTipo()
+		+ planta.getOrigem() + planta.getNomeCient() + planta.getFamilia() + planta.getClima());
+		
+		
+		//Instrução a ser executada no Banco de Dados.
+		sql = "insert into TB_PLANTA (ID_PLANTA, NOME_POPULAR, DT_CADASTRO, OBSERVACOES, TIPO_PLANTA,"
+				+ "ORIGEM, NOME_CIENT, FAMILIA, CLIMA) values (?,?,?,?,?,?,?,?,?)";
+		
+		//Acessando o Banco de Dados.
+		bd.getConnection();
+		try {
+			bd.st = bd.con.prepareStatement(sql);
+			bd.st.setString(1, usuario.getNome());
+			bd.st.setString(2, usuario.getSenha());
+			bd.st.setString(3, usuario.getDtCadastro());
+			bd.st.setString(4, usuario.getEmail());
+			bd.st.setString(5, usuario.getDtAlteracao());
+			bd.st.setString(6, usuario.getStatus());
+			bd.st.setString(7, usuario.getPerfil());
+			bd.st.executeUpdate();
+			men = "Usuário inserido com sucesso!"; // Armazena uma informação pós execução.
+		}
+		
+		catch(SQLException erro) {
+
+
+			/*men = "Falha: " + erro;
+			JOptionPane.showMessageDialog(null, men); // Imprimi o erro encontrado.*/
+
+			if(erro.toString().indexOf("CHECK")>=0) {
+				men = "Erro de claúsula CHECK, Favor selecionar uma opção no STATUS e/ou PERFIL";
+			}
+
+			else {
+				men = "Falha: " + erro;
+			}
+
+		}
+			
+		finally {
+			bd.close(); // Finaliza o Acesso ao Banco de Dados.
+		}
+		
+		JOptionPane.showMessageDialog(null, men); // Imprimi a mensagem obtida durante a opção.
+		return men;
+	}
+	
+	/**
+	 * Armazena um Usuario no banco de dados.
+	 * @param Usuario - o usuario a ser gravado.
+	 * @return - uma mensagem informando o resultado de uma operação.
+	 */
+	public String alterar(Usuario usuario) {
+		
+		// Verificação em console do recebimento das informações.
+		/*System.out.println(usuario.getId() + usuario.getNome() + usuario.getSenha() + usuario.getEmail() + usuario.getStatus() +
+				usuario.getPerfil());*/
+		/*System.out.println(usuario.getId() + usuario.getNome() + usuario.getSenha() + usuario.getDtCadastro() + usuario.getEmail() + 
+				usuario.getDtAlteracao() + usuario.getStatus() + usuario.getPerfil());*/
+
+		System.out.println(usuario.getDtCadastro());
+		System.out.println(usuario.getDtAlteracao());
+		
+		//Instrução a ser executada no Banco de Dados.
+		/*sql = "update TB_USUARIO set NOME_USUARIO = ?, SENHA_USU = ?, EMAIL_USU = ?, STATUS_USUARIO = ?, "
+				+ "PERFIL_USUARIO = ? where ID_USUARIO = ?";*/
+		sql = "update TB_USUARIO set NOME_USUARIO = ?, SENHA_USU = ?, DT_CADASTRO_USU = ?, EMAIL_USU = ?, DT_ALTERACAO_USU = ?, "
+				+ "STATUS_USUARIO = ?, PERFIL_USUARIO = ? where ID_USUARIO = ?";
+				
+		//Acessando o Banco de Dados.
+		bd.getConnection();
+		try {
+			bd.st = bd.con.prepareStatement(sql);
+			bd.st.setString(1, usuario.getNome());
+			bd.st.setString(2, usuario.getSenha());
+			bd.st.setString(3, usuario.getDtCadastro());
+			bd.st.setString(4, usuario.getEmail());
+			bd.st.setString(5, usuario.getDtAlteracao());
+			bd.st.setString(6, usuario.getStatus());
+			bd.st.setString(7, usuario.getPerfil());
+			bd.st.setString(8, usuario.getId());
+			bd.st.executeUpdate();
+			men = "Usuário alterado com sucesso!"; // Armazena uma informação pós execução.
+		}
+		
+		catch(SQLException erro) {
+
+				/*men = "Falha: " + erro;
+				JOptionPane.showMessageDialog(null, men); // Imprimi o erro encontrado.*/
+			
+			if(erro.toString().indexOf("CHECK")>=0) {
+				men = "Erro de claúsula CHECK, Favor selecionar uma opção no STATUS e/ou PERFIL";
+			}
+
+			else {
+				men = "Falha: " + erro;
+			}
+			
+		}
+			
+		finally {
+			bd.close(); // Finaliza o Acesso ao Banco de Dados.
+		}
+		
+		JOptionPane.showMessageDialog(null, men); // Imprimi a mensagem obtida durante a opção.
+		return men;
+	}
+	
+	/**
+	 * Exclui um Usuario a partir de seu ID.
+	 * @param Text - o ID do Usuario
+	 * @return - uma mensagem informando o resultado da operação
+	 */
+	public String excluir(Usuario usuario) {
+		
+		// Verificação em console do recebimento das informações.
+		System.out.println(usuario.getId());
+		
+		//Instrução a ser executada no Banco de Dados.
+		sql = "delete from TB_USUARIO where ID_USUARIO = ?";
+		
+		bd.getConnection();
+		try {
+			bd.st = bd.con.prepareStatement(sql);
+			bd.st.setString(1, usuario.getId());
+			int n = bd.st.executeUpdate();
+			
+			if (n==1) {
+				men = "Usuario excluído com sucesso!"; // Armazena uma informação pós execução.
+			}
+			else {
+				men = "Usuario não encontrado"; // Armazena uma informação pós execução.
+			}
+			
+			men = "Usuario excluído com sucesso!"; // Armazena uma informação pós execução.
+		}
+		
+		catch(SQLException erro) {
+			
+			men = "Erro: " + erro; // Imprimi o erro encontrado.
+			
+			}
+		
+		finally {
+			bd.close();  // Finaliza o Acesso ao Banco de Dados.
+		}
+		
+		JOptionPane.showMessageDialog(null, men); // Imprimi a mensagem obtida durante a opção.
+		return men;
+	}
+}

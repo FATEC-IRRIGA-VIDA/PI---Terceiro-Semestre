@@ -143,8 +143,8 @@ public class Usuarios extends JFrame {
 						
 						// STATUS_USUARIO
 						// PERFIL_USUARIO*/
-						//DT_CADASTRO_USU
-						//DT_ALTERACAO_USU
+						// DT_CADASTRO_USU
+						// DT_ALTERACAO_USU
 						
 						bd.st = bd.con.prepareStatement(sql); // preparar a instrução para ser executada.
 						bd.st.setString(1, textCodUsuario.getText());

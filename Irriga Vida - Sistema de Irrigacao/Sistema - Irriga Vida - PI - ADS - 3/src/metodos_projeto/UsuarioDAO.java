@@ -11,7 +11,7 @@ public class UsuarioDAO {
 	private AcessoBD bd;
 	private String men, sql;
 	
-	// Esatabelecendo o Construtor para a Classe BookDAO
+	// Esatabelecendo o Construtor para a Classe UsuarioDAO
 	public UsuarioDAO() {
 		bd = new AcessoBD(); // instancia um objeto da Classe BD.
 	}

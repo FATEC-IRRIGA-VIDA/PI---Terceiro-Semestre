@@ -19,8 +19,10 @@
     <fullyQualifiedTypeName name="metodos.AcessoBD"/>
     <fullyQualifiedTypeName name="consultas_bd.Book"/>
     <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
-    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="java.sql.SQLInvalidAuthorizationSpecException"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="com.microsoft.sqlserver.jdbc.SQLServerException"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="metodos_projeto.Planta"/>
+    <fullyQualifiedTypeName name="metodos_projeto.PlantaDAO"/>
 </qualifiedTypeNameHistroy>

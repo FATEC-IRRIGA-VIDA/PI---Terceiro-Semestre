@@ -1,0 +1,42 @@
+package metodos_projeto;
+
+public class Planta {
+
+	
+	public String id;
+	private String nomePop;
+	private String dtCadastro;
+	private String observacao;
+	private String tipo;
+	private String origem;
+	private String nomeCient;
+	private String familia;
+	private String clima;
+	
+	/**
+	 *  Método Construtor para receber todos os dados de uma Planta.
+	 * @param text - variável que armazena o valor recebido do ID.
+	 * @param text2 - variável que armazena o valor recebido do NOME POUPULAR.
+	 * @param dtCadastro2 - variável que armazena o valor recebido dA DATA DE CADASTRO.
+	 * @param text3 - variável que armazena o valor recebido da OBSERVAÇÃO.
+	 * @param text4 - variável que armazena o valor recebido do TIPO DA PLANTA.
+	 * @param text5 - variável que armazena o valor recebido da ORIGEM.
+	 * @param text6 - variável que armazena o valor recebido do NOME CIENTIFÍCO.
+	 * @param text7 - variável que armazena o valor recebido da FAMÍLIA.
+	 * @param text8 - variável que armazena o valor recebido do CLIMA.
+	 */
+	public Planta(String text, String text2, String dtCadastro2, String text3, String text4, String text5, String text6,
+			String text7, String text8) {
+		this.id=text;
+		this.nomePop=text2;
+		this.dtCadastro=dtCadastro2;
+		this.observacao=text3;
+		this.tipo=text4;
+		this.origem=text5;
+		this.nomeCient=text6;
+		this.familia=text7;
+		this.clima=text8;
+	}
+	
+	
+}
