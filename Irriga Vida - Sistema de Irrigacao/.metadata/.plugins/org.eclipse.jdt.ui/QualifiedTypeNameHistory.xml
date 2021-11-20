@@ -10,7 +10,6 @@
     <fullyQualifiedTypeName name="telas.TelaInicial"/>
     <fullyQualifiedTypeName name="telas.Cadastros"/>
     <fullyQualifiedTypeName name="telas.Login"/>
-    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
     <fullyQualifiedTypeName name="java.text.DateFormat"/>
     <fullyQualifiedTypeName name="net.proteanit.sql.DbUtils"/>
@@ -19,4 +18,9 @@
     <fullyQualifiedTypeName name="telas.Usuarios"/>
     <fullyQualifiedTypeName name="metodos.AcessoBD"/>
     <fullyQualifiedTypeName name="consultas_bd.Book"/>
+    <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
+    <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="java.sql.SQLInvalidAuthorizationSpecException"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="com.microsoft.sqlserver.jdbc.SQLServerException"/>
 </qualifiedTypeNameHistroy>

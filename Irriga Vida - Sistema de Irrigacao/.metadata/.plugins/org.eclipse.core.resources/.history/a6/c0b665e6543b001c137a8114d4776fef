@@ -1,0 +1,151 @@
+package metodos_projeto;
+
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
+import metodos.AcessoBD;
+
+public class UsuarioDAO {
+
+	private AcessoBD bd;
+	private String men, sql;
+	
+	// Esatabelecendo o Construtor para a Classe BookDAO
+	public UsuarioDAO() {
+		bd = new AcessoBD(); // instancia um objeto da Classe BD.
+	}
+	
+	/**
+	 * Armazena um Usuario no banco de dados.
+	 * @param Usuario - o usuario a ser gravado.
+	 * @return - uma mensagem informando o resultado de uma operação.
+	 */
+	public String incluir(Usuario usuario) {
+		
+		// Verificação em console do recebimento das informações.
+		/*System.out.println(usuario.getId() + usuario.getNome() + usuario.getSenha() + usuario.getEmail() + usuario.getStatus() +
+				usuario.getPerfil());*/
+		System.out.println(usuario.getId() + usuario.getNome() + usuario.getSenha() + usuario.getDtCadastro() + usuario.getEmail() + 
+				usuario.getDtAlteracao() + usuario.getStatus() + usuario.getPerfil());
+		
+		//Instrução a ser executada no Banco de Dados.
+		//sql = "insert into TB_USUARIO (NOME_USUARIO, SENHA_USU, EMAIL_USU, STATUS_USUARIO, PERFIL_USUARIO) values (?,?,?,?,?)";
+		sql = "insert into TB_USUARIO (NOME_USUARIO, SENHA_USU, DT_CADASTRO_USU, EMAIL_USU, DT_ALTERACAO_USU, "
+				+ "STATUS_USUARIO, PERFIL_USUARIO) values (?,?,?,?,?,?,?)";
+		
+		//Acessando o Banco de Dados.
+		bd.getConnection();
+		try {
+			bd.st = bd.con.prepareStatement(sql);
+			bd.st.setString(1, usuario.getNome());
+			bd.st.setString(2, usuario.getSenha());
+			bd.st.setString(3, usuario.getDtCadastro());
+			bd.st.setString(4, usuario.getEmail());
+			bd.st.setString(5, usuario.getDtAlteracao());
+			bd.st.setString(6, usuario.getStatus());
+			bd.st.setString(7, usuario.getPerfil());
+			bd.st.executeUpdate();
+			men = "Usuário inserido com sucesso!"; // Armazena uma informação pós execução.
+		}
+		
+		catch(SQLException erro) {
+
+				men = "Falha: " + erro;
+				JOptionPane.showMessageDialog(null, men); // Imprimi o erro encontrado.
+			}
+			
+		finally {
+			bd.close(); // Finaliza o Acesso ao Banco de Dados.
+		}
+		
+		JOptionPane.showMessageDialog(null, men); // Imprimi a mensagem obtida durante a opção.
+		return men;
+	}
+	
+	/**
+	 * Armazena um Usuario no banco de dados.
+	 * @param Usuario - o usuario a ser gravado.
+	 * @return - uma mensagem informando o resultado de uma operação.
+	 */
+	public String alterar(Usuario usuario) {
+		
+		// Verificação em console do recebimento das informações.
+		System.out.println(usuario.getId() + usuario.getNome() + usuario.getSenha() + usuario.getEmail() + usuario.getStatus() +
+				usuario.getPerfil());
+		
+		//Instrução a ser executada no Banco de Dados.
+		sql = "update TB_USUARIO set NOME_USUARIO = ?, SENHA_USU = ?, EMAIL_USU = ?, STATUS_USUARIO = ?, "
+				+ "PERFIL_USUARIO = ? where ID_USUARIO = ?";
+		
+		//Acessando o Banco de Dados.
+		bd.getConnection();
+		try {
+			bd.st = bd.con.prepareStatement(sql);
+			bd.st.setString(1, usuario.getNome());
+			bd.st.setString(2, usuario.getSenha());
+			bd.st.setString(3, usuario.getEmail());
+			bd.st.setString(4, usuario.getStatus());
+			bd.st.setString(5, usuario.getPerfil());
+			bd.st.setString(6, usuario.getId());
+			bd.st.executeUpdate();
+			men = "Usuário inserido com sucesso!"; // Armazena uma informação pós execução.
+		}
+		
+		catch(SQLException erro) {
+
+				men = "Falha: " + erro;
+				JOptionPane.showMessageDialog(null, men); // Imprimi o erro encontrado.
+			}
+			
+		finally {
+			bd.close(); // Finaliza o Acesso ao Banco de Dados.
+		}
+		
+		JOptionPane.showMessageDialog(null, men); // Imprimi a mensagem obtida durante a opção.
+		return men;
+	}
+	
+	/**
+	 * Exclui um Usuario a partir de seu ID.
+	 * @param Text - o ID do Usuario
+	 * @return - uma mensagem informando o resultado da operação
+	 */
+	public String excluir(Usuario usuario) {
+		
+		// Verificação em console do recebimento das informações.
+		System.out.println(usuario.getId());
+		
+		//Instrução a ser executada no Banco de Dados.
+		sql = "delete from TB_USUARIO where ID_USUARIO = ?";
+		
+		bd.getConnection();
+		try {
+			bd.st = bd.con.prepareStatement(sql);
+			bd.st.setString(1, usuario.getId());
+			int n = bd.st.executeUpdate();
+			
+			if (n==1) {
+				men = "Usuario excluido com sucesso!"; // Armazena uma informação pós execução.
+			}
+			else {
+				men = "Usuario não encontrado"; // Armazena uma informação pós execução.
+			}
+			
+			men = "Usuario excluido com sucesso!"; // Armazena uma informação pós execução.
+		}
+		
+		catch(SQLException erro) {
+			
+			men = "Erro: " + erro; // Imprimi o erro encontrado.
+			
+			}
+		
+		finally {
+			bd.close();  // Finaliza o Acesso ao Banco de Dados.
+		}
+		
+		JOptionPane.showMessageDialog(null, men); // Imprimi a mensagem obtida durante a opção.
+		return men;
+	}
+}
