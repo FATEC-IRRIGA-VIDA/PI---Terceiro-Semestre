@@ -7,9 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import consultas_bd_arquivos_apoio.MetodoLogin;
 import metodos.AcessoBD;
 import metodos.DocumentoLimitado;
-import metodos.MetodoLogin;
 import telas.TelaInicial;
 import telas_usuario.CadastrosUsuario;
 
