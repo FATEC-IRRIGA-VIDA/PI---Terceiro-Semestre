@@ -1,0 +1,11 @@
+package metodos_projeto;
+
+public class Equipamento {
+
+	public String id;
+	private String descricao;
+	private String valor;
+	private String dtUltManutencao;
+	
+
+}

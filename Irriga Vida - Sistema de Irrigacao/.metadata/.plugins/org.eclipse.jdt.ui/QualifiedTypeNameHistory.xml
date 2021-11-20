@@ -25,4 +25,6 @@
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
     <fullyQualifiedTypeName name="metodos_projeto.Planta"/>
     <fullyQualifiedTypeName name="metodos_projeto.PlantaDAO"/>
+    <fullyQualifiedTypeName name="metodos_projeto.Equipamento"/>
+    <fullyQualifiedTypeName name="metodos_projeto.EquipamentoDAO"/>
 </qualifiedTypeNameHistroy>

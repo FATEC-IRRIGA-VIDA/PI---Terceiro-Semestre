@@ -18,7 +18,7 @@ public class PlantaDAO {
 	
 	/**
 	 * Armazena uma Planta no banco de dados.
-	 * @param Planta - a planta a ser gravada.
+	 * @param Planta - A Planta a ser gravada.
 	 * @return - uma mensagem informando o resultado de uma operação.
 	 */
 	public String incluir(Planta planta) {
@@ -61,8 +61,8 @@ public class PlantaDAO {
 	}
 	
 	/**
-	 * Armazena um Usuario no banco de dados.
-	 * @param Usuario - o usuario a ser gravado.
+	 * Altera uma Planta no banco de dados.
+	 * @param Planta - A Planta a ser gravada.
 	 * @return - uma mensagem informando o resultado de uma operação.
 	 */
 	public String alterar(Planta planta) {
@@ -72,8 +72,8 @@ public class PlantaDAO {
 		+ planta.getOrigem() + planta.getNomeCient() + planta.getFamilia() + planta.getClima());
 		
 		//Instrução a ser executada no Banco de Dados.
-		sql = "insert into TB_PLANTA (NOME_POPULAR, DT_CADASTRO, OBSERVACOES, TIPO_PLANTA,"
-				+ "ORIGEM, NOME_CIENT, FAMILIA, CLIMA) values (?,?,?,?,?,?,?,?)";
+		sql = "update TB_PLANTA set NOME_POPULAR = ?, DT_CADASTRO = ?, OBSERVACOES = ?, TIPO_PLANTA = ?,"
+				+ "ORIGEM = ?, NOME_CIENT = ?, FAMILIA = ?, CLIMA = ? where ID_PLANTA = ?";
 				
 		//Acessando o Banco de Dados.
 		bd.getConnection();
@@ -87,6 +87,7 @@ public class PlantaDAO {
 			bd.st.setString(6, planta.getNomeCient());
 			bd.st.setString(7, planta.getFamilia());
 			bd.st.setString(8, planta.getClima());
+			bd.st.setString(9, planta.getId());
 			bd.st.executeUpdate();
 			men = "Planta alterada com sucesso!"; // Armazena uma informação pós execução.
 		}
@@ -104,32 +105,32 @@ public class PlantaDAO {
 	}
 	
 	/**
-	 * Exclui um Usuario a partir de seu ID.
-	 * @param Text - o ID do Usuario
-	 * @return - uma mensagem informando o resultado da operação
+	 * Exclui uma Planta a partir de seu ID.
+	 * @param Planta - o ID da Planta.
+	 * @return - uma mensagem informando o resultado da operação.
 	 */
-	public String excluir(Usuario usuario) {
+	public String excluir(Planta planta) {
 		
 		// Verificação em console do recebimento das informações.
-		System.out.println(usuario.getId());
+		System.out.println(planta.getId());
 		
 		//Instrução a ser executada no Banco de Dados.
-		sql = "delete from TB_USUARIO where ID_USUARIO = ?";
+		sql = "delete from TB_PLANTA where ID_PLANTA = ?";
 		
 		bd.getConnection();
 		try {
 			bd.st = bd.con.prepareStatement(sql);
-			bd.st.setString(1, usuario.getId());
+			bd.st.setString(1, planta.getId());
 			int n = bd.st.executeUpdate();
 			
 			if (n==1) {
-				men = "Usuario excluído com sucesso!"; // Armazena uma informação pós execução.
+				men = "Planta excluída com sucesso!"; // Armazena uma informação pós execução.
 			}
 			else {
-				men = "Usuario não encontrado"; // Armazena uma informação pós execução.
+				men = "Planta não encontrada"; // Armazena uma informação pós execução.
 			}
 			
-			men = "Usuario excluído com sucesso!"; // Armazena uma informação pós execução.
+			men = "Planta excluída com sucesso!"; // Armazena uma informação pós execução.
 		}
 		
 		catch(SQLException erro) {

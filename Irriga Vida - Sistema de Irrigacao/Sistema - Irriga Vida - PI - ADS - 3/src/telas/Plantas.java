@@ -210,6 +210,33 @@ public class Plantas extends JFrame {
 		JButton btAtualizar = new JButton("Atualizar");
 		btAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				//Definindo condicional para a Data Cadastro
+				//DateFormat df = new  SimpleDateFormat("yyyy-MM-dd");
+				DateFormat df = new  SimpleDateFormat("dd-MM-yyyy");
+				
+				String dtCadastro = "0";
+				if(dateChooserDtCadastro.getDate() != null) {
+					dtCadastro = (df.format(dateChooserDtCadastro.getDate()));  //Formatação da DT_CADASTRO
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Insira data válida no Campo Data");
+				
+				String  id = textCodPlanta.getText(); // ID_PLANTA		
+				String nome = textNomePlanta.getText(); // NOME_POPULAR
+				String obs = textObservacoes.getText(); // OBSERVACOES
+				String tipo = textTipoDaPlanta.getText(); // TIPO_PLANTA
+				String origem = textOrigem.getText(); // ORIGEM
+				String nomect = textNomeCientifico.getText(); // NOME_CIENT
+				String familia = textFamilia.getText(); // FAMILIA
+				String clima = textClima.getText(); // CLIMA*/
+				
+				Planta planta = new Planta(textCodPlanta.getText(),textNomePlanta.getText(),dtCadastro,textObservacoes.getText(),
+						textTipoDaPlanta.getText(), textOrigem.getText(),textNomeCientifico.getText(),textFamilia.getText(),
+						textClima.getText());
+				
+				PlantaDAO dao = new PlantaDAO();
+				dao.alterar(planta);
 			}
 		});
 		btAtualizar.setForeground(Color.WHITE);
@@ -226,6 +253,15 @@ public class Plantas extends JFrame {
 		contentPane.add(textNomePlanta);
 		
 		JButton btDeletar = new JButton("Deletar");
+		btDeletar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Planta planta = new Planta(textCodPlanta.getText());
+				
+				PlantaDAO dao = new PlantaDAO();
+				dao.excluir(planta);
+			}
+		});
 		btDeletar.setForeground(Color.WHITE);
 		btDeletar.setFont(new Font("Arial", Font.BOLD, 12));
 		btDeletar.setBackground(new Color(0, 128, 0));
@@ -247,7 +283,7 @@ public class Plantas extends JFrame {
 				else
 					JOptionPane.showMessageDialog(null, "Insira data válida no Campo Data");
 				
-				String  id = textCodPlanta.getText(); // ID_PLANTA		
+				/*String  id = textCodPlanta.getText(); // ID_PLANTA		
 				String nome = textNomePlanta.getText(); // NOME_POPULAR
 				String obs = textObservacoes.getText(); // OBSERVACOES
 				String tipo = textTipoDaPlanta.getText(); // TIPO_PLANTA

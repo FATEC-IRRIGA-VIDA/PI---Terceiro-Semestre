@@ -39,6 +39,14 @@ public class Planta {
 	}
 
 	/**
+	 * Método Construtor para receber o código de uma Planta.
+	 * @param text - variável que armazena o valor recebido do ID.
+	 */
+	public Planta(String text) {
+		this.id=text;
+	}
+
+	/**
 	 * Método que recebe o ID.
 	 * @return - retorna o ID.
 	 */
@@ -47,8 +55,8 @@ public class Planta {
 	}
 
 	/**
-	 * Método que define ID.
-	 * @param text - 
+	 * Método que define o ID.
+	 * @param text - variável que armazena o ID.
 	 */
 	public void setId(String text) {
 		this.id = text;
@@ -181,5 +189,4 @@ public class Planta {
 	public void setClima(String text8) {
 		this.clima = text8;
 	}
-	
 }

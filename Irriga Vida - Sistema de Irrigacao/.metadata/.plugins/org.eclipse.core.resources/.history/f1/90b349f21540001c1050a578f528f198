@@ -1,0 +1,20 @@
+package metodos_projeto;
+
+public class Equipamento {
+
+	public String id;
+	private String descricao;
+	private String valor;
+	private String dtUltManutencao;
+	
+	/**
+	 *  Método Construtor para receber todos os dados de um Equipamento.
+	 * @param text - variável que armazena o valor recebido do ID.
+	 * @param text2 - variável que armazena o valor recebido da DESCRIÇÃO.
+	 * @param text3 - variável que armazena o valor recebido do VALOR.
+	 * @param dataUm - variável que armazena o valor recebido da DATA DA ÚLTIMA MANUTENÇÃO.
+	 */
+	public Equipamento(String text, String text2, String text3, String dataUm) {
+		
+	}
+}
