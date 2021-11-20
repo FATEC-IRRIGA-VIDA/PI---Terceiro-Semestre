@@ -108,6 +108,7 @@ public class Login extends JFrame {
 		JLabel labelLogo = new JLabel("New label");
 		labelLogo.setBackground(new Color(0, 128, 0));
 		labelLogo.setIcon(new ImageIcon("C:\\Users\\Mateus Acer\\Desktop\\App_Study\\Irriga Vida - Sistema de Irrigacao\\Logo.JPG"));
+		labelLogo.setIcon(new ImageIcon("C:\\Users\\User\\Documents\\Irriga Vida - Sistema de Irrigacao\\Logo.JPG"));
 		labelLogo.setBounds(10, 11, 161, 166);
 		contentPane.add(labelLogo);
 	}

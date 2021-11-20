@@ -14,6 +14,8 @@ import javax.swing.JEditorPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Equipamentos extends JFrame {
 
@@ -21,6 +23,8 @@ public class Equipamentos extends JFrame {
 	private JTextField textValor;
 	private JTextField textDescricao;
 	private JTextField textCodEquipamento;
+	public static Cadastros tela3;
+	public static Equipamentos tela12;
 
 	/**
 	 * Launch the application.
@@ -43,7 +47,7 @@ public class Equipamentos extends JFrame {
 	 */
 	public Equipamentos() {
 		setTitle("Equipamentos");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 762, 473);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(46, 139, 87));
@@ -72,6 +76,11 @@ public class Equipamentos extends JFrame {
 		contentPane_1.add(dtrpnA);
 		
 		JButton btSair = new JButton("Sair");
+		btSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btSair.setForeground(Color.WHITE);
 		btSair.setFont(new Font("Arial", Font.BOLD, 12));
 		btSair.setBackground(new Color(0, 128, 0));
@@ -79,6 +88,15 @@ public class Equipamentos extends JFrame {
 		contentPane_1.add(btSair);
 		
 		JButton btVoltar = new JButton("Voltar");
+		btVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tela3 = new Cadastros();
+				tela3.setVisible(true);
+				Cadastros.tela12.setVisible(false);
+				
+			}
+		});
 		btVoltar.setForeground(Color.WHITE);
 		btVoltar.setFont(new Font("Arial", Font.BOLD, 12));
 		btVoltar.setBackground(new Color(0, 128, 0));

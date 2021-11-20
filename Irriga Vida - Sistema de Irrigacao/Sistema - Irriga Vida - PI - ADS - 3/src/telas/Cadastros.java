@@ -21,11 +21,12 @@ public class Cadastros extends JFrame {
 	public static TelaInicial tela2;
 	public static Cadastros tela3;
 	public static Usuarios tela4;
-	public static CadastroPlanta tela5;
-	public static Plantio tela6;
-	public static Composicao tela7;
-	public static Fertilizante tela8;
-	public static Agendamento tela9;
+	public static Plantas tela5;
+	public static Plantios tela6;
+	public static Tarefas tela7;
+	public static Fertilizantes tela8;
+	public static Agendamentos tela9;
+	public static Equipamentos tela12;
 
 	/**
 	 * Launch the application.
@@ -66,6 +67,7 @@ public class Cadastros extends JFrame {
 		
 		JLabel labelLogo = new JLabel("New label");
 		labelLogo.setIcon(new ImageIcon("C:\\Users\\Mateus Acer\\Desktop\\App_Study\\Irriga Vida - Sistema de Irrigacao\\Logo.JPG"));
+		labelLogo.setIcon(new ImageIcon("C:\\Users\\User\\Documents\\Irriga Vida - Sistema de Irrigacao\\Logo.JPG"));
 		labelLogo.setBackground(new Color(0, 128, 0));
 		labelLogo.setBounds(10, 72, 161, 166);
 		contentPane.add(labelLogo);
@@ -86,35 +88,37 @@ public class Cadastros extends JFrame {
 		btUsuarios.setBounds(194, 95, 138, 25);
 		contentPane.add(btUsuarios);
 		
-		JButton btPlanta = new JButton("2. Planta");
-		btPlanta.addActionListener(new ActionListener() {
+		JButton btPlantas = new JButton("2. Plantas");
+		btPlantas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				tela5 = new CadastroPlanta();
+				tela5 = new Plantas();
 				tela5.setVisible(true);
-				CadastroPlanta.tela3.setVisible(false);
+				Plantas.tela3.setVisible(false);
+				
 			}
 		});
-		btPlanta.setForeground(Color.WHITE);
-		btPlanta.setFont(new Font("Arial", Font.BOLD, 12));
-		btPlanta.setBackground(new Color(0, 128, 0));
-		btPlanta.setBounds(194, 131, 138, 25);
-		contentPane.add(btPlanta);
+		btPlantas.setForeground(Color.WHITE);
+		btPlantas.setFont(new Font("Arial", Font.BOLD, 12));
+		btPlantas.setBackground(new Color(0, 128, 0));
+		btPlantas.setBounds(194, 131, 138, 25);
+		contentPane.add(btPlantas);
 		
-		JButton btPlantio = new JButton("3. Plantio");
-		btPlantio.addActionListener(new ActionListener() {
+		JButton btPlantios = new JButton("3. Plantios");
+		btPlantios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				tela6 = new Plantio();
+				tela6 = new Plantios();
 				tela6.setVisible(true);
-				Plantio.tela3.setVisible(false);
+				Plantios.tela3.setVisible(false);
+				
 			}
 		});
-		btPlantio.setForeground(Color.WHITE);
-		btPlantio.setFont(new Font("Arial", Font.BOLD, 12));
-		btPlantio.setBackground(new Color(0, 128, 0));
-		btPlantio.setBounds(194, 171, 138, 25);
-		contentPane.add(btPlantio);
+		btPlantios.setForeground(Color.WHITE);
+		btPlantios.setFont(new Font("Arial", Font.BOLD, 12));
+		btPlantios.setBackground(new Color(0, 128, 0));
+		btPlantios.setBounds(194, 171, 138, 25);
+		contentPane.add(btPlantios);
 		
 		JButton btSair = new JButton("Sair");
 		btSair.addActionListener(new ActionListener() {
@@ -135,6 +139,7 @@ public class Cadastros extends JFrame {
 				tela2 = new TelaInicial();
 				tela2.setVisible(true);
 				TelaInicial.tela3.setVisible(false);
+				
 			}
 		});
 		btVoltar.setForeground(Color.WHITE);
@@ -151,28 +156,30 @@ public class Cadastros extends JFrame {
 		labelCadastros.setBounds(3, 36, 168, 25);
 		contentPane.add(labelCadastros);
 		
-		JButton btComposicao = new JButton("4. Composi\u00E7\u00E3o");
-		btComposicao.addActionListener(new ActionListener() {
+		JButton btTarefas = new JButton("4. Tarefas");
+		btTarefas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				tela7 = new Composicao();
+				tela7 = new Tarefas();
 				tela7.setVisible(true);
-				Composicao.tela3.setVisible(false);
+				Tarefas.tela3.setVisible(false);
+				
 			}
 		});
-		btComposicao.setForeground(Color.WHITE);
-		btComposicao.setFont(new Font("Arial", Font.BOLD, 12));
-		btComposicao.setBackground(new Color(0, 128, 0));
-		btComposicao.setBounds(361, 95, 138, 25);
-		contentPane.add(btComposicao);
+		btTarefas.setForeground(Color.WHITE);
+		btTarefas.setFont(new Font("Arial", Font.BOLD, 12));
+		btTarefas.setBackground(new Color(0, 128, 0));
+		btTarefas.setBounds(361, 95, 138, 25);
+		contentPane.add(btTarefas);
 		
 		JButton btFertilizantes = new JButton("5. Fertilizantes");
 		btFertilizantes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				tela8 = new Fertilizante();
+				tela8 = new Fertilizantes();
 				tela8.setVisible(true);
-				Fertilizante.tela3.setVisible(false);
+				Fertilizantes.tela3.setVisible(false);
+				
 			}
 		});
 		btFertilizantes.setForeground(Color.WHITE);
@@ -185,9 +192,10 @@ public class Cadastros extends JFrame {
 		btAgendamentos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				tela9 = new Agendamento();
+				tela9 = new Agendamentos();
 				tela9.setVisible(true);
-				Agendamento.tela3.setVisible(false);
+				Agendamentos.tela3.setVisible(false);
+				
 			}
 		});
 		btAgendamentos.setForeground(Color.WHITE);
@@ -195,6 +203,21 @@ public class Cadastros extends JFrame {
 		btAgendamentos.setBackground(new Color(0, 128, 0));
 		btAgendamentos.setBounds(361, 172, 138, 25);
 		contentPane.add(btAgendamentos);
+		
+		JButton btEquipamentos = new JButton("7. Equipamentos");
+		btEquipamentos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				tela12 = new Equipamentos();
+				tela12.setVisible(true);
+				Equipamentos.tela3.setVisible(false);
+				
+			}
+		});
+		btEquipamentos.setForeground(Color.WHITE);
+		btEquipamentos.setFont(new Font("Arial", Font.BOLD, 12));
+		btEquipamentos.setBackground(new Color(0, 128, 0));
+		btEquipamentos.setBounds(361, 208, 138, 25);
+		contentPane.add(btEquipamentos);
 	}
-
 }
