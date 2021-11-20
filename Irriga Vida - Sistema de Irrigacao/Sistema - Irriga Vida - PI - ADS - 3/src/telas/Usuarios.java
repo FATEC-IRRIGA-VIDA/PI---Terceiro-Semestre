@@ -7,8 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import consultas_bd.BookDAO;
 import metodos.AcessoBD;
 import metodos.DocumentoLimitado;
+import metodos_projeto.Usuario;
+import metodos_projeto.UsuarioDAO;
+import net.proteanit.sql.DbUtils;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -39,6 +43,7 @@ import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 
 import java.sql.SQLException;
+import javax.swing.JTable;
 
 public class Usuarios extends JFrame {
 
@@ -49,6 +54,9 @@ public class Usuarios extends JFrame {
 	private JTextField textEmail;
 	public static Cadastros tela3;
 	public static Usuarios tela4;
+	private JTable table_1;
+	private JComboBox ComboBoxPerfil;
+	private JComboBox ComboBoxStatusUsuario;
 
 	/**
 	 * Launch the application.
@@ -92,52 +100,75 @@ public class Usuarios extends JFrame {
 		btPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//String nome = textNomeUsuario.getText();
-				//String senha = textSenha2.getText();
-				//String email = textEmail.getText();
-				//JOptionPane.showMessageDialog(null, id + "\n" + nome + "\n"+ senha + "\n"+ email);
 				
-			
 				AcessoBD bd = new AcessoBD();
 				if(bd.getConnection()){ 
-					//String sql ="select NOME_USUARIO from TB_USUARIO where ID_USUARIO = ? "; // instrução executada no banco de dados.
-					String sql ="select * from TB_USUARIO "; // instrução executada no banco de dados.
+					
+					String sql ="select * from TB_USUARIO where ID_USUARIO = ? or NOME_USUARIO = ? or SENHA_USU = ? or EMAIL_USU = ?"; // instrução executada no banco de dados.
 					try {
-						//JOptionPane.showMessageDialog(null, id);
-						//int id = Integer.parseInt(textCodUsuario.getText());
 						
+						
+						// Recebendo os valores inseridos.
 						String id = textCodUsuario.getText(); // ID_USUARIO
 						String nome = textNomeUsuario.getText(); // NOME_USUARIO
 						String senha = textSenha2.getText(); // SENHA_USU
 						String email = textEmail.getText(); // EMAIL_USU
 						
+						/*String statusUsuario; // STATUS_USUARIO
+						String statusPerfil; // PERFIL_USUARIO
+
+						if(ComboBoxStatusUsuario.getSelectedItem().equals("Ativado")&&ComboBoxPerfil.getSelectedItem().equals("Administrador"))
+						{
+							statusUsuario = "A";
+							statusPerfil = "A";
+							//JOptionPane.showMessageDialog(null, "usuario cadastrado" + statusUsuario + statusPerfil);
+							
+						}
+						else if(ComboBoxStatusUsuario.getSelectedItem().equals("Ativado")&&ComboBoxPerfil.getSelectedItem().equals("Usuario"))
+						{
+							statusUsuario = "A";
+							statusPerfil = "U";
+							//JOptionPane.showMessageDialog(null, "usuario cadastrado" + statusUsuario + statusPerfil);
+							
+						}
+						else
+						{
+							statusUsuario = "I";
+							statusPerfil = "U";
+							//JOptionPane.showMessageDialog(null, "usuario desativado" + statusUsuario + statusPerfil);
+						}
+						
+						/*String statusPerfil; // PERFIL_USUARIO
+						if(ComboBoxPerfil.getSelectedItem().equals("Administrador"))
+						{
+							statusPerfil = "A";
+							//JOptionPane.showMessageDialog(null, "usuario cadastrado" + status);
+							
+						}
+						else
+						{
+							statusPerfil = "U";
+							//JOptionPane.showMessageDialog(null, "usuario desativado" + status);
+						}*/
+						
 						
 						bd.st = bd.con.prepareStatement(sql); // preparar a instrução para ser executada.
-						//bd.st.setInt(1,id); 
+						bd.st.setString(1, textCodUsuario.getText());
+						bd.st.setString(2, textNomeUsuario.getText());
+						bd.st.setString(3, textSenha2.getText());
+						bd.st.setString(4, textEmail.getText());
+						//bd.st.setString(5, statusUsuario);
+						//bd.st.setString(6, statusPerfil);
 						bd.rs = bd.st.executeQuery(); // Obtém a posicao BOF da tabela e executa a Consulta.
-						while (bd.rs.next()) { // enquanto existir o próximo registro
-							
-							
-							//JOptionPane.showMessageDialog(null, "Usuário cadastrado" + ": " + bd.rs.getString("NOME_USUARIO"));
-							
-							if (id.equals(bd.rs.getString("ID_USUARIO"))
-									&& nome.equals(bd.rs.getString("NOME_USUARIO")) && senha.equals(bd.rs.getString("SENHA_USU")) 
-										&& email.equals(bd.rs.getString("EMAIL_USU")))
-								JOptionPane.showMessageDialog(null, "Usuário cadastrado");
-							
-							else if (id.equals(bd.rs.getString("ID_USUARIO")))
-									JOptionPane.showMessageDialog(null, "Usuário cadastrado" + ": " + bd.rs.getString("NOME_USUARIO"));
-							else
-								JOptionPane.showMessageDialog(null, "Usuário não cadastrado");	
-							}
-
+						table_1.setModel(DbUtils.resultSetToTableModel(bd.rs));	
+						
 						}	
 					
 					catch(SQLException erro) { 
 						System.out.println(erro); // mostra o erro encontrado quando tentou a conexão.
 					}
 					catch(NumberFormatException erro) { 
-						System.out.println("Insira um dado para busca !"); // mostra o erro encontrado quando tentou a conexão.
+						System.out.println("Insira um dado para busca !"); // erro na leitura em caso de valor em branco.
 					}
 					finally {
 						bd.close(); // encerra a conexão ao BD.
@@ -151,7 +182,7 @@ public class Usuarios extends JFrame {
 		btPesquisar.setForeground(Color.WHITE);
 		btPesquisar.setFont(new Font("Arial", Font.BOLD, 12));
 		btPesquisar.setBackground(new Color(0, 128, 0));
-		btPesquisar.setBounds(620, 71, 122, 25);
+		btPesquisar.setBounds(481, 230, 122, 25);
 		contentPane.add(btPesquisar);
 		
 		JButton btSair = new JButton("Sair");
@@ -182,11 +213,6 @@ public class Usuarios extends JFrame {
 		btVoltar.setBounds(669, 374, 89, 23);
 		contentPane.add(btVoltar);
 		
-		JEditorPane dtrpnA = new JEditorPane();
-		dtrpnA.setBackground(new Color(192, 192, 192));
-		dtrpnA.setBounds(10, 47, 438, 305);
-		contentPane.add(dtrpnA);
-		
 		JButton btLimpar = new JButton("Limpar");
 		btLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -201,74 +227,120 @@ public class Usuarios extends JFrame {
 		btLimpar.setForeground(Color.WHITE);
 		btLimpar.setFont(new Font("Arial", Font.BOLD, 12));
 		btLimpar.setBackground(new Color(0, 128, 0));
-		btLimpar.setBounds(620, 113, 122, 25);
+		btLimpar.setBounds(481, 271, 122, 25);
 		contentPane.add(btLimpar);
 		
 		JButton btAtualizar = new JButton("Atualizar");
 		btAtualizar.setForeground(Color.WHITE);
 		btAtualizar.setFont(new Font("Arial", Font.BOLD, 12));
 		btAtualizar.setBackground(new Color(0, 128, 0));
-		btAtualizar.setBounds(620, 149, 122, 25);
+		btAtualizar.setBounds(625, 230, 122, 25);
 		contentPane.add(btAtualizar);
 		
 		JButton btCancelar = new JButton("Cancelar");
 		btCancelar.setForeground(Color.WHITE);
 		btCancelar.setFont(new Font("Arial", Font.BOLD, 12));
 		btCancelar.setBackground(new Color(0, 128, 0));
-		btCancelar.setBounds(620, 185, 122, 25);
+		btCancelar.setBounds(625, 271, 122, 25);
 		contentPane.add(btCancelar);
 		
 		JButton btNovoCadastro = new JButton("Novo Cadastro");
+		btNovoCadastro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String statusUsuario; // STATUS_USUARIO
+				String statusPerfil; // PERFIL_USUARIO
+
+				if(ComboBoxStatusUsuario.getSelectedItem().equals("Ativado")&&ComboBoxPerfil.getSelectedItem().equals("Administrador"))
+				{
+					statusUsuario = "A";
+					statusPerfil = "A";
+					//JOptionPane.showMessageDialog(null, "usuario cadastrado" + statusUsuario + statusPerfil);
+					
+				}
+				else if(ComboBoxStatusUsuario.getSelectedItem().equals("Ativado")&&ComboBoxPerfil.getSelectedItem().equals("Usuario"))
+				{
+					statusUsuario = "A";
+					statusPerfil = "U";
+					//JOptionPane.showMessageDialog(null, "usuario cadastrado" + statusUsuario + statusPerfil);
+					
+				}
+				else
+				{
+					statusUsuario = "I";
+					statusPerfil = "U";
+					//JOptionPane.showMessageDialog(null, "usuario desativado" + statusUsuario + statusPerfil);
+				}
+				
+				/*String statusPerfil; // PERFIL_USUARIO
+				if(ComboBoxPerfil.getSelectedItem().equals("Administrador"))
+				{
+					statusPerfil = "A";
+					//JOptionPane.showMessageDialog(null, "usuario cadastrado" + status);
+					
+				}
+				else
+				{
+					statusPerfil = "U";
+					//JOptionPane.showMessageDialog(null, "usuario desativado" + status);
+				}*/
+				
+				Usuario usuario = new Usuario(textCodUsuario.getText(),textNomeUsuario.getText(),textSenha2.getText(),textEmail.getText(),
+						statusUsuario,statusPerfil);
+				
+				UsuarioDAO dao = new UsuarioDAO();
+				dao.incluir(usuario);
+				
+				System.out.println(textCodUsuario.getText() + textNomeUsuario.getText() + textSenha2.getText() + textEmail.getText()
+						+ statusUsuario +statusPerfil);
+			}
+		});
 		btNovoCadastro.setForeground(Color.WHITE);
 		btNovoCadastro.setFont(new Font("Arial", Font.BOLD, 12));
 		btNovoCadastro.setBackground(new Color(0, 128, 0));
-		btNovoCadastro.setBounds(620, 221, 122, 25);
+		btNovoCadastro.setBounds(481, 12, 266, 25);
 		contentPane.add(btNovoCadastro);
 		
 		JLabel labelCodUusario = new JLabel("C\u00F3digo do Usu\u00E1rio ");
 		labelCodUusario.setForeground(new Color(255, 255, 255));
 		labelCodUusario.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelCodUusario.setBounds(458, 47, 132, 14);
+		labelCodUusario.setBounds(20, 206, 132, 14);
 		contentPane.add(labelCodUusario);
 		
 		JLabel labelNomeUsuario = new JLabel("Nome do Usu\u00E1rio");
 		labelNomeUsuario.setForeground(new Color(255, 255, 255));
 		labelNomeUsuario.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelNomeUsuario.setBounds(458, 118, 132, 14);
+		labelNomeUsuario.setBounds(20, 276, 132, 14);
 		contentPane.add(labelNomeUsuario);
 		
 		JLabel labelSenha2 = new JLabel("Senha");
 		labelSenha2.setForeground(new Color(255, 255, 255));
 		labelSenha2.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelSenha2.setBounds(458, 190, 132, 14);
+		labelSenha2.setBounds(182, 206, 132, 14);
 		contentPane.add(labelSenha2);
 		
 		JLabel labelEmail = new JLabel("E-mail");
 		labelEmail.setForeground(new Color(255, 255, 255));
 		labelEmail.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelEmail.setBounds(458, 253, 132, 14);
+		labelEmail.setBounds(182, 277, 132, 14);
 		contentPane.add(labelEmail);
 		
 		JLabel labelStatus = new JLabel("Status");
 		labelStatus.setForeground(new Color(255, 255, 255));
 		labelStatus.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelStatus.setBounds(458, 307, 132, 14);
+		labelStatus.setBounds(362, 206, 132, 14);
 		contentPane.add(labelStatus);
 		
 		textCodUsuario = new JTextField();
 		// textCodUsuario.setDocument( new DocumentoLimitado(30) ); //definindo o tamanho do campo
 		textCodUsuario.setFont(new Font("Arial", Font.PLAIN, 12));
 		textCodUsuario.setColumns(10);
-		textCodUsuario.setBounds(458, 76, 152, 20);
+		textCodUsuario.setBounds(20, 235, 152, 20);
 		contentPane.add(textCodUsuario);
 		
 		JList list = new JList();
 		list.setBounds(458, 361, 132, -32);
 		contentPane.add(list);
-		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(122, 149, 17, 48);
-		contentPane.add(scrollBar);
 		
 		JList list_1 = new JList();
 		list_1.setBounds(468, 340, 1, 1);
@@ -278,26 +350,73 @@ public class Usuarios extends JFrame {
 		textNomeUsuario.setDocument( new DocumentoLimitado(30) ); //definindo o tamanho do campo
 		textNomeUsuario.setFont(new Font("Arial", Font.PLAIN, 12));
 		textNomeUsuario.setColumns(10);
-		textNomeUsuario.setBounds(458, 149, 152, 20);
+		textNomeUsuario.setBounds(20, 307, 152, 20);
 		contentPane.add(textNomeUsuario);
 		
 		textSenha2 = new JTextField();
 		textSenha2.setDocument( new DocumentoLimitado(10) ); //definindo o tamanho do campo
 		textSenha2.setFont(new Font("Arial", Font.PLAIN, 12));
 		textSenha2.setColumns(10);
-		textSenha2.setBounds(458, 215, 152, 20);
+		textSenha2.setBounds(182, 235, 152, 20);
 		contentPane.add(textSenha2);
 		
 		textEmail = new JTextField();
 		textEmail.setDocument( new DocumentoLimitado(50) ); //definindo o tamanho do campo
 		textEmail.setFont(new Font("Arial", Font.PLAIN, 12));
 		textEmail.setColumns(10);
-		textEmail.setBounds(460, 278, 152, 20);
+		textEmail.setBounds(184, 307, 152, 20);
 		contentPane.add(textEmail);
 		
-		JComboBox ComboBoxStatusUsuario = new JComboBox();
+		ComboBoxStatusUsuario = new JComboBox();
 		ComboBoxStatusUsuario.setModel(new DefaultComboBoxModel(new String[] {"Ativado", "Desativado"}));
-		ComboBoxStatusUsuario.setBounds(458, 333, 89, 31);
+		ComboBoxStatusUsuario.setBounds(362, 232, 89, 31);
 		contentPane.add(ComboBoxStatusUsuario);
+		
+		JButton btnNewButton = new JButton("Verificar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				char status;
+				//ComboBoxStatusUsuario.getSelectedItem()
+		     	//ComboBoxStatusUsuario.getSelectedIndex()
+				
+				if(ComboBoxStatusUsuario.getSelectedItem().equals("Ativado"))
+				{
+					status = 'A';
+					JOptionPane.showMessageDialog(null, "usuario cadastrado" + status);
+					
+				}
+				else
+				{
+					status = 'B';
+					JOptionPane.showMessageDialog(null, "usuario desativado" + status);
+				}
+					
+				//String status = (String) ComboBoxStatusUsuario.getSelectedItem();
+				//JOptionPane.showMessageDialog(null, status);
+			}
+		});
+		btnNewButton.setBounds(575, 374, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 47, 727, 148);
+		contentPane.add(scrollPane);
+		
+		table_1 = new JTable();
+		scrollPane.setViewportView(table_1);
+		
+		JLabel labelPerfil = new JLabel("Perfil");
+		labelPerfil.setForeground(Color.WHITE);
+		labelPerfil.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelPerfil.setBounds(362, 288, 132, 14);
+		contentPane.add(labelPerfil);
+		
+		ComboBoxPerfil = new JComboBox();
+		ComboBoxPerfil.setModel(new DefaultComboBoxModel(new String[] {"Administrador", "Usuario"}));
+		ComboBoxPerfil.setBounds(362, 314, 96, 31);
+		contentPane.add(ComboBoxPerfil);
+		
 	}
+
 }

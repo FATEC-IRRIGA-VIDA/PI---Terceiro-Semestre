@@ -7,10 +7,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import metodos.AcessoBD;
 import metodos.DocumentoLimitado;
 import telas_usuario.CadastrosUsuario;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.SwingConstants;
@@ -18,18 +21,22 @@ import javax.swing.JEditorPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class PlantasUsuario extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textPlanta;
+	private JTextField textCodPlanta;
 	private JTextField textNomePlanta;
 	private JTextField textNomeCientifico;
 	private JTextField textOrigem;
 	private JTextField textFamilia;
 	public static PlantasUsuario tela14;
 	public static CadastrosUsuario tela13;
+	private JTextField textTipoDaPlanta;
+	private JTextField textClima;
+	private JTextField textObservacoes;
 
 	/**
 	 * Launch the application.
@@ -53,7 +60,7 @@ public class PlantasUsuario extends JFrame {
 	public PlantasUsuario() {
 		setTitle("Plantas");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 796, 443);
+		setBounds(100, 100, 825, 472);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(46, 139, 87));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -79,14 +86,132 @@ public class PlantasUsuario extends JFrame {
 		labelCodPlanta.setBounds(458, 47, 132, 14);
 		contentPane.add(labelCodPlanta);
 		
-		textPlanta = new JTextField();
+		textCodPlanta = new JTextField();
 		//textPlanta.setDocument( new DocumentoLimitado(30) ); //definindo o tamanho do campo
-		textPlanta.setFont(new Font("Arial", Font.PLAIN, 12));
-		textPlanta.setColumns(10);
-		textPlanta.setBounds(458, 76, 152, 20);
-		contentPane.add(textPlanta);
+		textCodPlanta.setFont(new Font("Arial", Font.PLAIN, 12));
+		textCodPlanta.setColumns(10);
+		textCodPlanta.setBounds(458, 76, 152, 20);
+		contentPane.add(textCodPlanta);
 		
 		JButton btPesquisar = new JButton("Pesquisar");
+		btPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AcessoBD bd = new AcessoBD();
+				if(bd.getConnection()){ 
+					
+					String sql ="select * from TB_PLANTA "; // instrução executada no banco de dados.
+					try {
+						
+						// Recebendo os valores inseridos.
+						String  id = textCodPlanta.getText(); // ID_PLANTA							
+						String nome = textNomePlanta.getText(); // NOME_POPULAR
+						String nomect = textNomeCientifico.getText(); // NOME_CIENT
+						String origem = textOrigem.getText(); // ORIGEM
+						String familia = textFamilia.getText(); // FAMILIA
+						String tipo = textTipoDaPlanta.getText(); // TIPO_PLANTA
+						String clima = textClima.getText(); // CLIMA
+						String obs = textObservacoes.getText(); // OBSERVACOES
+						
+						
+						int cont=0; // variavel para controle da validação da consulta cont=0 (sem registro) / cont=1 (registro encontrado).
+						
+						bd.st = bd.con.prepareStatement(sql); // preparar a instrução para ser executada.
+						bd.rs = bd.st.executeQuery(); // Obtém a posicao BOF da tabela e executa a Consulta.
+						while (bd.rs.next()) { // enquanto existir o próximo registro
+							
+							// Pesquisa por todos os campos
+							if (id.equals(bd.rs.getString("ID_PLANTA"))
+									&& nome.equals(bd.rs.getString("NOME_POPULAR")) && nomect.equals(bd.rs.getString("NOME_CIENT")) 
+									&& origem.equals(bd.rs.getString("ORIGEM")) && familia.equals(bd.rs.getString("FAMILIA"))
+									&& tipo.equals(bd.rs.getString("TIPO_PLANTA")) && clima.equals(bd.rs.getString("CLIMA"))
+									&& obs.equals(bd.rs.getString("OBSERVACOES"))) {
+								cont = 1; // Atribui valor 1 para sair da consulta.
+								JOptionPane.showMessageDialog(null, "Planta já cadastrada!");
+							}
+
+							/*// Pesquisa pelo campo ID
+							else if (id.equals(bd.rs.getString("ID_PLANTA")))
+								{
+									cont = 1; // Atribui valor 1 para sair da consulta.
+									JOptionPane.showMessageDialog(null, "Planta já cadastrada!" + ": " + bd.rs.getString("NOME_POPULAR"));
+								}*/
+							
+							// Pesquisa sem o Campo Observações
+							else if (id.equals(bd.rs.getString("ID_PLANTA"))
+									&& nome.equals(bd.rs.getString("NOME_POPULAR")) && nomect.equals(bd.rs.getString("NOME_CIENT")) 
+									&& origem.equals(bd.rs.getString("ORIGEM")) && familia.equals(bd.rs.getString("FAMILIA"))
+									&& tipo.equals(bd.rs.getString("TIPO_PLANTA")) && clima.equals(bd.rs.getString("CLIMA"))) {
+								cont = 1; // Atribui valor 1 para sair da consulta.
+								JOptionPane.showMessageDialog(null, "Planta já cadastrada!");
+							}
+							
+							// Pesquisa sem o Campo Tipo da Planta
+							else if (id.equals(bd.rs.getString("ID_PLANTA"))
+									&& nome.equals(bd.rs.getString("NOME_POPULAR")) && nomect.equals(bd.rs.getString("NOME_CIENT")) 
+									&& origem.equals(bd.rs.getString("ORIGEM")) && familia.equals(bd.rs.getString("FAMILIA"))
+									&& clima.equals(bd.rs.getString("CLIMA"))) {
+								cont = 1; // Atribui valor 1 para sair da consulta.
+								JOptionPane.showMessageDialog(null, "Planta já cadastrada!");
+							}
+							
+							// Pesquisa sem o Campo Origem
+							else if (id.equals(bd.rs.getString("ID_PLANTA"))
+									&& nome.equals(bd.rs.getString("NOME_POPULAR")) && nomect.equals(bd.rs.getString("NOME_CIENT")) 
+									&& familia.equals(bd.rs.getString("FAMILIA"))
+									&& tipo.equals(bd.rs.getString("TIPO_PLANTA")) && clima.equals(bd.rs.getString("CLIMA"))) {
+								cont = 1; // Atribui valor 1 para sair da consulta.
+								JOptionPane.showMessageDialog(null, "Planta já cadastrada!");
+							}
+							
+							// Pesquisa sem o Campo Nome Cientifico
+							else if (id.equals(bd.rs.getString("ID_PLANTA"))
+									&& nome.equals(bd.rs.getString("NOME_POPULAR")) && origem.equals(bd.rs.getString("ORIGEM")) 
+									&& familia.equals(bd.rs.getString("FAMILIA"))
+									&& tipo.equals(bd.rs.getString("TIPO_PLANTA")) && clima.equals(bd.rs.getString("CLIMA"))) {
+								cont = 1; // Atribui valor 1 para sair da consulta.
+								JOptionPane.showMessageDialog(null, "Planta já cadastrada!");
+							}
+							
+							// Pesquisa sem o Campo Familia
+							else if (id.equals(bd.rs.getString("ID_PLANTA"))
+									&& nome.equals(bd.rs.getString("NOME_POPULAR")) && nomect.equals(bd.rs.getString("NOME_CIENT")) 
+									&& origem.equals(bd.rs.getString("ORIGEM")) 
+									&& tipo.equals(bd.rs.getString("TIPO_PLANTA")) && clima.equals(bd.rs.getString("CLIMA"))) {
+								cont = 1; // Atribui valor 1 para sair da consulta.
+								JOptionPane.showMessageDialog(null, "Planta já cadastrada!");
+							}
+							
+							// Pesquisa sem o Campo Clima
+							else if (id.equals(bd.rs.getString("ID_PLANTA"))
+									&& nome.equals(bd.rs.getString("NOME_POPULAR")) && nomect.equals(bd.rs.getString("NOME_CIENT")) 
+									&& origem.equals(bd.rs.getString("ORIGEM")) && familia.equals(bd.rs.getString("FAMILIA"))
+									&& tipo.equals(bd.rs.getString("TIPO_PLANTA"))){
+								cont = 1; // Atribui valor 1 para sair da consulta.
+								JOptionPane.showMessageDialog(null, "Planta já cadastrada!");
+							}
+							
+							}
+								// Dado não encontrado no Banco de dados.
+								if(cont==0)
+									JOptionPane.showMessageDialog(null, "Planta não cadastrada no sistema!");	
+						}	
+					
+					catch(SQLException erro) { 
+						System.out.println(erro); // mostra o erro encontrado quando tentou a conexão.
+					}
+					catch(NumberFormatException erro) { 
+						System.out.println("Insira um dado para busca !"); // erro na leitura em caso de valor em branco.
+					}
+					finally {
+						bd.close(); // encerra a conexão ao BD.
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Falha na conexão com o BD!"); // retorna a mensagem de falha de conexão ao BD.
+				}
+			}
+		});
 		btPesquisar.setForeground(Color.WHITE);
 		btPesquisar.setFont(new Font("Arial", Font.BOLD, 12));
 		btPesquisar.setBackground(new Color(0, 128, 0));
@@ -98,11 +223,14 @@ public class PlantasUsuario extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				// Limpando dados inseridos nas textboxs.
-				textPlanta.setText("");
+				textCodPlanta.setText("");
 				textNomePlanta.setText("");
 				textNomeCientifico.setText("");
 				textOrigem.setText("");
 				textFamilia.setText("");
+				textTipoDaPlanta.setText("");
+				textClima.setText("");
+				textObservacoes.setText("");
 			}
 		});
 		btLimpar.setForeground(Color.WHITE);
@@ -162,7 +290,7 @@ public class PlantasUsuario extends JFrame {
 		btSair.setForeground(Color.WHITE);
 		btSair.setFont(new Font("Arial", Font.BOLD, 12));
 		btSair.setBackground(new Color(0, 128, 0));
-		btSair.setBounds(20, 374, 89, 23);
+		btSair.setBounds(10, 396, 89, 23);
 		contentPane.add(btSair);
 		
 		JButton btVoltar = new JButton("Voltar");
@@ -177,7 +305,7 @@ public class PlantasUsuario extends JFrame {
 		btVoltar.setForeground(Color.WHITE);
 		btVoltar.setFont(new Font("Arial", Font.BOLD, 12));
 		btVoltar.setBackground(new Color(0, 128, 0));
-		btVoltar.setBounds(669, 374, 89, 23);
+		btVoltar.setBounds(109, 396, 89, 23);
 		contentPane.add(btVoltar);
 		
 		JLabel labelNomePlanta = new JLabel("Nome da Planta");
@@ -210,6 +338,45 @@ public class PlantasUsuario extends JFrame {
 		textFamilia.setColumns(10);
 		textFamilia.setBounds(458, 332, 152, 20);
 		contentPane.add(textFamilia);
+		
+		textTipoDaPlanta = new JTextField();
+		textTipoDaPlanta.setDocument( new DocumentoLimitado(10) ); //definindo o tamanho do campo
+		textTipoDaPlanta.setFont(new Font("Arial", Font.PLAIN, 12));
+		textTipoDaPlanta.setColumns(10);
+		textTipoDaPlanta.setBounds(639, 280, 152, 20);
+		contentPane.add(textTipoDaPlanta);
+		
+		JLabel labelTipoDaPlanta = new JLabel("Tipo da Planta");
+		labelTipoDaPlanta.setForeground(Color.WHITE);
+		labelTipoDaPlanta.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelTipoDaPlanta.setBounds(639, 257, 132, 14);
+		contentPane.add(labelTipoDaPlanta);
+		
+		JLabel labelClima = new JLabel("Clima");
+		labelClima.setForeground(Color.WHITE);
+		labelClima.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelClima.setBounds(639, 311, 132, 14);
+		contentPane.add(labelClima);
+		
+		textClima = new JTextField();
+		textClima.setDocument( new DocumentoLimitado(20) ); //definindo o tamanho do campo
+		textClima.setFont(new Font("Arial", Font.PLAIN, 12));
+		textClima.setColumns(10);
+		textClima.setBounds(639, 334, 152, 20);
+		contentPane.add(textClima);
+		
+		textObservacoes = new JTextField();
+		textObservacoes.setDocument( new DocumentoLimitado(120) ); //definindo o tamanho do campo
+		textObservacoes.setFont(new Font("Arial", Font.PLAIN, 12));
+		textObservacoes.setColumns(10);
+		textObservacoes.setBounds(458, 388, 333, 39);
+		contentPane.add(textObservacoes);
+		
+		JLabel labelObservacoes = new JLabel("Observa\u00E7\u00F5es");
+		labelObservacoes.setForeground(Color.WHITE);
+		labelObservacoes.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelObservacoes.setBounds(458, 365, 132, 14);
+		contentPane.add(labelObservacoes);
 	}
 
 }

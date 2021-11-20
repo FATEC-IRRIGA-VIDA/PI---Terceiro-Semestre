@@ -18,6 +18,8 @@ import com.toedter.calendar.JDateChooser;
 import metodos.DocumentoLimitado;
 
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 
 public class Plantios extends JFrame {
@@ -34,6 +36,8 @@ public class Plantios extends JFrame {
 	private JTextField textMetragem;
 	public static Cadastros tela3;
 	public static Plantios tela6;
+	private JTextField text_Get_Date;
+	private JDateChooser dateChooserInicioColheita;
 
 	/**
 	 * Launch the application.
@@ -305,12 +309,30 @@ public class Plantios extends JFrame {
 		dateChooserFimPlantio.setBounds(454, 465, 136, 20);
 		contentPane.add(dateChooserFimPlantio);
 		
-		JDateChooser dateChooserInicioColheita = new JDateChooser();
+		//JDateChooser dateChooserInicioColheita = new JDateChooser();
+		dateChooserInicioColheita = new JDateChooser();
 		dateChooserInicioColheita.setBounds(614, 404, 136, 20);
 		contentPane.add(dateChooserInicioColheita);
 		
 		JDateChooser dateChooserFimColheita = new JDateChooser();
 		dateChooserFimColheita.setBounds(614, 465, 136, 20);
 		contentPane.add(dateChooserFimColheita);
+		
+		JButton btnGetDate = new JButton("New button");
+		btnGetDate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				DateFormat df = new  SimpleDateFormat("yyyy-MM-dd");
+				
+				text_Get_Date.setText(df.format(dateChooserInicioColheita.getDate()));
+			}
+		});
+		btnGetDate.setBounds(646, 331, 89, 23);
+		contentPane.add(btnGetDate);
+		
+		text_Get_Date = new JTextField();
+		text_Get_Date.setBounds(748, 332, 96, 20);
+		contentPane.add(text_Get_Date);
+		text_Get_Date.setColumns(10);
 	}
 }

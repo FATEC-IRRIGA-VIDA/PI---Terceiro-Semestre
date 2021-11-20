@@ -7,29 +7,45 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import metodos.AcessoBD;
 import metodos.DocumentoLimitado;
+import net.proteanit.sql.DbUtils;
 import telas_usuario.CadastrosUsuario;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Window;
+
 import javax.swing.SwingConstants;
 import javax.swing.JEditorPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.border.BevelBorder;
+import javax.swing.DropMode;
+import javax.swing.JScrollPane;
 
 public class Plantas extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textPlanta;
+	private JTextField textCodPlanta;
 	private JTextField textNomePlanta;
 	private JTextField textNomeCientifico;
 	private JTextField textOrigem;
 	private JTextField textFamilia;
 	public static Cadastros tela3;
 	public static Plantas tela5;
+	private JTextField textTipoDaPlanta;
+	private JTextField textClima;
+	private JTextField textObservacoes;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -53,7 +69,7 @@ public class Plantas extends JFrame {
 	public Plantas() {
 		setTitle("Plantas");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 796, 443);
+		setBounds(100, 100, 826, 470);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(46, 139, 87));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -68,29 +84,67 @@ public class Plantas extends JFrame {
 		labelSI.setBounds(122, 11, 168, 25);
 		contentPane.add(labelSI);
 		
-		JEditorPane dtrpnA = new JEditorPane();
-		dtrpnA.setBackground(Color.LIGHT_GRAY);
-		dtrpnA.setBounds(10, 47, 438, 305);
-		contentPane.add(dtrpnA);
-		
 		JLabel labelCodPlanta = new JLabel("C\u00F3digo da Planta");
 		labelCodPlanta.setForeground(Color.WHITE);
 		labelCodPlanta.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelCodPlanta.setBounds(458, 47, 132, 14);
+		labelCodPlanta.setBounds(21, 255, 132, 14);
 		contentPane.add(labelCodPlanta);
 		
-		textPlanta = new JTextField();
+		textCodPlanta = new JTextField();
 		//textPlanta.setDocument( new DocumentoLimitado(30) ); //definindo o tamanho do campo
-		textPlanta.setFont(new Font("Arial", Font.PLAIN, 12));
-		textPlanta.setColumns(10);
-		textPlanta.setBounds(458, 76, 152, 20);
-		contentPane.add(textPlanta);
+		textCodPlanta.setFont(new Font("Arial", Font.PLAIN, 12));
+		textCodPlanta.setColumns(10);
+		textCodPlanta.setBounds(21, 284, 152, 20);
+		contentPane.add(textCodPlanta);
 		
 		JButton btPesquisar = new JButton("Pesquisar");
+		btPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AcessoBD bd = new AcessoBD();
+				if(bd.getConnection()){ 
+					
+					String sql ="select * from TB_PLANTA where ID_PLANTA = ? or NOME_POPULAR = ? "
+							+ "or NOME_CIENT = ?"; // instrução executada no banco de dados.
+					try {
+						
+						// Recebendo os valores inseridos.
+						String  id = textCodPlanta.getText(); // ID_PLANTA							
+						String nome = textNomePlanta.getText(); // NOME_POPULAR
+						String nomect = textNomeCientifico.getText(); // NOME_CIENT
+						String origem = textOrigem.getText(); // ORIGEM
+						String familia = textFamilia.getText(); // FAMILIA
+						String tipo = textTipoDaPlanta.getText(); // TIPO_PLANTA
+						String clima = textClima.getText(); // CLIMA
+						String obs = textObservacoes.getText(); // OBSERVACOES
+						
+						bd.st = bd.con.prepareStatement(sql); // preparar a instrução para ser executada.
+						bd.st.setString(1, textCodPlanta.getText());
+						bd.st.setString(2, textNomePlanta.getText());
+						bd.st.setString(3, textNomeCientifico.getText());
+						bd.rs = bd.st.executeQuery(); // Obtém a posicao BOF da tabela e executa a Consulta.
+						table.setModel(DbUtils.resultSetToTableModel(bd.rs));	
+						}	
+					
+					catch(SQLException erro) { 
+						System.out.println(erro); // mostra o erro encontrado quando tentou a conexão.
+					}
+					catch(NumberFormatException erro) { 
+						System.out.println("Insira um dado para busca !"); // erro na leitura em caso de valor em branco.
+					}
+					finally {
+						bd.close(); // encerra a conexão ao BD.
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Falha na conexão com o BD!"); // retorna a mensagem de falha de conexão ao BD.
+				}
+			}
+		});
 		btPesquisar.setForeground(Color.WHITE);
 		btPesquisar.setFont(new Font("Arial", Font.BOLD, 12));
 		btPesquisar.setBackground(new Color(0, 128, 0));
-		btPesquisar.setBounds(620, 71, 122, 25);
+		btPesquisar.setBounds(21, 189, 122, 25);
 		contentPane.add(btPesquisar);
 		
 		JButton btLimpar = new JButton("Limpar");
@@ -98,59 +152,66 @@ public class Plantas extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				// Limpando dados inseridos nas textboxs.
-				textPlanta.setText("");
+				textCodPlanta.setText("");
 				textNomePlanta.setText("");
 				textNomeCientifico.setText("");
 				textOrigem.setText("");
 				textFamilia.setText("");
+				textTipoDaPlanta.setText("");
+				textClima.setText("");
+				textObservacoes.setText("");
 			}
 		});
 		btLimpar.setForeground(Color.WHITE);
 		btLimpar.setFont(new Font("Arial", Font.BOLD, 12));
 		btLimpar.setBackground(new Color(0, 128, 0));
-		btLimpar.setBounds(620, 113, 122, 25);
+		btLimpar.setBounds(175, 189, 122, 25);
 		contentPane.add(btLimpar);
 		
 		JButton btAtualizar = new JButton("Atualizar");
+		btAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btAtualizar.setForeground(Color.WHITE);
 		btAtualizar.setFont(new Font("Arial", Font.BOLD, 12));
 		btAtualizar.setBackground(new Color(0, 128, 0));
-		btAtualizar.setBounds(620, 149, 122, 25);
+		btAtualizar.setBounds(321, 189, 122, 25);
 		contentPane.add(btAtualizar);
 		
 		textNomePlanta = new JTextField();
 		textNomePlanta.setDocument( new DocumentoLimitado(30) ); //definindo o tamanho do campo
 		textNomePlanta.setFont(new Font("Arial", Font.PLAIN, 12));
 		textNomePlanta.setColumns(10);
-		textNomePlanta.setBounds(458, 149, 152, 20);
+		textNomePlanta.setBounds(21, 344, 152, 20);
 		contentPane.add(textNomePlanta);
 		
 		JButton btCancelar = new JButton("Cancelar");
 		btCancelar.setForeground(Color.WHITE);
 		btCancelar.setFont(new Font("Arial", Font.BOLD, 12));
 		btCancelar.setBackground(new Color(0, 128, 0));
-		btCancelar.setBounds(620, 185, 122, 25);
+		btCancelar.setBounds(460, 189, 122, 25);
 		contentPane.add(btCancelar);
 		
 		JButton btNovoCadastro = new JButton("Novo Cadastro");
 		btNovoCadastro.setForeground(Color.WHITE);
 		btNovoCadastro.setFont(new Font("Arial", Font.BOLD, 12));
 		btNovoCadastro.setBackground(new Color(0, 128, 0));
-		btNovoCadastro.setBounds(620, 221, 122, 25);
+		btNovoCadastro.setBounds(625, 189, 122, 25);
 		contentPane.add(btNovoCadastro);
 		
 		textNomeCientifico = new JTextField();
 		textNomeCientifico.setDocument( new DocumentoLimitado(50) ); //definindo o tamanho do campo
 		textNomeCientifico.setFont(new Font("Arial", Font.PLAIN, 12));
 		textNomeCientifico.setColumns(10);
-		textNomeCientifico.setBounds(458, 215, 152, 20);
+		textNomeCientifico.setBounds(208, 284, 152, 20);
 		contentPane.add(textNomeCientifico);
 		
 		textOrigem = new JTextField();
 		textOrigem.setDocument( new DocumentoLimitado(20) ); //definindo o tamanho do campo
 		textOrigem.setFont(new Font("Arial", Font.PLAIN, 12));
 		textOrigem.setColumns(10);
-		textOrigem.setBounds(460, 278, 152, 20);
+		textOrigem.setBounds(210, 338, 152, 20);
 		contentPane.add(textOrigem);
 		
 		JButton btSair = new JButton("Sair");
@@ -162,12 +223,13 @@ public class Plantas extends JFrame {
 		btSair.setForeground(Color.WHITE);
 		btSair.setFont(new Font("Arial", Font.BOLD, 12));
 		btSair.setBackground(new Color(0, 128, 0));
-		btSair.setBounds(20, 374, 89, 23);
+		btSair.setBounds(10, 402, 89, 23);
 		contentPane.add(btSair);
 		
 		JButton btVoltar = new JButton("Voltar");
 		btVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				
 					tela3 = new Cadastros();
 					tela3.setVisible(true);
@@ -178,39 +240,85 @@ public class Plantas extends JFrame {
 		btVoltar.setForeground(Color.WHITE);
 		btVoltar.setFont(new Font("Arial", Font.BOLD, 12));
 		btVoltar.setBackground(new Color(0, 128, 0));
-		btVoltar.setBounds(669, 374, 89, 23);
+		btVoltar.setBounds(122, 402, 89, 23);
 		contentPane.add(btVoltar);
 		
 		JLabel labelNomePlanta = new JLabel("Nome da Planta");
 		labelNomePlanta.setForeground(Color.WHITE);
 		labelNomePlanta.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelNomePlanta.setBounds(458, 120, 132, 14);
+		labelNomePlanta.setBounds(21, 315, 132, 14);
 		contentPane.add(labelNomePlanta);
 		
 		JLabel labelNomeCientifico = new JLabel("Nome Cientifico");
 		labelNomeCientifico.setForeground(Color.WHITE);
 		labelNomeCientifico.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelNomeCientifico.setBounds(458, 192, 132, 14);
+		labelNomeCientifico.setBounds(208, 261, 132, 14);
 		contentPane.add(labelNomeCientifico);
 		
 		JLabel labelOrigem = new JLabel("Origem");
 		labelOrigem.setForeground(Color.WHITE);
 		labelOrigem.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelOrigem.setBounds(458, 255, 132, 14);
+		labelOrigem.setBounds(208, 315, 132, 14);
 		contentPane.add(labelOrigem);
 		
 		JLabel labelFamlia = new JLabel("Fam\u00EDlia");
 		labelFamlia.setForeground(Color.WHITE);
 		labelFamlia.setFont(new Font("Arial", Font.PLAIN, 12));
-		labelFamlia.setBounds(458, 309, 132, 14);
+		labelFamlia.setBounds(394, 261, 132, 14);
 		contentPane.add(labelFamlia);
 		
 		textFamilia = new JTextField();
 		textFamilia.setDocument( new DocumentoLimitado(30) ); //definindo o tamanho do campo
 		textFamilia.setFont(new Font("Arial", Font.PLAIN, 12));
 		textFamilia.setColumns(10);
-		textFamilia.setBounds(458, 332, 152, 20);
+		textFamilia.setBounds(394, 284, 152, 20);
 		contentPane.add(textFamilia);
+		
+		JLabel labelTipoDaPlanta = new JLabel("Tipo da Planta");
+		labelTipoDaPlanta.setForeground(Color.WHITE);
+		labelTipoDaPlanta.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelTipoDaPlanta.setBounds(394, 315, 132, 14);
+		contentPane.add(labelTipoDaPlanta);
+		
+		textTipoDaPlanta = new JTextField();
+		textTipoDaPlanta.setDocument( new DocumentoLimitado(10) ); //definindo o tamanho do campo
+		textTipoDaPlanta.setFont(new Font("Arial", Font.PLAIN, 12));
+		textTipoDaPlanta.setColumns(10);
+		textTipoDaPlanta.setBounds(394, 338, 152, 20);
+		contentPane.add(textTipoDaPlanta);
+		
+		JLabel labelClima = new JLabel("Clima");
+		labelClima.setForeground(Color.WHITE);
+		labelClima.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelClima.setBounds(394, 369, 132, 14);
+		contentPane.add(labelClima);
+		
+		textClima = new JTextField();
+		textClima.setDocument( new DocumentoLimitado(20) ); //definindo o tamanho do campo
+		textClima.setFont(new Font("Arial", Font.PLAIN, 12));
+		textClima.setColumns(10);
+		textClima.setBounds(394, 392, 152, 20);
+		contentPane.add(textClima);
+		
+		JLabel labelObservacoes = new JLabel("Observa\u00E7\u00F5es");
+		labelObservacoes.setForeground(Color.WHITE);
+		labelObservacoes.setFont(new Font("Arial", Font.PLAIN, 12));
+		labelObservacoes.setBounds(571, 255, 132, 14);
+		contentPane.add(labelObservacoes);
+		
+		textObservacoes = new JTextField();
+		textObservacoes.setHorizontalAlignment(SwingConstants.LEFT);
+		textObservacoes.setDocument( new DocumentoLimitado(120) ); //definindo o tamanho do campo
+		textObservacoes.setFont(new Font("Arial", Font.PLAIN, 12));
+		textObservacoes.setColumns(10);
+		textObservacoes.setBounds(571, 284, 220, 141);
+		contentPane.add(textObservacoes);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 47, 794, 131);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
 	}
-
 }

@@ -10,6 +10,13 @@
     <fullyQualifiedTypeName name="telas.TelaInicial"/>
     <fullyQualifiedTypeName name="telas.Cadastros"/>
     <fullyQualifiedTypeName name="telas.Login"/>
-    <fullyQualifiedTypeName name="metodos.AcessoBD"/>
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.text.DateFormat"/>
+    <fullyQualifiedTypeName name="net.proteanit.sql.DbUtils"/>
+    <fullyQualifiedTypeName name="metodos_projeto.UsuarioDAO"/>
+    <fullyQualifiedTypeName name="metodos_projeto.Usuario"/>
+    <fullyQualifiedTypeName name="telas.Usuarios"/>
+    <fullyQualifiedTypeName name="metodos.AcessoBD"/>
+    <fullyQualifiedTypeName name="consultas_bd.Book"/>
 </qualifiedTypeNameHistroy>
