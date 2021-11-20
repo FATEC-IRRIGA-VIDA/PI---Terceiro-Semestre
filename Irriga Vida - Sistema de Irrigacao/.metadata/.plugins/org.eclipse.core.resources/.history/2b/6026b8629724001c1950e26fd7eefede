@@ -1,0 +1,19 @@
+package metodos;
+
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.JFrame;
+
+public class BotaoSair extends Frame implements ActionListener{
+
+	Button BotaoSair;
+	
+	public BotaoSair() {
+		
+		BotaoSair = new Button();
+		BotaoSair.addActionListener(null);
+		
+		add(BotaoSair);
+	}
+}

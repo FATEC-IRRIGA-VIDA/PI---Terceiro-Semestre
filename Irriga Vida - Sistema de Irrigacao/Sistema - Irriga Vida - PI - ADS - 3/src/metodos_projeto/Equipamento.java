@@ -1,0 +1,17 @@
+package metodos_projeto;
+
+public class Equipamento {
+
+	public int id;
+	private String descricao;
+	private double valor;
+	private String dtUltManutencao;
+	
+	/***
+	 * Método que irá realizar as operações do sistema á respeito aos Equipamentos (Cadastrar, Editar, Excluir, Consultar) 
+	 */
+	private void manterEquipamento() {
+		
+		// Lógica ainda a ser implementada
+	}
+}

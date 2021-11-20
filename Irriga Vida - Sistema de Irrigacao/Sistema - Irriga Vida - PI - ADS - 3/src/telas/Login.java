@@ -20,6 +20,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dialog.ModalExclusionType;
 
 public class Login extends JFrame {
 
@@ -47,8 +48,8 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Tela Login");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 388, 247);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(46, 139, 87));
@@ -64,7 +65,7 @@ public class Login extends JFrame {
 		textLogin.setColumns(10);
 		
 		textSenha = new JTextField();
-		textSenha.setDocument( new DocumentoLimitado(10) ); //definindo o tamanho do campo
+		textSenha.setDocument( new DocumentoLimitado(12) ); //definindo o tamanho do campo
 		textSenha.setFont(new Font("Arial", Font.PLAIN, 12));
 		textSenha.setColumns(8);
 		textSenha.setBounds(232, 96, 130, 20);
@@ -95,6 +96,7 @@ public class Login extends JFrame {
 				user01.checarLogin(login, senha);
 				user01.tamanhoSenha(senha);
 				user01.mostrar();
+				
 			}
 		});
 		btConectar.setForeground(new Color(255, 255, 255));

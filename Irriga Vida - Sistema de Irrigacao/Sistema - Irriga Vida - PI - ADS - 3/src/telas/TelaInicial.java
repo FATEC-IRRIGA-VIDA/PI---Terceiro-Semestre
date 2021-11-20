@@ -13,7 +13,12 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import com.toedter.calendar.JDayChooser;
+
+
+
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaInicial extends JFrame {
 
@@ -40,7 +45,7 @@ public class TelaInicial extends JFrame {
 	 */
 	public TelaInicial() {
 		setTitle("Tela Inicial");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 451, 355);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(46, 139, 87));
@@ -56,6 +61,11 @@ public class TelaInicial extends JFrame {
 		contentPane.add(labelSI);
 		
 		JButton btSair = new JButton("Sair");
+		btSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btSair.setForeground(Color.WHITE);
 		btSair.setFont(new Font("Arial", Font.BOLD, 12));
 		btSair.setBackground(new Color(0, 128, 0));
@@ -63,6 +73,16 @@ public class TelaInicial extends JFrame {
 		contentPane.add(btSair);
 		
 		JButton btCadastros = new JButton("Cadastros");
+		btCadastros.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Cadastros tela3 = new Cadastros();
+				tela3.setVisible(true);
+				
+				TelaInicial tela2 = new TelaInicial();
+				tela3.setVisible(false);
+			}
+		});
 		btCadastros.setForeground(Color.WHITE);
 		btCadastros.setFont(new Font("Arial", Font.BOLD, 12));
 		btCadastros.setBackground(new Color(0, 128, 0));
@@ -70,6 +90,13 @@ public class TelaInicial extends JFrame {
 		contentPane.add(btCadastros);
 		
 		JButton btRelatorios = new JButton("Relat\u00F3rios");
+		btRelatorios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Relatorios tela10 = new Relatorios();
+				tela10.setVisible(true);
+			}
+		});
 		btRelatorios.setForeground(Color.WHITE);
 		btRelatorios.setFont(new Font("Arial", Font.BOLD, 12));
 		btRelatorios.setBackground(new Color(0, 128, 0));
@@ -77,6 +104,13 @@ public class TelaInicial extends JFrame {
 		contentPane.add(btRelatorios);
 		
 		JButton btConfiguracoes = new JButton("Configura\u00E7\u00F5es");
+		btConfiguracoes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Configuracoes tela11 = new Configuracoes();
+				tela11.setVisible(true);
+			}
+		});
 		btConfiguracoes.setForeground(Color.WHITE);
 		btConfiguracoes.setFont(new Font("Arial", Font.BOLD, 12));
 		btConfiguracoes.setBackground(new Color(0, 128, 0));

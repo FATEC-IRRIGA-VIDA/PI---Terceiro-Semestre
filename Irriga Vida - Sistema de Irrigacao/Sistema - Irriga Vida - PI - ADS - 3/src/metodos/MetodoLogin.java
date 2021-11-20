@@ -2,6 +2,8 @@ package metodos;
 
 import javax.swing.JOptionPane;
 
+import telas.TelaInicial;
+
 public class MetodoLogin {
 
 	private String loginV;
@@ -10,6 +12,12 @@ public class MetodoLogin {
 	private int tamanhoSenha;
 	private String validado2;
 	
+	/**
+	 * Método que checa o login do usuário por meio do Login e Senha.
+	 * @param login - variável que recebe o login digitado.
+	 * @param senha - variável que recebe a senha digitada.
+	 * @return - retorna o status da validação
+	 */
 	public String checarLogin(String login, String senha) {
 		
 		
@@ -17,12 +25,42 @@ public class MetodoLogin {
 		senhaV = senha;
 		
 		if (loginV.equals("mateus")&&senhaV.equals("mateus2021"))
+		{
 			validado = "Acesso Concedido!";
+			TelaInicial tela2 = new TelaInicial();
+			tela2.setVisible(true);
+		}
+		
+		else if (loginV.equals("alice")&&senhaV.equals("alice2021"))
+		{
+			validado = "Acesso Concedido!";
+			TelaInicial tela2 = new TelaInicial();
+			tela2.setVisible(true);
+		}
+		
+		else if (loginV.equals("lucas")&&senhaV.equals("lucas2021"))
+		{
+			validado = "Acesso Concedido!";
+			TelaInicial tela2 = new TelaInicial();
+			tela2.setVisible(true);
+		}
+		
+		else if (loginV.equals("fabricia")&&senhaV.equals("fabricia2021"))
+		{
+			validado = "Acesso Concedido!";
+			TelaInicial tela2 = new TelaInicial();
+			tela2.setVisible(true);
+		}
+		
 		else 
 			validado = "Acesso Negado! Tente novamente.";
 		return validado;
 	}
 	
+	/***
+	 * Método que valida se a senha inserida possui o valor mínimo de caracteres.
+	 * @param senha - variável que recebe a senha digitada.
+	 */
 	public void tamanhoSenha(String senha) {
 		
 		tamanhoSenha = senha.length();
@@ -34,6 +72,9 @@ public class MetodoLogin {
 			}
 	}
 	
+	/***
+	 * Método que mostra as informações validadas na tela.
+	 */
 	public void mostrar() {
 		System.out.println("Login: " + loginV);
 		System.out.println("Senha: " + senhaV);

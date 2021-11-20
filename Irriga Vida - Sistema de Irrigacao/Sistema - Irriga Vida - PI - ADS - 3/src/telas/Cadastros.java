@@ -12,6 +12,8 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Cadastros extends JFrame {
 
@@ -38,7 +40,7 @@ public class Cadastros extends JFrame {
 	 */
 	public Cadastros() {
 		setTitle("Cadastros");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 561, 349);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(46, 139, 87));
@@ -89,6 +91,16 @@ public class Cadastros extends JFrame {
 		contentPane.add(btSair);
 		
 		JButton btVoltar = new JButton("Voltar");
+		btVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				TelaInicial tela2 = new TelaInicial();
+				tela2.setVisible(true);
+				
+				Cadastros frame = new Cadastros();
+				frame.setVisible(false);
+			}
+		});
 		btVoltar.setForeground(Color.WHITE);
 		btVoltar.setFont(new Font("Arial", Font.BOLD, 12));
 		btVoltar.setBackground(new Color(0, 128, 0));

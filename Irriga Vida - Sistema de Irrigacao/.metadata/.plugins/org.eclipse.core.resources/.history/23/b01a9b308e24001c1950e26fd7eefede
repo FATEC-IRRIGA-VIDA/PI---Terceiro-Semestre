@@ -1,0 +1,65 @@
+package metodos;
+
+import javax.swing.JOptionPane;
+
+public class MetodoLogin {
+
+	private String loginV;
+	private String senhaV;
+	private String validado;
+	private int tamanhoSenha;
+	private String validado2;
+	
+	/**
+	 * Método que checa o login do usuário por meio do Login e Senha.
+	 * @param login - variável que recebe o login digitado.
+	 * @param senha - variável que recebe a senha digitada.
+	 * @return - retorna o status da validação
+	 */
+	public String checarLogin(String login, String senha) {
+		
+		
+		loginV = login;
+		senhaV = senha;
+		
+		if (loginV.equals("mateus")&&senhaV.equals("mateus2021"))
+			validado = "Acesso Concedido!";
+		
+		else if (loginV.equals("alice")&&senhaV.equals("alice2021"))
+			validado = "Acesso Concedido!";
+		
+		else if (loginV.equals("lucas")&&senhaV.equals("lucas2021"))
+			validado = "Acesso Concedido!";
+		
+		else if (loginV.equals("fabricia")&&senhaV.equals("fabricia2021"))
+			validado = "Acesso Concedido!";
+		
+		else 
+			validado = "Acesso Negado! Tente novamente.";
+		return validado;
+	}
+	
+	/***
+	 * Método que valida se a senha inserida possui o valor mínimo de caracteres.
+	 * @param senha - variável que recebe a senha digitada.
+	 */
+	public void tamanhoSenha(String senha) {
+		
+		tamanhoSenha = senha.length();
+		
+		if (tamanhoSenha<8)
+			{
+				validado2 = "A senha deve ter no minímo 8 caracteres";
+				JOptionPane.showMessageDialog(null, validado2);
+			}
+	}
+	
+	/***
+	 * Método que mostra as informações validadas na tela.
+	 */
+	public void mostrar() {
+		System.out.println("Login: " + loginV);
+		System.out.println("Senha: " + senhaV);
+		JOptionPane.showMessageDialog(null, validado);
+	}
+}
